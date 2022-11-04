@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,8 +18,10 @@ public class FileIO {
             }
         } catch (
                 FileNotFoundException e) {
+            System.out.println("Datafile not found");
             movieData = null;
         }
+
         return movieData;
     }
     public ArrayList<String> readSeriesData() {
@@ -30,8 +34,25 @@ public class FileIO {
                 seriesData.add(input.nextLine());
             }
         } catch (FileNotFoundException e) {
+            System.out.println("Datafile not found");
             seriesData = null;
         }
         return seriesData;
     }
+
+    public static void writeUserData(ArrayList<User> users){
+        try {
+            FileWriter writer = new FileWriter("data/userdata.txt");
+            writer.write( "name, password\n");
+
+            for (User u : users) {
+                writer.write(u.getName() + ", " + u.getPassword()+"\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+    }
+
 }
