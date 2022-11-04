@@ -1,26 +1,26 @@
 public class Account
 {
-    private String userName;
-    private String passWord;
+    private String username;
+    private String password;
 
-    public Account(String userName, String passWord)
+    public Account(String username, String password)
     {
-        this.userName = userName;
-        this.passWord = passWord;
+        this.username = username;
+        this.password = password;
     }
 
-    public String getUserName()
+    public String getUsername()
     {
-        return this.userName;
+        return this.username;
     }
 
-    public String getPassWord()
+    public String getPassword()
     {
-        return this.passWord;
+        return this.password;
     }
 
     public String toString()
     {
-        return userName;
+        return username;
     }
 }

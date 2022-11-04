@@ -25,10 +25,10 @@ public class AccountDataBase
         System.out.println("Type username and password for " + account);
         inputOne = scan.nextLine();
         inputTwo = scan.nextLine();
-        if (!Objects.equals(inputOne, account.getUserName()) || !Objects.equals(inputTwo, account.getPassWord()))
+        if (!Objects.equals(inputOne, account.getUsername()) || !Objects.equals(inputTwo, account.getPassword()))
         {
             // CALL userExist
-            System.out.println(account.getUserName());
+            System.out.println(account.getUsername());
             System.out.println(userAccounts);
             userExists(userAccounts,account);
             System.out.println("After userEx");
@@ -58,16 +58,16 @@ public class AccountDataBase
         /*for (Account a: userAccounts)
         {
             a = userAccounts.get(1);
-            if(Objects.equals(a.getUserName(), account.getUserName()))
+            if(Objects.equals(a.getUsername(), account.getUsername()))
             {
                 System.out.println("Wrong username");
                 userAuthentication(account);
                 return true;
             }
-            System.out.println("FUCK" + a.getUserName() + account.getUserName());
+            System.out.println("FUCK" + a.getUsername() + account.getUsername());
             return false;
         }
-        //if (!Object.equals(account.getPassWord() || !Objects.equals(account.getPassWord()))
+        //if (!Object.equals(account.getPassword() || !Objects.equals(account.getPassword()))
         System.out.println("Would you like to create a new user?");
         return false;*/
         return true;
