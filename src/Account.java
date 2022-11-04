@@ -1,9 +1,9 @@
-public class UserDataBase
+public class Account
 {
     private String userName;
     private String passWord;
 
-    public UserDataBase(String userName, String passWord)
+    public Account(String userName, String passWord)
     {
         this.userName = userName;
         this.passWord = passWord;
