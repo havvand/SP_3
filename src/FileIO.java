@@ -40,13 +40,13 @@ public class FileIO {
         return seriesData;
     }
 
-    public static void writeUserData(ArrayList<User> users){
+    public static void writeUserData(ArrayList<AccountDatabase> accountDatabases){
         try {
             FileWriter writer = new FileWriter("data/userdata.txt");
             writer.write( "name, password\n");
 
-            for (User u : users) {
-                writer.write(u.getName() + ", " + u.getPassword()+"\n");
+            for (Account a : accountDatabases) {
+                writer.write(a.getName() + ", " + a.getPassword()+"\n");
             }
             writer.close();
         } catch (IOException e) {
