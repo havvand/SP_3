@@ -18,4 +18,9 @@ public class Account
     {
         return this.passWord;
     }
+
+    public String toString()
+    {
+        return userName;
+    }
 }
