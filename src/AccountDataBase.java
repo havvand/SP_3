@@ -42,8 +42,20 @@ public class AccountDataBase
     // This method checks if the user exists.
     protected boolean userExists(ArrayList<Account> userAccounts, Account account)
     {
+        for(int i = 0; i < userAccounts.size(); i++)
+        {
+            System.out.println(i);
+            if(account == userAccounts.get(i))
+            {
+                System.out.println("Holger"  + account);
+            }
+            else {
+                System.out.println("Not holger" + userAccounts.get(i));
+            }
+        }
 
-        for (Account a: userAccounts)
+
+        /*for (Account a: userAccounts)
         {
             a = userAccounts.get(1);
             if(Objects.equals(a.getUserName(), account.getUserName()))
@@ -57,7 +69,8 @@ public class AccountDataBase
         }
         //if (!Object.equals(account.getPassWord() || !Objects.equals(account.getPassWord()))
         System.out.println("Would you like to create a new user?");
-        return false;
+        return false;*/
+        return true;
     }
 
     public String toString()
