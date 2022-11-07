@@ -13,6 +13,7 @@ public class FileIO {
         try {
             Scanner input = new Scanner(movieFile);
 
+
             while (input.hasNextLine()) {
                 movieData.add(input.nextLine());
             }
@@ -40,7 +41,7 @@ public class FileIO {
         return seriesData;
     }
 
-    public static void writeUserData(ArrayList<AccountDatabase> accountDatabases){
+    public static void writeUserData(ArrayList<Account> accountDatabases){
         try {
             FileWriter writer = new FileWriter("data/userdata.txt");
             writer.write( "name, password\n");
@@ -55,4 +56,4 @@ public class FileIO {
     }
     }
 
-}
+
