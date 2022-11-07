@@ -3,23 +3,21 @@ import java.util.Scanner;
 
 public class MainMenu extends Login {
     Scanner scanner = new Scanner(System.in);
-    public void startMenu(Account account){
+    public void startMenu(Account account) {
 
         //System.out.println("1. login \n" + "2. Register user");
         u.displayMessage("Welcome to the jungle! \n" + "Press 1 for a list of movies\n" + "Press 2 for a list of series" + "Press 3 to do a search");
         int choice = scanner.nextInt();
 
-        if (choice == 1){
+        if (choice == 1) {
 
-            readMovieData();
-        }
-        else if (choice == 2){
-            readSeriesData();
-        }
-        else if (choice == 3){
+           f.readMovieData();
+        } else if (choice == 2) {
+            f.readSeriesData();
+        } else if (choice == 3) {
             //Search engine here
         }
-
+    }
 
 
         public void watchMedia(Account account) {
@@ -36,13 +34,13 @@ public class MainMenu extends Login {
         }
 
 
-        public void addToWatched
+        /*public void addToWatched
 
 
         public void addToFavorites(userAccount a, choice) {
             favoritMovie.add(choice)
         }
-    }
+    }*/
 }
-}
-}
+
+

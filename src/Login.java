@@ -14,11 +14,11 @@ public class Login {
 
     }
 
-    public void newUser(String username, String password){
+    public void newUser(){
         u.displayMessage("Insert username and paswword");
         Scanner scanner = new Scanner(System.in);
-        username = u.getUserInput ("Enter username");
-        password = u.getUserInput ("Enter password");
+       String username = u.getUserInput ("Enter username");
+        String password = u.getUserInput ("Enter password");
 
         Account account = new Account(username, password);
 

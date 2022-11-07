@@ -10,6 +10,7 @@ public class AccountDataBase
     private String inputPassWord;
     textUI textUI = new textUI();
 
+
     public AccountDataBase()
     {
 
@@ -21,8 +22,9 @@ public class AccountDataBase
         userAccounts.add(account);
     }
 
-    protected void userAuthentication(Account account)
-    {
+    protected void userAuthentication(Account account){
+            Login login = new Login();
+
         String inputChoice = textUI.getUserInput("Press 1 for log-in | Press 2 to create new user.");
 
         if(Objects.equals(inputChoice, "1")){
@@ -38,7 +40,7 @@ public class AccountDataBase
                 //mainMenu.startMenu(account);
         } else if (Objects.equals(inputChoice, "2")){
             System.out.println("NEW USER");
-            //login.newUser(username, password);
+            login.newUser();
         }
         System.out.println("ERROR");
         }

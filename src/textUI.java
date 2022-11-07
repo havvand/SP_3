@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class textUI extends Login {
+public class textUI {
     static Scanner scan = new Scanner(System.in);
 //RECEIVES A MESSAGE AND DISPLAYS IT TO THE USER. PROMPTS THE USER FOR ONE INPUT VALUE AND RETURNS THE INPUT
     public String getUserInput(String msg) {
