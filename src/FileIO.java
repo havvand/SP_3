@@ -24,8 +24,9 @@ public class FileIO {
 
         return movieData;
     }
+
     public ArrayList<String> readSeriesData() {
-        File seriesFile = new File("data/seriesdata.txt");
+        File seriesFile = new File("Data/seriesdata.txt");
         ArrayList<String> seriesData = new ArrayList<>();
         try {
             Scanner input = new Scanner(seriesFile);
@@ -40,19 +41,21 @@ public class FileIO {
         return seriesData;
     }
 
-    public static void writeUserData(ArrayList<AccountDatabase> accountDatabases){
+    public static void writeUserData(ArrayList<Account> accountDatabases) {
         try {
             FileWriter writer = new FileWriter("data/userdata.txt");
-            writer.write( "name, password\n");
+            writer.write("name, password\n");
 
             for (Account a : accountDatabases) {
-                writer.write(a.getName() + ", " + a.getPassword()+"\n");
+                writer.write(a.getUsername() + ", " + a.getPassword() + "\n");
             }
             writer.close();
         } catch (IOException e) {
             System.out.println(e);
         }
-    }
-    }
 
+    }
 }
+
+
+

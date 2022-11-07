@@ -12,9 +12,7 @@ public class textUI {
 //RECEIVES A MESSAGE AND DISPLAYS IT TO THE USER. PROMPTS THE USER FOR MULTIPLE INPUT VALUES. RETURNS ARRAY OF INPUTS.
     public ArrayList<String> getUserInput(String msg, int iterations) {
         ArrayList<String> values = new ArrayList<>();
-
         int i = 0;
-
         String input = "";
         while (i < iterations) {
             displayMessage(msg);
