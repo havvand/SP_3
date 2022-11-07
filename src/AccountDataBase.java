@@ -8,6 +8,8 @@ public class AccountDataBase
     ArrayList<Account> userAccounts = new ArrayList<>();
     private String inputUserName;
     private String inputPassWord;
+    textUI textUI = new textUI();
+
 
     public AccountDataBase()
     {
@@ -20,19 +22,30 @@ public class AccountDataBase
         userAccounts.add(account);
     }
 
-    protected void userAuthentication(Account account)
-    {
-        System.out.println("Type username and password for " + account);
-        inputUserName = scan.nextLine();
-        inputPassWord = scan.nextLine();
-        if (!Objects.equals(inputUserName, account.getUsername()) || !Objects.equals(inputPassWord, account.getPassword()))
-        {
-            userExists(userAccounts,account);
-            // SOUT Would you like to create a new user? - INPUT?
-            // TODO: 04-11-2022  Make call for login.newUser();
-        } else
-        System.out.println("Login Success - CALL MAIN-MENU");
-    }
+    protected void userAuthentication(Account account){
+            Login login = new Login();
+
+        String inputChoice = textUI.getUserInput("Press 1 for log-in | Press 2 to create new user.");
+
+        if(Objects.equals(inputChoice, "1")){
+            System.out.println("INPUT 1");
+            inputUserName = textUI.getUserInput("Enter Username");
+            inputPassWord = textUI.getUserInput("Enter Password");
+
+            if (!Objects.equals(inputUserName, account.getUsername()) || !Objects.equals(inputPassWord, account.getPassword()))
+            {
+                userExists(userAccounts,account);
+            } else
+                textUI.getUserInput("LOGIN SUCCESS!");
+                //mainMenu.startMenu(account);
+        } else if (Objects.equals(inputChoice, "2")){
+            System.out.println("NEW USER");
+            login.newUser();
+        }
+        System.out.println("ERROR");
+        }
+
+
 
     // This method checks if the user exists.
     protected void userExists(ArrayList<Account> userAccounts, Account account)
@@ -40,12 +53,11 @@ public class AccountDataBase
         for(int i = 0; i < userAccounts.size(); i++)
         {
             //System.out.println("ONE = " + one + "USER = " +  userAccounts.get(i));
-            if(account == userAccounts.get(i) && !Objects.equals(inputUserName, account.getUsername()))
-            {
-                System.out.println("Wrong username - try again: "  + account + " : " + userAccounts.get(i));
+            if(account == userAccounts.get(i) && !Objects.equals(inputUserName, account.getUsername())) {
+                textUI.displayMessage("Wrong username - try again! ");
                 userAuthentication(account);
             } else if (account == userAccounts.get(i) && Objects.equals(inputUserName, account.getUsername())) {
-                System.out.println("Wrong password - try again");
+                textUI.displayMessage("Wrong password - try again! ");
                 userAuthentication(account);
             }
         }
