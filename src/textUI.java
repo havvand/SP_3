@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class textUI {
+public class textUI extends Login {
     static Scanner scan = new Scanner(System.in);
 //RECEIVES A MESSAGE AND DISPLAYS IT TO THE USER. PROMPTS THE USER FOR ONE INPUT VALUE AND RETURNS THE INPUT
     public String getUserInput(String msg) {
@@ -12,9 +12,7 @@ public class textUI {
 //RECEIVES A MESSAGE AND DISPLAYS IT TO THE USER. PROMPTS THE USER FOR MULTIPLE INPUT VALUES. RETURNS ARRAY OF INPUTS.
     public ArrayList<String> getUserInput(String msg, int iterations) {
         ArrayList<String> values = new ArrayList<>();
-
         int i = 0;
-
         String input = "";
         while (i < iterations) {
             displayMessage(msg);

@@ -2,6 +2,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+
         Account one = new Account("Benny", "Benny1");
         Account two = new Account("Holger", "Holger1");
         Account three = new Account("Jens", "Jens1");
@@ -12,6 +13,8 @@ public class Main {
         aOne.addUser(two);
         aOne.addUser(three);
         aOne.userAuthentication(two);
+
+
 
         System.out.println("End Main");
 
