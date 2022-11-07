@@ -45,7 +45,7 @@ public class AccountDataBase
                 System.out.println("Wrong username - try again: "  + account + " : " + userAccounts.get(i));
                 userAuthentication(account);
             } else if (account == userAccounts.get(i) && Objects.equals(inputUserName, account.getUsername())) {
-                System.out.println("Wrong password");
+                System.out.println("Wrong password - try again");
                 userAuthentication(account);
             }
         }
