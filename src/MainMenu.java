@@ -8,7 +8,7 @@ import java.util.Scanner;
 
             public void startMenu(Account account){
                 //System.out.println("1. login \n" + "2. Register user");
-                displayMessage("Welcome to the jungle! \n" + "Press 1 for a list of movies\n" + "Press 2 for a list of series" + "Press 3 to do a search");
+                u.displayMessage("Welcome to the jungle! \n" + "Press 1 for a list of movies\n" + "Press 2 for a list of series" + "Press 3 to do a search");
                 int choice = scanner.nextInt();
 
                 if (choice == 1){
@@ -23,17 +23,10 @@ import java.util.Scanner;
             }
 
 
-            ArrayList<String> watchedMedia = new ArrayList<>();
-            ArrayList<String> favoriteMedia = new ArrayList<>();
-
-
-
 
             public void watchMedia(Account account) {
-                textUI u = new textUI();
-                FileIO f = new FileIO();
-                String choice = u.getUserInput("Press 1 for movies \\n\" + \"Press 2 for series");
-                int answer = Integer.parseInt(choice);
+                String input = u.getUserInput("Press 1 for movies \\n\" + \"Press 2 for series");
+                int answer = Integer.parseInt(input);
                 if (answer == 1){
 
                     u.displayMessage(f.readMovieData().toString()); // Hvis der kommer en fejl. Er det muligt at den skal convertes fra Arraylist til String. Vi har converetet Arraylist til
