@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FileIO {
+public class FileIO extends Login{
 
     public ArrayList<String> readMovieData() {
         File movieFile = new File("data/moviedata.txt");

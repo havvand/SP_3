@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-    public class Mainmenu {
+    public class Mainmenu extends Login {
         Scanner scanner = new Scanner(System.in);
 
         public class Mainmenu {
