@@ -47,7 +47,7 @@ public class FileIO {
             writer.write( "name, password\n");
 
             for (Account a : accountDatabases) {
-                writer.write(a.getName() + ", " + a.getPassword()+"\n");
+                writer.write(a.getUsername() + ", " + a.getPassword()+"\n");
             }
             writer.close();
         } catch (IOException e) {
