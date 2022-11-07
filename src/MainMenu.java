@@ -8,7 +8,7 @@ import java.util.Scanner;
 
             public void startMenu(Account account){
                 //System.out.println("1. login \n" + "2. Register user");
-                displayMessage("Welcome to the jungle! \n" + "Do you want to watch a movie or a series?");
+                displayMessage("Welcome to the jungle! \n" + "Press 1 for a list of movies\n" + "Press 2 for a list of series" + "Press 3 to do a search");
                 int choice = scanner.nextInt();
 
                 if (choice == 1){
@@ -18,7 +18,8 @@ import java.util.Scanner;
                 else if (choice == 2){
                     readSeriesData();
                 }
-
+                else if (choice == 3){
+                    //Search engine here
             }
 
 
