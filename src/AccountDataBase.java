@@ -8,7 +8,8 @@ public class AccountDataBase
     ArrayList<Account> userAccounts = new ArrayList<>();
     private String inputUserName;
     private String inputPassWord;
-    textUI textUI = new textUI();
+    TextUI textUI = new TextUI();
+
 
 
     public AccountDataBase()
@@ -22,8 +23,11 @@ public class AccountDataBase
         userAccounts.add(account);
     }
 
-    protected void userAuthentication(Account account){
+    protected void userAuthentication(){
             Login login = new Login();
+        Account account = new Account("Joe", "Joe");
+
+
 
         String inputChoice = textUI.getUserInput("Press 1 for log-in | Press 2 to create new user.");
 
@@ -55,10 +59,10 @@ public class AccountDataBase
             //System.out.println("ONE = " + one + "USER = " +  userAccounts.get(i));
             if(account == userAccounts.get(i) && !Objects.equals(inputUserName, account.getUsername())) {
                 textUI.displayMessage("Wrong username - try again! ");
-                userAuthentication(account);
+                userAuthentication();
             } else if (account == userAccounts.get(i) && Objects.equals(inputUserName, account.getUsername())) {
                 textUI.displayMessage("Wrong password - try again! ");
-                userAuthentication(account);
+                userAuthentication();
             }
         }
     }

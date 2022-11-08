@@ -12,7 +12,10 @@ public class Account
         this.username = username;
         this.password = password;
     }
+    public Account()
+    {
 
+    }
     public String getUsername()
     {
         return this.username;
