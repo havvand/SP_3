@@ -6,7 +6,7 @@ public class AccountDataBase
     ArrayList<Account> userAccounts = new ArrayList<>();
     private String inputUserName;
     private String inputPassWord;
-    textUI textUI = new textUI();
+    TextUI textUI = new TextUI();
 
     String RESET = "\033[0m";
     String GREEN_BOLD = "\033[1;32m";
@@ -38,6 +38,7 @@ public class AccountDataBase
             }
             else if (!userExists(userAccounts, inputUserName, inputPassWord)){
                 textUI.displayMessage(GREEN_BOLD + "LOGIN FAILED! \nTRY AGAIN OR MAKE NEW USER." + RESET);
+                System.out.println(userAccounts);
                 userAuthentication();
             }
 

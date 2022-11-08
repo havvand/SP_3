@@ -6,10 +6,10 @@ public class Main {
         //Account a1 = new Account("Preben", "123456");
         AccountDataBase aOne = new AccountDataBase();
         Login login = new Login();
-        Account a = new Account("Joe", "Joe");
+        //Account a = new Account("Joe", "Joe");
 
-        //aOne.userAuthentication();
-        login.login(aOne);
+        aOne.userAuthentication();
+        //login.login(aOne);
 
 
 

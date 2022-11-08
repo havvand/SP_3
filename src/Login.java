@@ -10,7 +10,7 @@ public class Login {
 
 
     public void login(AccountDataBase adb) {
-        f.readUserData();
+
         adb.userAuthentication();
 
 
