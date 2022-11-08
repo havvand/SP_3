@@ -1,15 +1,16 @@
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class AccountDataBase
 {
-    Scanner scan = new Scanner(System.in);
     ArrayList<Account> userAccounts = new ArrayList<>();
     private String inputUserName;
     private String inputPassWord;
-    TextUI textUI = new TextUI();
+    textUI textUI = new textUI();
 
+    String RESET = "\033[0m";
+    String GREEN_BOLD = "\033[1;32m";
+    String RED_BOLD = "\033[1;31m";
 
 
     public AccountDataBase()
@@ -24,47 +25,47 @@ public class AccountDataBase
     }
 
     protected void userAuthentication(){
-            Login login = new Login();
-        Account account = new Account("Joe", "Joe");
-
-
+        Login login = new Login();
 
         String inputChoice = textUI.getUserInput("Press 1 for log-in | Press 2 to create new user.");
 
         if(Objects.equals(inputChoice, "1")){
-            System.out.println("INPUT 1");
             inputUserName = textUI.getUserInput("Enter Username");
             inputPassWord = textUI.getUserInput("Enter Password");
 
-            if (!Objects.equals(inputUserName, account.getUsername()) || !Objects.equals(inputPassWord, account.getPassword()))
-            {
-                userExists(userAccounts,account);
-            } else
-                textUI.getUserInput("LOGIN SUCCESS!");
-                //mainMenu.startMenu(account);
+            if (userExists(userAccounts, inputUserName, inputPassWord)){
+                System.out.println("CALL TO MAIN-MENU");
+            }
+            else if (!userExists(userAccounts, inputUserName, inputPassWord)){
+                textUI.displayMessage(GREEN_BOLD + "LOGIN FAILED! \nTRY AGAIN OR MAKE NEW USER." + RESET);
+                userAuthentication();
+            }
+
         } else if (Objects.equals(inputChoice, "2")){
             System.out.println("NEW USER");
             login.newUser();
-        }
-        System.out.println("ERROR");
+            }
         }
 
 
 
     // This method checks if the user exists.
-    protected void userExists(ArrayList<Account> userAccounts, Account account)
+    protected boolean userExists(ArrayList<Account> userAccounts, String username, String password)
     {
+        boolean doExist = false;
+        //System.out.println("ARGHHHHHH");
         for(int i = 0; i < userAccounts.size(); i++)
         {
-            //System.out.println("ONE = " + one + "USER = " +  userAccounts.get(i));
-            if(account == userAccounts.get(i) && !Objects.equals(inputUserName, account.getUsername())) {
-                textUI.displayMessage("Wrong username - try again! ");
-                userAuthentication();
-            } else if (account == userAccounts.get(i) && Objects.equals(inputUserName, account.getUsername())) {
-                textUI.displayMessage("Wrong password - try again! ");
-                userAuthentication();
-            }
+            if (Objects.equals(username, userAccounts.get(i).getUsername()) && Objects.equals(password, userAccounts.get(i).getPassword())) {
+                textUI.displayMessage(GREEN_BOLD + "LOGIN WORKED! \n" + userAccounts.get(i).getUsername() + " is logged in." +  RESET);
+                doExist = true;
+                break;
+            } /*else if (!Objects.equals(username, userAccounts.get(i).getUsername()) || !Objects.equals(password, userAccounts.get(i).getPassword())) {
+                System.out.println("LOGIN DIDNT WORK " + i +userAccounts.get(i).getUsername());
+                doExist = false;
+            } */
         }
+        return doExist;
     }
 
     public String toString()
