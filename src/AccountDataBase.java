@@ -8,7 +8,7 @@ public class AccountDataBase
     ArrayList<Account> userAccounts = new ArrayList<>();
     private String inputUserName;
     private String inputPassWord;
-    textUI textUI = new textUI();
+    TextUI textUI = new TextUI();
 
 
     public AccountDataBase()
