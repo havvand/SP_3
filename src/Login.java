@@ -10,7 +10,7 @@ public class Login {
 
 
     public void login(Account account){
-        adb.userAuthentication(account);
+        adb.userAuthentication();
 
     }
 
@@ -18,7 +18,7 @@ public class Login {
         u.displayMessage("Insert username and paswword");
         Scanner scanner = new Scanner(System.in);
        String username = u.getUserInput ("Enter username");
-        String password = u.getUserInput ("Enter password");
+       String password = u.getUserInput ("Enter password");
 
         Account account = new Account(username, password);
 

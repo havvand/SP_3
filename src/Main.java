@@ -13,7 +13,7 @@ public class Main {
         aOne.addUser(one);
         aOne.addUser(two);
         aOne.addUser(three);
-        aOne.userAuthentication(two);
+        aOne.userAuthentication();
 
 
 
