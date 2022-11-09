@@ -24,7 +24,7 @@ public class MediaData extends MainMenu {
         String i = u.getUserInput("Search for a category");
         for (Movies m : movies) {
             System.out.println(m.getGenre());
-            if (Objects.equals(m.getGenre(), i)){
+            if (m.getGenre().contains(i)){
                 movieCategories.add(m);
             }
         }
@@ -37,8 +37,8 @@ public class MediaData extends MainMenu {
         initateSeriesList();
         String i = u.getUserInput("Search for a category");
         for (Series s : series) {
-            if (Objects.equals(s.getGenre(), i)) {
-                seriesCategories.add(s);
+            if(s.getGenre().contains(i)){
+                    seriesCategories.add(s);
             }
         }
         System.out.println(seriesCategories);
@@ -51,7 +51,7 @@ public class MediaData extends MainMenu {
         ArrayList<Movies> searchedMovies = new ArrayList<>();
         String i = u.getUserInput("Search for a movie");
         for (Movies m:movies) {
-            if (Objects.equals(m.getTitle(), i)){
+            if (m.getTitle().contains(i)){
                 searchedMovies.add(m);
             }
         }
@@ -64,7 +64,7 @@ public class MediaData extends MainMenu {
         ArrayList<Series> searchedSeries = new ArrayList<>();
         String i = u.getUserInput("Search for a series");
         for (Series s : series) {
-            if (Objects.equals(s.getTitle(), i)) {
+            if (s.getTitle().contains(i)) {
                 searchedSeries.add(s);
             }
         }

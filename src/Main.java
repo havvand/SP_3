@@ -3,7 +3,7 @@ public class Main {
 
     public static void main(String[] args) {
         MainMenu test = new MainMenu();
-        test.startMenu();
+        //test.startMenu();
 
 /*
         Account one = new Account("Benny", "Benny1");

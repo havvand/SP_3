@@ -37,7 +37,8 @@ public class AccountDataBase
                 userExists(userAccounts,account);
             } else
                 textUI.getUserInput("LOGIN SUCCESS!");
-                //mainMenu.startMenu(account);
+            MainMenu m = new MainMenu();
+              m.startMenu();
         } else if (Objects.equals(inputChoice, "2")){
             System.out.println("NEW USER");
             login.newUser();

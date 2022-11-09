@@ -10,13 +10,13 @@ public class MainMenu extends Login {
         //watchMedia();
         MediaData md = new MediaData();
         //u.displayMessage("Welcome to the main menu. Here's a list of options: ");
-        //md.searchForMovieTitle();
+       // md.searchForMovieTitle();
         //md.searchForSeriesTitle();
         md.searchInMovieCategory();
-       //md.searchInSeriesCategory();
+      // md.searchInSeriesCategory();
     }
 
-    public void watchMedia() { // There is going to be an account sent in to this fuction
+    public void watchMedia(Account account) { // There is going to be an account sent in to this fuction
         MediaData md = new MediaData();
         int input = Integer.parseInt(u.getUserInput("/n Feeling adventurous? To watch something new, press 1" + "\n To watch something saved or favorited press 2"));
         if (input == 1) {
