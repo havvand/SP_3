@@ -7,16 +7,16 @@ public class MainMenu extends Login {
     Scanner scanner = new Scanner(System.in);
 
     public void startMenu() {
-        watchMedia();
-        //MediaData md = new MediaData();
+        //watchMedia();
+        MediaData md = new MediaData();
         //u.displayMessage("Welcome to the main menu. Here's a list of options: ");
         //md.searchForMovieTitle();
         //md.searchForSeriesTitle();
-        //md.searchInMovieCategory();
-       // md.searchInSeriesCategory();
+        md.searchInMovieCategory();
+       //md.searchInSeriesCategory();
     }
 
-    public void watchMedia() {
+    public void watchMedia() { // There is going to be an account sent in to this fuction
         MediaData md = new MediaData();
         int input = Integer.parseInt(u.getUserInput("/n Feeling adventurous? To watch something new, press 1" + "\n To watch something saved or favorited press 2"));
         if (input == 1) {

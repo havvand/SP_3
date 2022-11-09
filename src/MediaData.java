@@ -23,6 +23,7 @@ public class MediaData extends MainMenu {
         ArrayList<Movies> movieCategories = new ArrayList<>();
         String i = u.getUserInput("Search for a category");
         for (Movies m : movies) {
+            System.out.println(m.getGenre());
             if (Objects.equals(m.getGenre(), i)){
                 movieCategories.add(m);
             }
@@ -81,6 +82,7 @@ public class MediaData extends MainMenu {
             String amountOfEpisodesInSeason = values[4];
             Series s1 = new Series(title, releaseYear, genre, rating, amountOfEpisodesInSeason);
             series.add(s1);
+
         }
     }
 
