@@ -6,7 +6,7 @@ public class Main {
         AccountDataBase aOne = new AccountDataBase();
         //Login login = new Login();
 
-        aOne.userAuthentication();
+        //aOne.userAuthentication();
         //login.login(aOne);
     }
 }

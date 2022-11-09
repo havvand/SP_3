@@ -18,7 +18,7 @@ public class MediaData extends MainMenu {
         }
     }
     public void searchInSeriesCategory(){
-        ArrayList<Series> seriesCategories = new ArrayList<>(;
+        ArrayList<Series> seriesCategories = new ArrayList<>();
         String i = u.getUserInput("Search for a category");
         for (Series s:series){
             if(series.contains(i)){
@@ -61,9 +61,9 @@ public class MediaData extends MainMenu {
     public static void createMovies(ArrayList<String> movieData) {
         for (String s : movieData) {
             String[] values = s.split(";");
-            String title = values[0];
+            String title = values[0].trim();
             int releaseYear = Integer.parseInt(values[1]);
-            String genre = values[2];
+            String genre = values[2].trim();
             double rating = Double.parseDouble(values[3]);
             Movies m = new Movies(title, releaseYear, genre, rating);
             movies.add(m);
