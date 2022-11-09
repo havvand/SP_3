@@ -1,42 +1,52 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class MainMenu extends Login {
     Scanner scanner = new Scanner(System.in);
-    public void startMenu(Account account) {
+    MediaData md = new MediaData();
 
-        //System.out.println("1. login \n" + "2. Register user");
-        u.displayMessage("Welcome to the jungle! \n" + "Press 1 for a list of movies\n" + "Press 2 for a list of series" + "Press 3 to do a search");
-        int choice = scanner.nextInt();
+    public static void startMenu(){
 
-        if (choice == 1) {
+    }
 
-           f.readMovieData();
-        } else if (choice == 2) {
-            f.readSeriesData();
-        } else if (choice == 3) {
-            //Search engine here
+    // hent data fra file
+    // kald createMovies med data fra filen
+    // return array fra create>Movie med alle Movies
+
+    public void watchMedia(Account account, ArrayList<String> movieData, Movies m) {
+        ArrayList<String> movieList = new ArrayList<>();
+        int input = 0;
+        input = Integer.parseInt(u.getUserInput("Press 1 for movies \\n\" + \"Press 2 for series"));
+        if (input == 1) {
+            input = Integer.parseInt(u.getUserInput("Press 1 to search for a movie \\n\" + \"Press 2 to search for a category" + "\n Press 3 to see a list of all movies"));
+
+
+            if (input == 1) {
+                String movieAnswer = (u.getUserInput("Search for a movie: "));
+                for (movieAnswer:
+                     md.createMovies(movieData) {
+                if (md.createMovies(movieData).equals(movieAnswer);
+                {
+                    movieList.add(f.readMovieData().toString());
+                }
+                }
+
+                if (input == 3) {
+                    u.displayMessage(f.readMovieData().toString()); // Hvis der kommer en fejl. Er det muligt at den skal convertes fra Arraylist til String. Vi har converetet Arraylist til
+                    //System.out.println(f.readMovieData());
+                }
+            }
+            if (input == 2) {
+                input = Integer.parseInt(u.getUserInput("Press 1 to search for a movie \\n\" + \"Press 2 to search for a category" + "\n Press 3 to see a list of all movies"));
+            }
         }
     }
 
 
-        public void watchMedia(Account account) {
-            String input = u.getUserInput("Press 1 for movies \\n\" + \"Press 2 for series");
-            int answer = Integer.parseInt(input);
-            if (answer == 1){
 
-                u.displayMessage(f.readMovieData().toString()); // Hvis der kommer en fejl. Er det muligt at den skal convertes fra Arraylist til String. Vi har converetet Arraylist til
-                //System.out.println(f.readMovieData());
-            }
-            else if (answer == 2){
-                System.out.println(f.readSeriesData());
-            }
-        }
-
-
-        /*public void addToWatched
-
-
+/*
         public void addToFavorites(userAccount a, choice) {
             favoritMovie.add(choice)
         }
