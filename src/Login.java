@@ -19,14 +19,8 @@ public class Login {
     public void newUser() {
         u.displayMessage("Insert username and password");
         Scanner scanner = new Scanner(System.in);
-        String username = u.getUserInput("Enter username");
-        String password = u.getUserInput("Enter password");
 
-        Account account = new Account(username, password);
-
-        userAccounts.add(account);
         f.writeUserData(userAccounts);
-        System.out.println(account.getUsername() + account.getPassword());
 
     }
 }
