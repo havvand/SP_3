@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Login {
     TextUI u = new TextUI();
     FileIO f = new FileIO();
-    AccountDataBase adb = new AccountDataBase();
+    //AccountDataBase adb = new AccountDataBase();
 
     ArrayList<Account> userAccounts = new ArrayList<>();
 
@@ -26,6 +26,7 @@ public class Login {
 
         userAccounts.add(account);
         f.writeUserData(userAccounts);
+        System.out.println(account.getUsername() + account.getPassword());
 
     }
 }

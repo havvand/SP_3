@@ -1,7 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -40,6 +37,7 @@ public class FileIO{
         }
         return seriesData;
     }
+
     public ArrayList<String> readUserData() {
         File userFile = new File("Data/userdata.txt");
         ArrayList<String> userData = new ArrayList<>();
@@ -72,6 +70,54 @@ public class FileIO{
         }
 
     }
+
+    public boolean readUserCredentials(String userLogin, String userPassword)
+    {
+        try
+        {
+            FileReader userFile = new FileReader("data/userdata.txt");
+            Scanner reader = new Scanner(userFile);
+            reader.nextLine();
+            while (reader.hasNextLine())
+            {
+                String s = reader.nextLine();
+                String[] userData = s.split(", ");
+                String user = userData[0];
+                String password = userData[1];
+
+                if (userLogin.equals(user) && userPassword.equals(password))
+                {
+                    return true;
+                }
+            }
+        } catch (FileNotFoundException e)
+        {
+            System.out.println("Datafile not found");
+            //userData = null;
+        }
+        return false;
+    }
+
+    /*public void runLogin(){
+
+
+
+                if(inputUser.equals(user) && inputPassword.equals(password)){
+                    System.out.println("Welcome");
+                    //run main menu
+                }
+                else{
+                    System.out.println("Login failed\nPlease Try Again");
+                    runLogin();
+                }
+
+
+            }
+        } catch (FileNotFoundException f){
+            System.out.println("File not found");
+        }
+
+    }*/
 }
 
 

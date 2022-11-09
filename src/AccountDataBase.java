@@ -3,6 +3,7 @@ import java.util.Objects;
 
 public class AccountDataBase
 {
+    FileIO file = new FileIO();
     ArrayList<Account> userAccounts = new ArrayList<>();
     private String inputUserName;
     private String inputPassWord;
@@ -26,19 +27,19 @@ public class AccountDataBase
 
     protected void userAuthentication(){
         Login login = new Login();
-
-        String inputChoice = textUI.getUserInput("Press 1 for log-in | Press 2 to create new user.");
+        String inputChoice = textUI.getUserInput("Press 1 for log-in | Press 2 to create new user." + userAccounts);
 
         if(Objects.equals(inputChoice, "1")){
             inputUserName = textUI.getUserInput("Enter Username");
             inputPassWord = textUI.getUserInput("Enter Password");
 
-            if (userExists(userAccounts, inputUserName, inputPassWord)){
+            if (file.readUserCredentials(inputUserName,inputPassWord))
+            {
                 System.out.println("CALL TO MAIN-MENU");
             }
-            else if (!userExists(userAccounts, inputUserName, inputPassWord)){
+            else if (!file.readUserCredentials(inputUserName, inputPassWord)){
                 textUI.displayMessage(GREEN_BOLD + "LOGIN FAILED! \nTRY AGAIN OR MAKE NEW USER." + RESET);
-                System.out.println(userAccounts);
+                System.out.println("USER NOT EXIST ");
                 userAuthentication();
             }
 
@@ -49,29 +50,8 @@ public class AccountDataBase
         }
 
 
-
-    // This method checks if the user exists.
-    protected boolean userExists(ArrayList<Account> userAccounts, String username, String password)
-    {
-        boolean doExist = false;
-        //System.out.println("ARGHHHHHH");
-        for(int i = 0; i < userAccounts.size(); i++)
-        {
-            if (Objects.equals(username, userAccounts.get(i).getUsername()) && Objects.equals(password, userAccounts.get(i).getPassword())) {
-                textUI.displayMessage(GREEN_BOLD + "LOGIN WORKED! \n" + userAccounts.get(i).getUsername() + " is logged in." +  RESET);
-                doExist = true;
-                break;
-            } /*else if (!Objects.equals(username, userAccounts.get(i).getUsername()) || !Objects.equals(password, userAccounts.get(i).getPassword())) {
-                System.out.println("LOGIN DIDNT WORK " + i +userAccounts.get(i).getUsername());
-                doExist = false;
-            } */
-        }
-        return doExist;
-    }
-
     public String toString()
     {
-
         return userAccounts.toString();
     }
 }

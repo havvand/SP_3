@@ -8,8 +8,11 @@ public class Main {
         Login login = new Login();
         //Account a = new Account("Joe", "Joe");
 
-        aOne.userAuthentication();
-        //login.login(aOne);
+        //aOne.userAuthentication();
+        System.out.println("LOL");
+        login.login(aOne);
+        //login.newUser();
+
 
 
 
