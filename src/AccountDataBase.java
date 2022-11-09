@@ -1,17 +1,11 @@
-import java.util.ArrayList;
 import java.util.Objects;
 
-public class AccountDataBase
-{
-    FileIO file = new FileIO();
-    ArrayList<Account> userAccounts = new ArrayList<>();
-    private String inputUserName;
-    private String inputPassWord;
-    TextUI textUI = new TextUI();
-
+public class AccountDataBase{
     String RESET = "\033[0m";
     String GREEN_BOLD = "\033[1;32m";
-    String RED_BOLD = "\033[1;31m";
+    String REDB = "\033[1;31m";
+    String YELB = "\033[1;33m";
+
 
 
     public AccountDataBase()
@@ -20,26 +14,28 @@ public class AccountDataBase
     }
 
     // This method has to register and add new users.
-    protected void addUser(Account account)
+    public void addUser(Account account)
     {
-        userAccounts.add(account);
+        //userAccounts.add(account);
     }
 
-    protected void userAuthentication(){
+    public void userAuthentication(){
+        FileIO file = new FileIO();
+        TextUI textUI = new TextUI();
         Login login = new Login();
-        String inputChoice = textUI.getUserInput("Press 1 for log-in | Press 2 to create new user." + userAccounts);
+        String inputUserName, inputPassWord;
+        String inputChoice = textUI.getUserInput(YELB + "Press 1 for log-in | Press 2 to create new user." + RESET);
 
         if(Objects.equals(inputChoice, "1")){
-            inputUserName = textUI.getUserInput("Enter Username");
-            inputPassWord = textUI.getUserInput("Enter Password");
+            inputUserName = textUI.getUserInput(YELB + "Enter Username" + RESET);
+            inputPassWord = textUI.getUserInput(YELB + "Enter Password" + RESET);
 
             if (file.readUserCredentials(inputUserName,inputPassWord))
             {
                 System.out.println("CALL TO MAIN-MENU");
             }
             else if (!file.readUserCredentials(inputUserName, inputPassWord)){
-                textUI.displayMessage(GREEN_BOLD + "LOGIN FAILED! \nTRY AGAIN OR MAKE NEW USER." + RESET);
-                System.out.println("USER NOT EXIST ");
+                textUI.displayMessage(REDB + "LOGIN FAILED! \nTRY AGAIN OR MAKE NEW USER." + RESET);
                 userAuthentication();
             }
 
@@ -52,6 +48,6 @@ public class AccountDataBase
 
     public String toString()
     {
-        return userAccounts.toString();
+        return "";
     }
 }
