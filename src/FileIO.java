@@ -40,29 +40,27 @@ public class FileIO{
         }
         return seriesData;
     }
-    public ArrayList<String> readUserData() {
-        File userFile = new File("Data/userdata.txt");
-        ArrayList<String> userData = new ArrayList<>();
+    public void readUserData() {
+
         try {
+            File userFile = new File("Data/userdata.txt");
             Scanner input = new Scanner(userFile);
-            input.nextLine();//ignorer header
-
-
             while (input.hasNextLine()) {
-                userData.add(input.nextLine());
+                String s = input.nextLine();
+                String[] userData = s.split(", ");
+                String user = userData[0];
+                String password = userData[1];
             }
         } catch (FileNotFoundException e) {
             System.out.println("Datafile not found");
-            userData = null;
+
         }
-        return userData;
+
     }
 
     public void writeUserData(ArrayList<Account> accountDatabases) {
         try {
             FileWriter writer = new FileWriter("data/userdata.txt");
-            writer.write("name, password\n");
-
             for (Account a : accountDatabases) {
                 writer.write(a.getUsername() + ", " + a.getPassword() + "\n");
             }

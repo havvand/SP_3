@@ -29,7 +29,7 @@ public class AccountDataBase
 
         String inputChoice = textUI.getUserInput("Press 1 for log-in | Press 2 to create new user.");
 
-        if(Objects.equals(inputChoice, "1")){
+        if(inputChoice.equals("1")){
             inputUserName = textUI.getUserInput("Enter Username");
             inputPassWord = textUI.getUserInput("Enter Password");
 
@@ -59,8 +59,7 @@ public class AccountDataBase
         {
             if (Objects.equals(username, userAccounts.get(i).getUsername()) && Objects.equals(password, userAccounts.get(i).getPassword())) {
                 textUI.displayMessage(GREEN_BOLD + "LOGIN WORKED! \n" + userAccounts.get(i).getUsername() + " is logged in." +  RESET);
-                doExist = true;
-                break;
+                return true;
             } /*else if (!Objects.equals(username, userAccounts.get(i).getUsername()) || !Objects.equals(password, userAccounts.get(i).getPassword())) {
                 System.out.println("LOGIN DIDNT WORK " + i +userAccounts.get(i).getUsername());
                 doExist = false;
