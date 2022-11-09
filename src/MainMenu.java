@@ -7,50 +7,57 @@ public class MainMenu extends Login {
     Scanner scanner = new Scanner(System.in);
     MediaData md = new MediaData();
 
-    public static void startMenu(){
-
+    public void startMenu() {
+        u.displayMessage("Welcome to the main menu. Here's a list of options: ");
     }
 
-    // hent data fra file
-    // kald createMovies med data fra filen
-    // return array fra create>Movie med alle Movies
-
-    public void watchMedia(Account account, ArrayList<String> movieData, Movies m) {
-        ArrayList<String> movieList = new ArrayList<>();
-        int input = 0;
-        input = Integer.parseInt(u.getUserInput("Press 1 for movies \\n\" + \"Press 2 for series"));
+    public void watchMedia(Account account) {
+        int input = Integer.parseInt(u.getUserInput("/n Feeling adventurous? To watch something new, press 1" + "\n To watch something saved or favorited press 2"));
         if (input == 1) {
-            input = Integer.parseInt(u.getUserInput("Press 1 to search for a movie \\n\" + \"Press 2 to search for a category" + "\n Press 3 to see a list of all movies"));
-
-
+            u.displayMessage("You have chosen to watch something new. Choose how you want to proceed: ");
+            input = Integer.parseInt(u.getUserInput("\n Press 1 for movies. " + "Press 2 for series"));
             if (input == 1) {
-                String movieAnswer = (u.getUserInput("Search for a movie: "));
-                for (movieAnswer:
-                     md.createMovies(movieData) {
-                if (md.createMovies(movieData).equals(movieAnswer);
-                {
-                    movieList.add(f.readMovieData().toString());
+                u.displayMessage("You have chosen to watch movies. How do you want to proceed? ");
+                input = Integer.parseInt(u.getUserInput("Press 1 to see a list of movies \n Press 2 to search for a movie \n Press 3 to search for a category."));
+                if (input == 1) {
+                    md.displayMovies();
+                    //NEED TO BE ABLE TO PICK A MOVIE FROM ARRAY
                 }
+                if (input == 2) {
+                    md.searchForMovieTitle();
                 }
-
                 if (input == 3) {
-                    u.displayMessage(f.readMovieData().toString()); // Hvis der kommer en fejl. Er det muligt at den skal convertes fra Arraylist til String. Vi har converetet Arraylist til
-                    //System.out.println(f.readMovieData());
+                    md.searchInMovieCategory();
                 }
-            }
-            if (input == 2) {
-                input = Integer.parseInt(u.getUserInput("Press 1 to search for a movie \\n\" + \"Press 2 to search for a category" + "\n Press 3 to see a list of all movies"));
+                if (input == 2) {
+                    u.displayMessage("You have chosen to watch series. How do you want to proceed? ");
+                    input = Integer.parseInt(u.getUserInput("Press 1 to see a list of series \n Press 2 to search for a series \n Press 3 to search for a category."));
+                    if (input == 1) {
+                        md.displaySeries();
+                    }
+                    if (input == 2) {
+                        md.searchForSeriesTitle();
+                    }
+                    if (input == 3){
+                        md.searchInSeriesCategory();
+                    }
+                    if (input == 2){
+                        u.displayMessage("You have chosen to watch something saved or favorited. How do you want to proceed? ");
+                        input = Integer.parseInt(u.getUserInput("To watch something saved press 1 \n To watch something favorited press 2"));
+                        if (input == 1){
+                            md.watchSaved();
+                        }
+                        if (input == 2){
+                            md.watchFavorite();
+                        }
+                    }
+                }
             }
         }
     }
-
-
-
-/*
-        public void addToFavorites(userAccount a, choice) {
-            favoritMovie.add(choice)
-        }
-    }*/
 }
+
+
+
 
 
