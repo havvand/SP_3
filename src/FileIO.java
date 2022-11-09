@@ -57,12 +57,17 @@ public class FileIO{
     }
 
     public void writeUserData(ArrayList<Account> accountDatabases) {
+        TextUI textUI = new TextUI();
         try {
-            FileWriter writer = new FileWriter("data/userdata.txt");
-            writer.write("name, password\n");
+            Scanner reader = new Scanner("data/userdata.txt");
+            FileWriter writer = new FileWriter("data/userdata.txt", true);
+            reader.nextLine();
+            //writer.write("name, password\n");
 
-            for (Account a : accountDatabases) {
-                writer.write(a.getUsername() + ", " + a.getPassword() + "\n");
+            if (!reader.hasNextLine())
+            {
+                writer.append("");
+                writer.write(textUI.getUserInput("Username") + ", " + textUI.getUserInput("Password") + "\n");
             }
             writer.close();
         } catch (IOException e) {
@@ -77,7 +82,6 @@ public class FileIO{
         {
             FileReader userFile = new FileReader("data/userdata.txt");
             Scanner reader = new Scanner(userFile);
-            reader.nextLine();
             while (reader.hasNextLine())
             {
                 String s = reader.nextLine();
