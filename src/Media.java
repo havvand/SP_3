@@ -1,13 +1,13 @@
 public abstract class Media implements MediaType {
     private String title;
 
-    private int releaseYear;
+    private String releaseYear;
 
     private String genre;
 
-    private double rating;
+    private String rating;
 
-    public Media(String title, int releaseYear, String genre, double rating) {
+    public Media(String title, String releaseYear, String genre, String rating) {
         this.title = title;
         this.releaseYear = releaseYear;
         this.genre = genre;
@@ -18,7 +18,7 @@ public abstract class Media implements MediaType {
         return title;
     }
 
-    public int getReleaseYear() {
+    public String getReleaseYear() {
         return releaseYear;
     }
 
@@ -26,7 +26,7 @@ public abstract class Media implements MediaType {
         return genre;
     }
 
-    public double getRating() {
+    public String getRating() {
         return rating;
     }
 
@@ -37,6 +37,6 @@ public abstract class Media implements MediaType {
                 ", releaseYear=" + releaseYear +
                 ", genre='" + genre + '\'' +
                 ", rating=" + rating +
-                '}';
+                "}\n";
     }
 }
