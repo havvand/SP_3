@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class FileIO{
 
+
     public ArrayList<String> readMovieData() {
         File movieFile = new File("data/moviedata.txt");
         ArrayList<String> movieData = new ArrayList<>();
