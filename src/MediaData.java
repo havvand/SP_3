@@ -11,10 +11,8 @@ public class MediaData extends MainMenu {
     public  void initiateMovieList(){
         createMovies(f.readMovieData());
     }
-    public void initateSeriesList(){
+    public void initiateSeriesList(){
         createSeries(f.readSeriesData());
-
-        System.out.println();
     }
 
 
@@ -33,7 +31,7 @@ public class MediaData extends MainMenu {
 
     public ArrayList<Series> searchInSeriesCategory() {
         ArrayList<Series> seriesCategories = new ArrayList<>();
-        initateSeriesList();
+        initiateSeriesList();
         String i = u.getUserInput("Search for a category");
         for (Series s : series) {
             if (Objects.equals(s.getGenre(), i)) {
@@ -59,7 +57,7 @@ public class MediaData extends MainMenu {
     }
 
     public ArrayList<Series> searchForSeriesTitle() {
-        initateSeriesList();
+        initiateSeriesList();
         ArrayList<Series> searchedSeries = new ArrayList<>();
         String i = u.getUserInput("Search for a series");
         for (Series s : series) {
@@ -110,6 +108,7 @@ public class MediaData extends MainMenu {
     }
 
     public void displaySeries() {
+        initiateMovieList();
         System.out.println(series);
     }
 }
