@@ -5,13 +5,19 @@ import java.util.Scanner;
 
 public class MainMenu extends Login {
     Scanner scanner = new Scanner(System.in);
-    MediaData md = new MediaData();
 
     public void startMenu() {
-        u.displayMessage("Welcome to the main menu. Here's a list of options: ");
+        watchMedia();
+        //MediaData md = new MediaData();
+        //u.displayMessage("Welcome to the main menu. Here's a list of options: ");
+        //md.searchForMovieTitle();
+        //md.searchForSeriesTitle();
+        //md.searchInMovieCategory();
+       // md.searchInSeriesCategory();
     }
 
-    public void watchMedia(Account account) {
+    public void watchMedia() {
+        MediaData md = new MediaData();
         int input = Integer.parseInt(u.getUserInput("/n Feeling adventurous? To watch something new, press 1" + "\n To watch something saved or favorited press 2"));
         if (input == 1) {
             u.displayMessage("You have chosen to watch something new. Choose how you want to proceed: ");
