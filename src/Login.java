@@ -20,9 +20,7 @@ public class Login {
         u.displayMessage("Insert username and password");
         Scanner scanner = new Scanner(System.in);
 
-
         f.writeUserData(userAccounts);
-
 
     }
 }

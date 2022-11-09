@@ -61,10 +61,8 @@ public class FileIO{
         try {
             Scanner reader = new Scanner("data/userdata.txt");
             FileWriter writer = new FileWriter("data/userdata.txt", true);
-            reader.nextLine();
-            //writer.write("name, password\n");
 
-            if (!reader.hasNextLine())
+            if (reader.hasNext())
             {
                 writer.append("");
                 writer.write(textUI.getUserInput("Username") + ", " + textUI.getUserInput("Password") + "\n");
