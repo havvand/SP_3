@@ -10,27 +10,47 @@ public class MediaData extends MainMenu {
     private static ArrayList<Movies> movies = new ArrayList<>();
     private static ArrayList<Series> series = new ArrayList<>();
 
-    public  void initiateMovieList(){
+    public void initiateMovieList() {
         createMovies(f.readMovieData());
     }
-    public void initateSeriesList(){
+
+    public void initateSeriesList() {
         createSeries(f.readSeriesData());
 
 
     }
 
-public void playButton(){
+    public void playButtonForMovie() {
+        initiateMovieList();
+        ArrayList<Movies>watchedMovies = new ArrayList<>();
+        String i = u.getUserInputForSearch("Which of the following movies would you like to watch");
+        for (Movies m : movies){
+            if (m.getTitle().contains(i)){
+                watchedMovies.add(m);
+                u.displayMessage("You are now watching: " + m);
+            }
+        }
+    }
+
+    public void playButtonForSeries() {
+        initateSeriesList();
         ArrayList<Series> watchedSeries = new ArrayList<>();
-        u.displayMessage("you are now watching: ");
+        String i = u.getUserInputForSearch("Which of the following series would like to watch?");
+        for (Series s : series) {
+            if (s.getTitle().contains(i)) {
+                watchedSeries.add(s);
+                u.displayMessage("You are now watching: " + s);
+            }
+        }
+    }
 
 
-}
     public ArrayList<Movies> searchInMovieCategory() {
         initiateMovieList();
         ArrayList<Movies> movieCategories = new ArrayList<>();
         String i = u.getUserInputForSearch("Search for a category");
         for (Movies m : movies) {
-            if (m.getGenre().contains(i)){
+            if (m.getGenre().contains(i)) {
                 movieCategories.add(m);
             }
         }
@@ -43,8 +63,8 @@ public void playButton(){
         initateSeriesList();
         String i = u.getUserInputForSearch("Search for a category");
         for (Series s : series) {
-            if(s.getGenre().contains(i)){
-                    seriesCategories.add(s);
+            if (s.getGenre().contains(i)) {
+                seriesCategories.add(s);
             }
         }
         System.out.println(seriesCategories);
@@ -55,8 +75,8 @@ public void playButton(){
         initiateMovieList();
         ArrayList<Movies> searchedMovies = new ArrayList<>();
         String i = u.getUserInputForSearch("Search for a movie");
-        for (Movies m:movies) {
-            if (m.getTitle().contains(i)){
+        for (Movies m : movies) {
+            if (m.getTitle().contains(i)) {
                 searchedMovies.add(m);
             }
         }
@@ -69,7 +89,7 @@ public void playButton(){
         ArrayList<Series> searchedSeries = new ArrayList<>();
         String i = u.getUserInputForSearch("Search for a series");
         for (Series s : series) {
-           // if (StringUtils.co containsIgnoreCase(s.getTitle(), i){
+            // if (StringUtils.co containsIgnoreCase(s.getTitle(), i){
 
             //}
             if (s.getTitle().contains(i)) {
@@ -99,7 +119,7 @@ public void playButton(){
             String title = values[0];
             String releaseYear = values[1];
             String genre = values[2];
-            String rating =values[3];
+            String rating = values[3];
             Movies m = new Movies(title, releaseYear, genre, rating);
             movies.add(m);
         }
