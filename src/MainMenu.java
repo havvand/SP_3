@@ -46,8 +46,8 @@ public class MainMenu{
             chooseMediaType();
         }
         if (input == 2) {
-            md.displayFavoritedMovies();
-            md.displayFavoritedSeries();
+            //md.displayFavoritedMovies();
+            //md.displayFavoritedSeries();
             chooseMediaType();
 
         }

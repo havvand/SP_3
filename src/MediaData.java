@@ -91,7 +91,7 @@ public class MediaData extends MainMenu {
     public ArrayList<Movies> searchForMovieTitle() {
         initiateMovieList();
         ArrayList<Movies> searchedMovies = new ArrayList<>();
-        String i = u.getUserInput("Search for a movie");
+        String i = u.getUserInputForSearch("Search for a movie");
         for (Movies m : movies) {
             if (m.getTitle().contains(i)) {
                 m.toString();

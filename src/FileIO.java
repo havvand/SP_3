@@ -96,27 +96,6 @@ public class FileIO{
         }
         return false;
     }
-
-    /*public void runLogin(){
-
-
-
-                if(inputUser.equals(user) && inputPassword.equals(password)){
-                    System.out.println("Welcome");
-                    //run main menu
-                }
-                else{
-                    System.out.println("Login failed\nPlease Try Again");
-                    runLogin();
-                }
-
-
-            }
-        } catch (FileNotFoundException f){
-            System.out.println("File not found");
-        }
-
-    }*/
 }
 
 
