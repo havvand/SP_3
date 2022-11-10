@@ -2,11 +2,11 @@ public interface MediaType {
 
     String getTitle();
 
-    int getReleaseYear();
+    String getReleaseYear();
 
     String getGenre();
 
-    double getRating();
+    String getRating();
 
 
 }

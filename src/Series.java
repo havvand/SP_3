@@ -1,26 +1,22 @@
 public class Series extends Media {
-    private int amountOfEpisodes;
-    private int amountOfSeasons;
+    private String amountOfEpisodesInSeason;
 
-    public Series(String title, int releaseYear, String genre, double rating, int amountOfSeasons, int amountOfEpisodes) {
+    public Series(String title, String releaseYear, String genre, String rating, String amountOfEpisodesInSeason) {
         super(title, releaseYear, genre, rating);
-        this.amountOfEpisodes = amountOfEpisodes;
-        this.amountOfSeasons = amountOfSeasons;
+        this.amountOfEpisodesInSeason = amountOfEpisodesInSeason;
+
     }
 
-    public int getAmountOfEpisodes() {
-        return amountOfEpisodes;
+    public String getAmountOfEpisodesInSeason() {
+        return amountOfEpisodesInSeason;
     }
 
-    public int getAmountOfSeasons() {
-        return amountOfSeasons;
-    }
 
     @Override
     public String toString() {
-        return super.toString() + "Series{" +
-                "amountOfEpisodes=" + amountOfEpisodes +
-                ", amountOfSeasons=" + amountOfSeasons +
-                '}';
+        return super.toString() +
+                ", episodes in their respective seasons = " + amountOfEpisodesInSeason +
+
+        '"';
     }
 }

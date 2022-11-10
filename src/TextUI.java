@@ -42,4 +42,20 @@ public class TextUI {
         System.out.println(msg);
         System.out.println("*****************");
     }
+    public void displayErrorMessage(){
+        MediaData md = new MediaData();
+        displayMessage("The movie/series/category you are looking for, is NOT in our library..." + "\n What the hell do we do from here?");
+        int input = Integer.parseInt(getUserInput("You now have a choice. \n For the mainmenu, press 1." + "\n For a movie list, press 2." + "\n For a series list, press 3"));
+        if (input == 1) {
+            MainMenu mm = new MainMenu();
+            mm.startMenu();
+        }
+        else if (input == 2) {
+            md.displayMovies();
+
+        }
+        else if (input == 3){
+            md.displaySeries();
+        }
+    }
 }
