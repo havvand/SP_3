@@ -3,29 +3,80 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class MainMenu{
-    TextUI u = new TextUI();
+public class MainMenu extends Login {
     Scanner scanner = new Scanner(System.in);
 
     public void startMenu() {
-        //watchMedia();
-        MediaData md = new MediaData();
-        //u.displayMessage("Welcome to the main menu. Here's a list of options: ");
-        //md.searchForMovieTitle();
-        //md.searchForSeriesTitle();
-        md.searchInMovieCategory();
-       //md.searchInSeriesCategory();
+        chooseMediaType();
     }
 
-    public void watchMedia() { // There is going to be an account sent in to this fuction
+    public void chooseMediaType() {
         MediaData md = new MediaData();
-        int input = Integer.parseInt(u.getUserInput("/n Feeling adventurous? To watch something new, press 1" + "\n To watch something saved or favorited press 2"));
+        int input = Integer.parseInt(u.getUserInput("\n" + "Feeling adventurous? To watch something new, press 1 \n" + "To watch something saved or favorited press 2"));
         if (input == 1) {
             u.displayMessage("You have chosen to watch something new. Choose how you want to proceed: ");
-            input = Integer.parseInt(u.getUserInput("\n Press 1 for movies. " + "Press 2 for series"));
+            watchNewMedia();
+        }
+        if (input == 2) {
+            u.displayMessage("You have chosen to watch something stored. Choose how you want to proceed");
+            watchStoredMedia();
+        }
+    }
+
+    public void watchNewMedia() {
+        MediaData md = new MediaData();
+        int input = Integer.parseInt(u.getUserInput("Press 1 for movies. " + "Press 2 for series"));
+        if (input == 1) {
+            movieOptions();
+        }
+        if (input == 2) {
+            seriesOptions();
+        }
+
+    }
+
+    public void watchStoredMedia() {
+    }
+
+    public void seriesOptions() {
+        MediaData md = new MediaData();
+        u.displayMessage("You have chosen to watch series. How do you want to proceed? ");
+        int input = Integer.parseInt(u.getUserInput("Press 1 to see a list of series" + "\n" + "Press 2 to search for a series" + "\n" + "Press 3 to search for a category."));
+        if (input == 1) {
+            md.displaySeries();
+        }
+        if (input == 2) {
+            md.searchForSeriesTitle();
+        }
+        if (input == 3) {
+            md.searchInSeriesCategory();
+        }
+    }
+
+    public void movieOptions() {
+        MediaData md = new MediaData();
+        u.displayMessage("You have chosen to watch movies. How do you want to proceed? ");
+        int input = Integer.parseInt(u.getUserInput("Press 1 to see a list of movies" + "\n" + "Press 2 to search for a movie" + "\n" + "Press 3 to search for a category."));
+        if (input == 1) {
+            md.displayMovies();
+            //ADD BUTTON TO SELECT A MOVIE AND PLAY IT
+        }
+        if (input == 2) {
+            md.searchForMovieTitle();
+            //ADD BUTTON TO SELECT A MOVIE AND PLAY IT
+        }
+        if (input == 3) {
+            md.searchInMovieCategory();
+            //ADD BUTTON TO SELECT A MOVIE AND PLAY IT
+        }
+    }
+}
+
+    /*
+            input = Integer.parseInt(u.getUserInput("Press 1 for movies. " + "Press 2 for series"));
             if (input == 1) {
                 u.displayMessage("You have chosen to watch movies. How do you want to proceed? ");
-                input = Integer.parseInt(u.getUserInput("Press 1 to see a list of movies \n Press 2 to search for a movie \n Press 3 to search for a category."));
+                input = Integer.parseInt(u.getUserInput("Press 1 to see a list of movies" +"\n" + "Press 2 to search for a movie" + "\n" + "Press 3 to search for a category."));
                 if (input == 1) {
                     md.displayMovies();
                     //NEED TO BE ABLE TO PICK A MOVIE FROM ARRAY
@@ -36,7 +87,7 @@ public class MainMenu{
                 if (input == 3) {
                     md.searchInMovieCategory();
                 }
-                if (input == 2) {
+                else if (input == 2) {
                     u.displayMessage("You have chosen to watch series. How do you want to proceed? ");
                     input = Integer.parseInt(u.getUserInput("Press 1 to see a list of series \n Press 2 to search for a series \n Press 3 to search for a category."));
                     if (input == 1) {
@@ -45,16 +96,15 @@ public class MainMenu{
                     if (input == 2) {
                         md.searchForSeriesTitle();
                     }
-                    if (input == 3){
+                    if (input == 3) {
                         md.searchInSeriesCategory();
-                    }
-                    if (input == 2){
+                    } else if (input == 2) {
                         u.displayMessage("You have chosen to watch something saved or favorited. How do you want to proceed? ");
                         input = Integer.parseInt(u.getUserInput("To watch something saved press 1 \n To watch something favorited press 2"));
-                        if (input == 1){
+                        if (input == 1) {
                             md.watchSaved();
                         }
-                        if (input == 2){
+                        if (input == 2) {
                             md.watchFavorite();
                         }
                     }
@@ -63,8 +113,7 @@ public class MainMenu{
         }
     }
 }
-
-
+     */
 
 
 
