@@ -1,8 +1,9 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
-public class MainMenu extends Login {
+public class MainMenu {
     Scanner scanner = new Scanner(System.in);
+    TextUI u = new TextUI();
+    FileIO f = new FileIO();
     public void startMenu(Account account) {
 
         //System.out.println("1. login \n" + "2. Register user");
@@ -18,8 +19,6 @@ public class MainMenu extends Login {
             //Search engine here
         }
     }
-
-
         public void watchMedia(Account account) {
             String input = u.getUserInput("Press 1 for movies \\n\" + \"Press 2 for series");
             int answer = Integer.parseInt(input);
