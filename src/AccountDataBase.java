@@ -33,6 +33,9 @@ public class AccountDataBase{
             if (file.readUserCredentials(inputUserName,inputPassWord))
             {
                 System.out.println("CALL TO MAIN-MENU");
+                MainMenu m = new MainMenu();
+                m.startMenu();
+                //watchMedia;
             }
             else if (!file.readUserCredentials(inputUserName, inputPassWord)){
                 textUI.displayMessage(REDB + "LOGIN FAILED! \nTRY AGAIN OR MAKE NEW USER." + RESET);

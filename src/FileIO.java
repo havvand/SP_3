@@ -61,12 +61,8 @@ public class FileIO{
         try {
             Scanner reader = new Scanner("data/userdata.txt");
             FileWriter writer = new FileWriter("data/userdata.txt", true);
-
-            if (reader.hasNext())
-            {
-                writer.append("");
-                writer.write(textUI.getUserInput("Username") + ", " + textUI.getUserInput("Password") + "\n");
-            }
+            writer.append("");
+            writer.write(textUI.getUserInput("Username") + ", " + textUI.getUserInput("Password") + "\n");
             writer.close();
         } catch (IOException e) {
             System.out.println(e);
