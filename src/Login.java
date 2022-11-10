@@ -1,4 +1,3 @@
-import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Login {
@@ -11,16 +10,15 @@ public class Login {
 
     public void login(AccountDataBase adb) {
 
-        adb.userAuthentication();
-
+        //String inputChoice = u.getUserInput("Press 1 for log-in | Press 2 to create new user.");
+        //adb.userAuthentication(inputChoice);
 
     }
 
     public void newUser() {
         u.displayMessage("Insert username and password");
-        Scanner scanner = new Scanner(System.in);
-
-        f.writeUserData(userAccounts);
+        //Scanner scanner = new Scanner(System.in);
+        f.writeUserData();
 
     }
 }
