@@ -1,12 +1,16 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 import com.sun.deploy.util.StringUtils;
+
+import javax.xml.bind.SchemaOutputResolver;
 
 public class MediaData extends MainMenu {
     FileIO f = new FileIO();
 
     TextUI t = new TextUI();
+
     private static ArrayList<Movies> movies = new ArrayList<>();
     private static ArrayList<Series> series = new ArrayList<>();
 
@@ -32,6 +36,7 @@ public void playButton(){
         for (Movies m : movies) {
             System.out.println(m.getGenre());
             if (m.getGenre().contains(i)){
+                m.toString();
                 movieCategories.add(m);
             }
         }
@@ -52,6 +57,7 @@ public void playButton(){
         String i = u.getUserInput("Search for a category");
         for (Series s : series) {
             if (s.getGenre().contains(i)) {
+                s.toString();
                 seriesCategories.add(s);
             }
         }
@@ -66,10 +72,12 @@ public void playButton(){
 
     public ArrayList<Movies> searchForMovieTitle() {
         initiateMovieList();
+        int count = 0;
         ArrayList<Movies> searchedMovies = new ArrayList<>();
         String i = u.getUserInput("Search for a movie");
         for (Movies m : movies) {
             if (m.getTitle().contains(i)) {
+                m.toString();
                 searchedMovies.add(m);
             }
         }
@@ -87,6 +95,7 @@ public void playButton(){
         String i = u.getUserInput("Search for a series");
         for (Series s : series) {
             if (s.getTitle().contains(i)) {
+                s.toString();
                 searchedSeries.add(s);
             }
         }
