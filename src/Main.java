@@ -25,7 +25,6 @@ public class Main {
         Account one = new Account("Benny", "Benny1");
         Account two = new Account("Holger", "Holger1");
         Account three = new Account("Jens", "Jens1");
-
         AccountDataBase aOne = new AccountDataBase();
 
         aOne.addUser(one);

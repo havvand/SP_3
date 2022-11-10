@@ -14,9 +14,9 @@ public class Series extends Media {
 
     @Override
     public String toString() {
-        return super.toString() + "Series{" +
-                "amountOfEpisodesInSeason=" + amountOfEpisodesInSeason +
+        return super.toString() +
+                ", episodes in their respective seasons = " + amountOfEpisodesInSeason +
 
-        '}';
+        '"';
     }
 }

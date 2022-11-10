@@ -86,7 +86,6 @@ public void playButton(){
             String amountOfEpisodesInSeason = values[4];
             Series s1 = new Series(title, releaseYear, genre, rating, amountOfEpisodesInSeason);
             series.add(s1);
-
         }
     }
 
