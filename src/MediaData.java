@@ -9,6 +9,12 @@ public class MediaData extends MainMenu {
     TextUI t = new TextUI();
     private static ArrayList<Movies> movies = new ArrayList<>();
     private static ArrayList<Series> series = new ArrayList<>();
+    private ArrayList<Series> watchedSeries = new ArrayList<>();
+    private ArrayList<Movies> watchedMovies = new ArrayList<>();
+    private ArrayList<Movies> favoritedMovies = new ArrayList<>();
+
+    private ArrayList<Series> favoritedSeries = new ArrayList<>();
+
 
     public void initiateMovieList() {
         createMovies(f.readMovieData());
@@ -16,30 +22,44 @@ public class MediaData extends MainMenu {
 
     public void initateSeriesList() {
         createSeries(f.readSeriesData());
-
-
     }
 
     public void playButtonForMovie() {
         initiateMovieList();
-        ArrayList<Movies>watchedMovies = new ArrayList<>();
         String i = u.getUserInputForSearch("Which of the following movies would you like to watch");
-        for (Movies m : movies){
-            if (m.getTitle().contains(i)){
-                watchedMovies.add(m);
-                u.displayMessage("You are now watching: " + m);
+        for (Movies m : movies) {
+            if (m.getTitle().equalsIgnoreCase(i)) {
+                int input = Integer.parseInt(u.getUserInput("Press 1 to watch movie. " + "Press 2 to favorited movie"));
+                if (input == 1) {
+                    watchedMovies.add(m);
+                    u.displayMessage("You are now watching: " + m);
+                    chooseMediaType();
+                }
+                if (input == 2) {
+                    favoritedMovies.add(m);
+                    u.displayMessage("You have favorited: " + m);
+                    chooseMediaType();
+                }
             }
         }
     }
 
     public void playButtonForSeries() {
         initateSeriesList();
-        ArrayList<Series> watchedSeries = new ArrayList<>();
         String i = u.getUserInputForSearch("Which of the following series would like to watch?");
         for (Series s : series) {
-            if (s.getTitle().contains(i)) {
-                watchedSeries.add(s);
-                u.displayMessage("You are now watching: " + s);
+            if (s.getTitle().equalsIgnoreCase(i)) {
+                int input = Integer.parseInt(u.getUserInput("Press 1 to watch series. " + "Press 2 to favorite series"));
+                if (input == 1) {
+                    watchedSeries.add(s);
+                    u.displayMessage("You are now watching: " + s);
+                    chooseMediaType();
+                }
+                if (input == 2){
+                    favoritedSeries.add(s);
+                    u.displayMessage("You have favorited: " + s);
+                    chooseMediaType();
+                }
             }
         }
     }
@@ -139,6 +159,19 @@ public class MediaData extends MainMenu {
     }
 
     public void displaySeries() {
+        initateSeriesList();
         System.out.println(series);
+    }
+    public void displayWatchedSeries() {
+        System.out.println(watchedSeries);
+    }
+    public void displayWatchedMovies() {
+        System.out.println(watchedMovies);
+    }
+    public void displayFavoritedMovies() {
+        System.out.println(favoritedMovies);
+    }
+    public void displayFavoritedSeries() {
+        System.out.println(favoritedSeries);
     }
 }

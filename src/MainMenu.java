@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class MainMenu{
+public class MainMenu {
     Scanner scanner = new Scanner(System.in);
     TextUI u = new TextUI();
 
@@ -37,6 +37,18 @@ public class MainMenu{
     }
 
     public void watchStoredMedia() {
+        MediaData md = new MediaData();
+        int input = Integer.parseInt(u.getUserInput("Press 1 for watched media. " + "Press 2 for favorited media"));
+        if (input == 1) {
+            md.displayWatchedMovies();
+            md.displayWatchedSeries();
+            chooseMediaType();
+        }
+        if (input == 2) {
+            md.displayFavoritedMovies();
+            md.displayFavoritedSeries();
+            chooseMediaType();
+        }
     }
 
     public void seriesOptions() {
@@ -45,12 +57,15 @@ public class MainMenu{
         int input = Integer.parseInt(u.getUserInput("Press 1 to see a list of series" + "\n" + "Press 2 to search for a series" + "\n" + "Press 3 to search for a category."));
         if (input == 1) {
             md.displaySeries();
+            md.playButtonForSeries();
         }
         if (input == 2) {
             md.searchForSeriesTitle();
+            md.playButtonForSeries();
         }
         if (input == 3) {
             md.searchInSeriesCategory();
+            md.playButtonForSeries();
         }
     }
 
@@ -60,14 +75,17 @@ public class MainMenu{
         int input = Integer.parseInt(u.getUserInput("Press 1 to see a list of movies" + "\n" + "Press 2 to search for a movie" + "\n" + "Press 3 to search for a category."));
         if (input == 1) {
             md.displayMovies();
+            md.playButtonForMovie();
             //ADD BUTTON TO SELECT A MOVIE AND PLAY IT
         }
         if (input == 2) {
             md.searchForMovieTitle();
+            md.playButtonForMovie();
             //ADD BUTTON TO SELECT A MOVIE AND PLAY IT
         }
         if (input == 3) {
             md.searchInMovieCategory();
+            md.playButtonForMovie();
             //ADD BUTTON TO SELECT A MOVIE AND PLAY IT
         }
     }
