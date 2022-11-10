@@ -44,27 +44,36 @@ public void playButton(){
         initateSeriesList();
         String i = u.getUserInput("Search for a category");
         for (Series s : series) {
-            if(s.getGenre().contains(i)){
-                    seriesCategories.add(s);
+            if (s.getGenre().contains(i)) {
+                seriesCategories.add(s);
             }
         }
-        System.out.println(seriesCategories);
-        return seriesCategories;
+        if (seriesCategories.size() > 0) {
+            System.out.println(seriesCategories);
+            return seriesCategories;
+        } else {
+
+            return seriesCategories;
+        }
     }
 
     public ArrayList<Movies> searchForMovieTitle() {
         initiateMovieList();
         ArrayList<Movies> searchedMovies = new ArrayList<>();
         String i = u.getUserInput("Search for a movie");
-        for (Movies m:movies) {
-            if (m.getTitle().contains(i)){
+        for (Movies m : movies) {
+            if (m.getTitle().contains(i)) {
                 searchedMovies.add(m);
             }
         }
-        System.out.println(searchedMovies);
-        return searchedMovies;
+        if (searchedMovies.size() > 0) {
+            System.out.println(searchedMovies);
+            return searchedMovies;
+        } else {
+        t.displayErrorMessage();
+        }
+        return null;
     }
-
     public ArrayList<Series> searchForSeriesTitle() {
         initateSeriesList();
         ArrayList<Series> searchedSeries = new ArrayList<>();
@@ -116,7 +125,7 @@ public void playButton(){
 
     public void displayMovies() {
         initiateMovieList();
-        System.out.println(movies);
+        u.displayMessage("" + movies);
     }
 
     public void displaySeries() {
