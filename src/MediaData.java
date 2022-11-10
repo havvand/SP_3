@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.Objects;
 
-import com.sun.deploy.util.StringUtils;
-
 public class MediaData extends MainMenu {
     FileIO f = new FileIO();
 
@@ -54,12 +52,21 @@ public class MediaData extends MainMenu {
         ArrayList<Movies> movieCategories = new ArrayList<>();
         String i = u.getUserInputForSearch("Search for a category");
         for (Movies m : movies) {
-            if (m.getGenre().contains(i)) {
+            System.out.println(m.getGenre());
+            if (m.getGenre().contains(i)){
+                m.toString();
                 movieCategories.add(m);
             }
         }
-        System.out.println(movieCategories);
-        return movieCategories;
+        if (movieCategories.size() > 0 ){
+            System.out.println(movieCategories);
+            return movieCategories;
+        }
+        else {
+            t.displayErrorMessage();
+            return movieCategories;
+        }
+
     }
 
     public ArrayList<Series> searchInSeriesCategory() {
@@ -68,40 +75,56 @@ public class MediaData extends MainMenu {
         String i = u.getUserInputForSearch("Search for a category");
         for (Series s : series) {
             if (s.getGenre().contains(i)) {
+                s.toString();
                 seriesCategories.add(s);
             }
         }
-        System.out.println(seriesCategories);
-        return seriesCategories;
+        if (seriesCategories.size() > 0) {
+            System.out.println(seriesCategories);
+            return seriesCategories;
+        } else {
+        t.displayErrorMessage();
+            return seriesCategories;
+        }
     }
 
     public ArrayList<Movies> searchForMovieTitle() {
         initiateMovieList();
         ArrayList<Movies> searchedMovies = new ArrayList<>();
-        String i = u.getUserInputForSearch("Search for a movie");
+        String i = u.getUserInput("Search for a movie");
         for (Movies m : movies) {
             if (m.getTitle().contains(i)) {
+                m.toString();
                 searchedMovies.add(m);
             }
         }
-        System.out.println(searchedMovies);
-        return searchedMovies;
+        if (searchedMovies.size() > 0) {
+            System.out.println(searchedMovies);
+            return searchedMovies;
+        } else {
+        t.displayErrorMessage();
+        }
+        return null;
     }
-
     public ArrayList<Series> searchForSeriesTitle() {
         initiateSeriesList();
         ArrayList<Series> searchedSeries = new ArrayList<>();
         String i = u.getUserInputForSearch("Search for a series");
         for (Series s : series) {
-            // if (StringUtils.co containsIgnoreCase(s.getTitle(), i){
-
-            //}
             if (s.getTitle().contains(i)) {
+                s.toString();
                 searchedSeries.add(s);
             }
         }
-        System.out.println(searchedSeries);
-        return searchedSeries;
+        if (searchedSeries.size() > 0){
+            System.out.println(searchedSeries);
+            return searchedSeries;
+        }
+        else {
+            t.displayErrorMessage();
+            return searchedSeries;
+        }
+
     }
 
     private void createSeries(ArrayList<String> seriesData) {
@@ -123,7 +146,7 @@ public class MediaData extends MainMenu {
             String title = values[0];
             String releaseYear = values[1];
             String genre = values[2];
-            String rating = values[3];
+            String rating =values[3];
             Movies m = new Movies(title, releaseYear, genre, rating);
             movies.add(m);
         }
@@ -139,7 +162,7 @@ public class MediaData extends MainMenu {
 
     public void displayMovies() {
         initiateMovieList();
-        System.out.println(movies);
+        u.displayMessage("" + movies);
     }
 
     public void displaySeries() {

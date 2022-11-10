@@ -21,6 +21,7 @@ public class MainMenu{
         if (input == 2) {
             u.displayMessage("You have chosen to watch something stored. Choose how you want to proceed");
             watchStoredMedia();
+
         }
     }
 

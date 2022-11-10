@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public interface MediaType {
 
     String getTitle();
@@ -7,6 +9,8 @@ public interface MediaType {
     String getGenre();
 
     String getRating();
+
+
 
 
 }
