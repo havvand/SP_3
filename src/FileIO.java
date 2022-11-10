@@ -56,7 +56,8 @@ public class FileIO{
         return userData;
     }
 
-    public void writeUserData(ArrayList<Account> accountDatabases) {
+    // Adds new users to the userdata text file
+    public void writeUserData() {
         TextUI textUI = new TextUI();
         try {
             Scanner reader = new Scanner("data/userdata.txt");
@@ -67,9 +68,9 @@ public class FileIO{
         } catch (IOException e) {
             System.out.println(e);
         }
-
     }
 
+    // Checks if user exists in the userdata text file.
     public boolean readUserCredentials(String userLogin, String userPassword)
     {
         try
