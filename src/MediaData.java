@@ -35,8 +35,15 @@ public void playButton(){
                 movieCategories.add(m);
             }
         }
-        System.out.println(movieCategories);
-        return movieCategories;
+        if (movieCategories.size() > 0 ){
+            System.out.println(movieCategories);
+            return movieCategories;
+        }
+        else {
+            t.displayErrorMessage();
+            return movieCategories;
+        }
+
     }
 
     public ArrayList<Series> searchInSeriesCategory() {
@@ -52,7 +59,7 @@ public void playButton(){
             System.out.println(seriesCategories);
             return seriesCategories;
         } else {
-
+        t.displayErrorMessage();
             return seriesCategories;
         }
     }
@@ -79,15 +86,19 @@ public void playButton(){
         ArrayList<Series> searchedSeries = new ArrayList<>();
         String i = u.getUserInput("Search for a series");
         for (Series s : series) {
-           // if (StringUtils.co containsIgnoreCase(s.getTitle(), i){
-
-            //}
             if (s.getTitle().contains(i)) {
                 searchedSeries.add(s);
             }
         }
-        System.out.println(searchedSeries);
-        return searchedSeries;
+        if (searchedSeries.size() > 0){
+            System.out.println(searchedSeries);
+            return searchedSeries;
+        }
+        else {
+            t.displayErrorMessage();
+            return searchedSeries;
+        }
+
     }
 
     private void createSeries(ArrayList<String> seriesData) {
