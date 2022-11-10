@@ -1,11 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
-
-import com.sun.deploy.util.StringUtils;
-
-import javax.xml.bind.SchemaOutputResolver;
-
 public class MediaData extends MainMenu {
     FileIO f = new FileIO();
 
