@@ -5,14 +5,14 @@ import java.util.Scanner;
 
 public class MainMenu extends Login {
     Scanner scanner = new Scanner(System.in);
-    private MediaData md = new MediaData();
 
     public void startMenu() {
         chooseMediaType();
     }
 
     public void chooseMediaType() {
-        int input = Integer.parseInt(u.getUserInput("\n" + "Feeling adventurous? To watch something new, press 1" + "\n To watch something saved or favorited press 2"));
+        MediaData md = new MediaData();
+        int input = Integer.parseInt(u.getUserInput("\n" + "Feeling adventurous? To watch something new, press 1 \n" + "To watch something saved or favorited press 2"));
         if (input == 1) {
             u.displayMessage("You have chosen to watch something new. Choose how you want to proceed: ");
             watchNewMedia();
@@ -24,6 +24,7 @@ public class MainMenu extends Login {
     }
 
     public void watchNewMedia() {
+        MediaData md = new MediaData();
         int input = Integer.parseInt(u.getUserInput("Press 1 for movies. " + "Press 2 for series"));
         if (input == 1) {
             movieOptions();
@@ -38,6 +39,7 @@ public class MainMenu extends Login {
     }
 
     public void seriesOptions() {
+        MediaData md = new MediaData();
         u.displayMessage("You have chosen to watch series. How do you want to proceed? ");
         int input = Integer.parseInt(u.getUserInput("Press 1 to see a list of series" + "\n" + "Press 2 to search for a series" + "\n" + "Press 3 to search for a category."));
         if (input == 1) {
@@ -52,6 +54,7 @@ public class MainMenu extends Login {
     }
 
     public void movieOptions() {
+        MediaData md = new MediaData();
         u.displayMessage("You have chosen to watch movies. How do you want to proceed? ");
         int input = Integer.parseInt(u.getUserInput("Press 1 to see a list of movies" + "\n" + "Press 2 to search for a movie" + "\n" + "Press 3 to search for a category."));
         if (input == 1) {

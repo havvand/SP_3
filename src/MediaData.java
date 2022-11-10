@@ -16,57 +16,50 @@ public class MediaData extends MainMenu {
     }
 
 
-    public ArrayList<Movies> searchInMovieCategory() {
+    public void searchInMovieCategory() {
         initiateMovieList();
         ArrayList<Movies> movieCategories = new ArrayList<>();
         String i = u.getUserInput("Search for a category");
         for (Movies m : movies) {
-            if (Objects.equals(m.getGenre(), i)){
+            if (m.getGenre().equalsIgnoreCase(i)) {
                 movieCategories.add(m);
             }
+            System.out.println(movieCategories);
         }
-        System.out.println(movieCategories);
-        return movieCategories;
     }
 
-    public ArrayList<Series> searchInSeriesCategory() {
-        ArrayList<Series> seriesCategories = new ArrayList<>();
+    public void searchInSeriesCategory() {
         initiateSeriesList();
+        ArrayList<Series> seriesCategories = new ArrayList<>();
         String i = u.getUserInput("Search for a category");
         for (Series s : series) {
-            if (Objects.equals(s.getGenre(), i)) {
+            if (s.getGenre().equalsIgnoreCase(i)) {
                 seriesCategories.add(s);
             }
         }
-        System.out.println(seriesCategories);
-        return seriesCategories;
     }
 
-    public ArrayList<Movies> searchForMovieTitle() {
+    public void searchForMovieTitle() {
         initiateMovieList();
-        System.out.println(movies);
         ArrayList<Movies> searchedMovies = new ArrayList<>();
         String i = u.getUserInput("Search for a movie");
         for (Movies m:movies) {
-            if (Objects.equals(m.getTitle(), i)){
+            if (m.getTitle().equalsIgnoreCase(i)){
                 searchedMovies.add(m);
+                u.displayMessage("You have chosen: " + m);
             }
         }
-        System.out.println(searchedMovies);
-        return searchedMovies;
     }
 
-    public ArrayList<Series> searchForSeriesTitle() {
+    public void searchForSeriesTitle() {
         initiateSeriesList();
         ArrayList<Series> searchedSeries = new ArrayList<>();
         String i = u.getUserInput("Search for a series");
         for (Series s : series) {
-            if (Objects.equals(s.getTitle(), i)) {
+            if (s.getTitle().equalsIgnoreCase(i)) {
                 searchedSeries.add(s);
             }
         }
-        System.out.println(searchedSeries);
-        return searchedSeries;
     }
 
     private void createSeries(ArrayList<String> seriesData) {
@@ -94,6 +87,14 @@ public class MediaData extends MainMenu {
         }
     }
 
+    public void chooseAction(){
+        ArrayList<Media>savedMedia = new ArrayList<>();
+        int input = Integer.parseInt(u.getUserInput("To save this film press 1. To favorite it press 2."));
+        if (input == 1){
+
+        }
+
+    }
     public void watchSaved() {
 
     }
@@ -108,7 +109,7 @@ public class MediaData extends MainMenu {
     }
 
     public void displaySeries() {
-        initiateMovieList();
+        initiateSeriesList();
         System.out.println(series);
     }
 }

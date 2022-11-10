@@ -32,7 +32,7 @@ public abstract class Media implements MediaType {
 
     @Override
     public String toString() {
-        return "\n" + "Title ='" + title + '\'' + ", releaseYear =" + releaseYear + ", genre(s) =" + genre + ", rating =" + rating +
-                "}";
+        return "'" + title + '\'' + ", releaseYear =" + releaseYear + ", genre(s) =" + genre + ", rating =" + rating +
+                "";
     }
 }
