@@ -17,7 +17,12 @@ public class MediaData extends MainMenu {
         System.out.println();
     }
 
+public void playButton(){
+        ArrayList<Series> watchedSeries = new ArrayList<>();
+        u.displayMessage("you are now watching: ");
 
+
+}
     public ArrayList<Movies> searchInMovieCategory() {
         initiateMovieList();
         ArrayList<Movies> movieCategories = new ArrayList<>();
@@ -47,7 +52,6 @@ public class MediaData extends MainMenu {
 
     public ArrayList<Movies> searchForMovieTitle() {
         initiateMovieList();
-        System.out.println(movies);
         ArrayList<Movies> searchedMovies = new ArrayList<>();
         String i = u.getUserInput("Search for a movie");
         for (Movies m:movies) {
