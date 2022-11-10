@@ -1,7 +1,6 @@
 import java.util.ArrayList;
-import java.util.Objects;
 
-import com.sun.deploy.util.StringUtils;
+//import com.sun.deploy.util.StringUtils;
 
 public class MediaData extends MainMenu {
     FileIO f = new FileIO();
@@ -10,7 +9,7 @@ public class MediaData extends MainMenu {
     private static ArrayList<Movies> movies = new ArrayList<>();
     private static ArrayList<Series> series = new ArrayList<>();
 
-    public  void initiateMovieList(){
+    public void initiateMovieList(){
         createMovies(f.readMovieData());
     }
     public void initateSeriesList(){
@@ -21,14 +20,14 @@ public class MediaData extends MainMenu {
 
 public void playButton(){
         ArrayList<Series> watchedSeries = new ArrayList<>();
-        u.displayMessage("you are now watching: ");
+        TextUI.displayMessage("you are now watching: ");
 
 
 }
     public ArrayList<Movies> searchInMovieCategory() {
         initiateMovieList();
         ArrayList<Movies> movieCategories = new ArrayList<>();
-        String i = u.getUserInput("Search for a category");
+        String i = TextUI.getUserInput("Search for a category");
         for (Movies m : movies) {
             System.out.println(m.getGenre());
             if (m.getGenre().contains(i)){
@@ -49,7 +48,7 @@ public void playButton(){
     public ArrayList<Series> searchInSeriesCategory() {
         ArrayList<Series> seriesCategories = new ArrayList<>();
         initateSeriesList();
-        String i = u.getUserInput("Search for a category");
+        String i = TextUI.getUserInput("Search for a category");
         for (Series s : series) {
             if (s.getGenre().contains(i)) {
                 seriesCategories.add(s);
@@ -67,7 +66,7 @@ public void playButton(){
     public ArrayList<Movies> searchForMovieTitle() {
         initiateMovieList();
         ArrayList<Movies> searchedMovies = new ArrayList<>();
-        String i = u.getUserInput("Search for a movie");
+        String i = TextUI.getUserInput("Search for a movie");
         for (Movies m : movies) {
             if (m.getTitle().contains(i)) {
                 searchedMovies.add(m);
@@ -84,7 +83,7 @@ public void playButton(){
     public ArrayList<Series> searchForSeriesTitle() {
         initateSeriesList();
         ArrayList<Series> searchedSeries = new ArrayList<>();
-        String i = u.getUserInput("Search for a series");
+        String i = TextUI.getUserInput("Search for a series");
         for (Series s : series) {
             if (s.getTitle().contains(i)) {
                 searchedSeries.add(s);
@@ -136,7 +135,7 @@ public void playButton(){
 
     public void displayMovies() {
         initiateMovieList();
-        u.displayMessage("" + movies);
+        TextUI.displayMessage("" + movies);
     }
 
     public void displaySeries() {

@@ -43,10 +43,9 @@ public class FileIO{
         ArrayList<String> userData = new ArrayList<>();
         try {
             Scanner input = new Scanner(userFile);
-            input.nextLine();//ignorer header
 
-
-            while (input.hasNextLine()) {
+            while (input.hasNextLine())
+            {
                 userData.add(input.nextLine());
             }
         } catch (FileNotFoundException e) {
@@ -60,7 +59,7 @@ public class FileIO{
     public void writeUserData() {
         TextUI textUI = new TextUI();
         try {
-            Scanner reader = new Scanner("data/userdata.txt");
+            //Scanner reader = new Scanner("data/userdata.txt");
             FileWriter writer = new FileWriter("data/userdata.txt", true);
             writer.append("");
             writer.write(textUI.getUserInput("Username") + ", " + textUI.getUserInput("Password") + "\n");
@@ -96,27 +95,6 @@ public class FileIO{
         }
         return false;
     }
-
-    /*public void runLogin(){
-
-
-
-                if(inputUser.equals(user) && inputPassword.equals(password)){
-                    System.out.println("Welcome");
-                    //run main menu
-                }
-                else{
-                    System.out.println("Login failed\nPlease Try Again");
-                    runLogin();
-                }
-
-
-            }
-        } catch (FileNotFoundException f){
-            System.out.println("File not found");
-        }
-
-    }*/
 }
 
 
