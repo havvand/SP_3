@@ -3,8 +3,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class MainMenu extends Login {
+public class MainMenu{
     Scanner scanner = new Scanner(System.in);
+    TextUI u = new TextUI();
 
     public void startMenu() {
         chooseMediaType();

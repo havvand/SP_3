@@ -3,6 +3,7 @@ import java.util.Objects;
 public class AccountDataBase{
     TextUI textUI = new TextUI();
     FileIO file = new FileIO();
+    MainMenu menu = new MainMenu();
 
     String RESET = "\033[0m"; String GREEN_BOLD = "\033[1;32m"; String REDB = "\033[1;31m"; String YELB = "\033[1;33m";
 
@@ -22,7 +23,7 @@ public class AccountDataBase{
 
             if (file.readUserCredentials(inputUserName,inputPassWord))
             {
-                System.out.println("CALL TO MAIN-MENU");
+                menu.startMenu();
             } else if (!file.readUserCredentials(inputUserName, inputPassWord))
               {
                 textUI.displayMessage(REDB + "LOGIN FAILED! \nTRY AGAIN OR MAKE NEW USER." + RESET);
