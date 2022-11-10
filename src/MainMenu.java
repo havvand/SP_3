@@ -3,7 +3,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class MainMenu extends Login {
+public class MainMenu{
+    TextUI u = new TextUI();
     Scanner scanner = new Scanner(System.in);
 
     public void startMenu() {
