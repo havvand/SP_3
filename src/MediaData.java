@@ -16,7 +16,7 @@ public class MediaData extends MainMenu {
     public void initateSeriesList(){
         createSeries(f.readSeriesData());
 
-        System.out.println();
+
     }
 
 public void playButton(){
@@ -28,9 +28,8 @@ public void playButton(){
     public ArrayList<Movies> searchInMovieCategory() {
         initiateMovieList();
         ArrayList<Movies> movieCategories = new ArrayList<>();
-        String i = u.getUserInput("Search for a category");
+        String i = u.getUserInputForSearch("Search for a category");
         for (Movies m : movies) {
-            System.out.println(m.getGenre());
             if (m.getGenre().contains(i)){
                 movieCategories.add(m);
             }
@@ -42,7 +41,7 @@ public void playButton(){
     public ArrayList<Series> searchInSeriesCategory() {
         ArrayList<Series> seriesCategories = new ArrayList<>();
         initateSeriesList();
-        String i = u.getUserInput("Search for a category");
+        String i = u.getUserInputForSearch("Search for a category");
         for (Series s : series) {
             if(s.getGenre().contains(i)){
                     seriesCategories.add(s);
@@ -55,7 +54,7 @@ public void playButton(){
     public ArrayList<Movies> searchForMovieTitle() {
         initiateMovieList();
         ArrayList<Movies> searchedMovies = new ArrayList<>();
-        String i = u.getUserInput("Search for a movie");
+        String i = u.getUserInputForSearch("Search for a movie");
         for (Movies m:movies) {
             if (m.getTitle().contains(i)){
                 searchedMovies.add(m);
@@ -68,7 +67,7 @@ public void playButton(){
     public ArrayList<Series> searchForSeriesTitle() {
         initateSeriesList();
         ArrayList<Series> searchedSeries = new ArrayList<>();
-        String i = u.getUserInput("Search for a series");
+        String i = u.getUserInputForSearch("Search for a series");
         for (Series s : series) {
            // if (StringUtils.co containsIgnoreCase(s.getTitle(), i){
 
