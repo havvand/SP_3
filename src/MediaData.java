@@ -9,12 +9,16 @@ public class MediaData extends MainMenu {
     TextUI t = new TextUI();
     private static ArrayList<Movies> movies = new ArrayList<>();
     private static ArrayList<Series> series = new ArrayList<>();
+    private ArrayList<Series> watchedSeries = new ArrayList<>();
+    private ArrayList<Movies>watchedMovies = new ArrayList<>();
+    private ArrayList<String> favoriteMovies = new ArrayList<>();
+    private ArrayList<String> favoriteSeries = new ArrayList<>();
 
     public void initiateMovieList() {
         createMovies(f.readMovieData());
     }
 
-    public void initateSeriesList() {
+    public void initiateSeriesList() {
         createSeries(f.readSeriesData());
 
 
@@ -22,24 +26,24 @@ public class MediaData extends MainMenu {
 
     public void playButtonForMovie() {
         initiateMovieList();
-        ArrayList<Movies>watchedMovies = new ArrayList<>();
         String i = u.getUserInputForSearch("Which of the following movies would you like to watch");
         for (Movies m : movies){
-            if (m.getTitle().contains(i)){
+            if (m.getTitle().equalsIgnoreCase(i)){
                 watchedMovies.add(m);
                 u.displayMessage("You are now watching: " + m);
+                chooseMediaType();
             }
         }
     }
 
     public void playButtonForSeries() {
-        initateSeriesList();
-        ArrayList<Series> watchedSeries = new ArrayList<>();
+        initiateSeriesList();
         String i = u.getUserInputForSearch("Which of the following series would like to watch?");
         for (Series s : series) {
-            if (s.getTitle().contains(i)) {
+            if (s.getTitle().equalsIgnoreCase(i)) {
                 watchedSeries.add(s);
                 u.displayMessage("You are now watching: " + s);
+                chooseMediaType();
             }
         }
     }
@@ -60,7 +64,7 @@ public class MediaData extends MainMenu {
 
     public ArrayList<Series> searchInSeriesCategory() {
         ArrayList<Series> seriesCategories = new ArrayList<>();
-        initateSeriesList();
+        initiateSeriesList();
         String i = u.getUserInputForSearch("Search for a category");
         for (Series s : series) {
             if (s.getGenre().contains(i)) {
@@ -85,7 +89,7 @@ public class MediaData extends MainMenu {
     }
 
     public ArrayList<Series> searchForSeriesTitle() {
-        initateSeriesList();
+        initiateSeriesList();
         ArrayList<Series> searchedSeries = new ArrayList<>();
         String i = u.getUserInputForSearch("Search for a series");
         for (Series s : series) {
@@ -139,6 +143,13 @@ public class MediaData extends MainMenu {
     }
 
     public void displaySeries() {
+        initiateSeriesList();
         System.out.println(series);
+    }
+    public void displayWatchedSeries(){
+        System.out.println(watchedSeries);
+    }
+    public void displayWatchedMovies(){
+        System.out.println(watchedMovies);
     }
 }
