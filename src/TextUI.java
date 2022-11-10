@@ -9,6 +9,13 @@ public class TextUI {
         String input = scan.nextLine();
         return input;
     }
+    public String getUserInputForSearch(String msg) {
+        this.displayMessage(msg);
+        String input = scan.nextLine();
+        String capLetter = String.valueOf(input.toUpperCase().charAt(0)); //T
+        input = input.substring(1, input.length());
+        return capLetter+input;
+    }
 //RECEIVES A MESSAGE AND DISPLAYS IT TO THE USER. PROMPTS THE USER FOR MULTIPLE INPUT VALUES. RETURNS ARRAY OF INPUTS.
     public ArrayList<String> getUserInput(String msg, int iterations) {
         ArrayList<String> values = new ArrayList<>();

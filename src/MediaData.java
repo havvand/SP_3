@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
-//import com.sun.deploy.util.StringUtils;
+import com.sun.deploy.util.StringUtils;
 
 public class MediaData extends MainMenu {
     FileIO f = new FileIO();
@@ -8,96 +9,115 @@ public class MediaData extends MainMenu {
     TextUI t = new TextUI();
     private static ArrayList<Movies> movies = new ArrayList<>();
     private static ArrayList<Series> series = new ArrayList<>();
+    private ArrayList<Series> watchedSeries = new ArrayList<>();
+    private ArrayList<Movies> watchedMovies = new ArrayList<>();
+    private ArrayList<Movies> favoritedMovies = new ArrayList<>();
 
-    public void initiateMovieList(){
+    private ArrayList<Series> favoritedSeries = new ArrayList<>();
+
+
+    public void initiateMovieList() {
         createMovies(f.readMovieData());
     }
-    public void initateSeriesList(){
-        createSeries(f.readSeriesData());
 
-        System.out.println();
+    public void initateSeriesList() {
+        createSeries(f.readSeriesData());
     }
 
-public void playButton(){
-        ArrayList<Series> watchedSeries = new ArrayList<>();
-        TextUI.displayMessage("you are now watching: ");
+    public void playButtonForMovie() {
+        initiateMovieList();
+        String i = u.getUserInputForSearch("Which of the following movies would you like to watch");
+        for (Movies m : movies) {
+            if (m.getTitle().equalsIgnoreCase(i)) {
+                int input = Integer.parseInt(u.getUserInput("Press 1 to watch movie. " + "Press 2 to favorited movie"));
+                if (input == 1) {
+                    watchedMovies.add(m);
+                    u.displayMessage("You are now watching: " + m);
+                    chooseMediaType();
+                }
+                if (input == 2) {
+                    favoritedMovies.add(m);
+                    u.displayMessage("You have favorited: " + m);
+                    chooseMediaType();
+                }
+            }
+        }
+    }
+
+    public void playButtonForSeries() {
+        initateSeriesList();
+        String i = u.getUserInputForSearch("Which of the following series would like to watch?");
+        for (Series s : series) {
+            if (s.getTitle().equalsIgnoreCase(i)) {
+                int input = Integer.parseInt(u.getUserInput("Press 1 to watch series. " + "Press 2 to favorite series"));
+                if (input == 1) {
+                    watchedSeries.add(s);
+                    u.displayMessage("You are now watching: " + s);
+                    chooseMediaType();
+                }
+                if (input == 2){
+                    favoritedSeries.add(s);
+                    u.displayMessage("You have favorited: " + s);
+                    chooseMediaType();
+                }
+            }
+        }
+    }
 
 
-}
     public ArrayList<Movies> searchInMovieCategory() {
         initiateMovieList();
         ArrayList<Movies> movieCategories = new ArrayList<>();
-        String i = TextUI.getUserInput("Search for a category");
+        String i = u.getUserInputForSearch("Search for a category");
         for (Movies m : movies) {
-            System.out.println(m.getGenre());
-            if (m.getGenre().contains(i)){
+            if (m.getGenre().contains(i)) {
                 movieCategories.add(m);
             }
         }
-        if (movieCategories.size() > 0 ){
-            System.out.println(movieCategories);
-            return movieCategories;
-        }
-        else {
-            t.displayErrorMessage();
-            return movieCategories;
-        }
-
+        System.out.println(movieCategories);
+        return movieCategories;
     }
 
     public ArrayList<Series> searchInSeriesCategory() {
         ArrayList<Series> seriesCategories = new ArrayList<>();
         initateSeriesList();
-        String i = TextUI.getUserInput("Search for a category");
+        String i = u.getUserInputForSearch("Search for a category");
         for (Series s : series) {
             if (s.getGenre().contains(i)) {
                 seriesCategories.add(s);
             }
         }
-        if (seriesCategories.size() > 0) {
-            System.out.println(seriesCategories);
-            return seriesCategories;
-        } else {
-        t.displayErrorMessage();
-            return seriesCategories;
-        }
+        System.out.println(seriesCategories);
+        return seriesCategories;
     }
 
     public ArrayList<Movies> searchForMovieTitle() {
         initiateMovieList();
         ArrayList<Movies> searchedMovies = new ArrayList<>();
-        String i = TextUI.getUserInput("Search for a movie");
+        String i = u.getUserInputForSearch("Search for a movie");
         for (Movies m : movies) {
             if (m.getTitle().contains(i)) {
                 searchedMovies.add(m);
             }
         }
-        if (searchedMovies.size() > 0) {
-            System.out.println(searchedMovies);
-            return searchedMovies;
-        } else {
-        t.displayErrorMessage();
-        }
-        return null;
+        System.out.println(searchedMovies);
+        return searchedMovies;
     }
+
     public ArrayList<Series> searchForSeriesTitle() {
         initateSeriesList();
         ArrayList<Series> searchedSeries = new ArrayList<>();
-        String i = TextUI.getUserInput("Search for a series");
+        String i = u.getUserInputForSearch("Search for a series");
         for (Series s : series) {
+            // if (StringUtils.co containsIgnoreCase(s.getTitle(), i){
+
+            //}
             if (s.getTitle().contains(i)) {
                 searchedSeries.add(s);
             }
         }
-        if (searchedSeries.size() > 0){
-            System.out.println(searchedSeries);
-            return searchedSeries;
-        }
-        else {
-            t.displayErrorMessage();
-            return searchedSeries;
-        }
-
+        System.out.println(searchedSeries);
+        return searchedSeries;
     }
 
     private void createSeries(ArrayList<String> seriesData) {
@@ -119,7 +139,7 @@ public void playButton(){
             String title = values[0];
             String releaseYear = values[1];
             String genre = values[2];
-            String rating =values[3];
+            String rating = values[3];
             Movies m = new Movies(title, releaseYear, genre, rating);
             movies.add(m);
         }
@@ -135,10 +155,23 @@ public void playButton(){
 
     public void displayMovies() {
         initiateMovieList();
-        TextUI.displayMessage("" + movies);
+        System.out.println(movies);
     }
 
     public void displaySeries() {
+        initateSeriesList();
         System.out.println(series);
+    }
+    public void displayWatchedSeries() {
+        System.out.println(watchedSeries);
+    }
+    public void displayWatchedMovies() {
+        System.out.println(watchedMovies);
+    }
+    public void displayFavoritedMovies() {
+        System.out.println(favoritedMovies);
+    }
+    public void displayFavoritedSeries() {
+        System.out.println(favoritedSeries);
     }
 }
