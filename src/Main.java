@@ -14,7 +14,7 @@ public class Main {
 
         //aOne.userAuthentication();
         System.out.println("LOL");
-       m.watchMedia(account);
+       m.watchNewMedia();
         //login.newUser();
 
 

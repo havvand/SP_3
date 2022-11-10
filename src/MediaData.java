@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Objects;
 
+import com.sun.deploy.util.StringUtils;
+
 public class MediaData extends MainMenu {
     FileIO f = new FileIO();
 
@@ -68,6 +70,9 @@ public void playButton(){
         ArrayList<Series> searchedSeries = new ArrayList<>();
         String i = u.getUserInput("Search for a series");
         for (Series s : series) {
+           // if (StringUtils.co containsIgnoreCase(s.getTitle(), i){
+
+            //}
             if (s.getTitle().contains(i)) {
                 searchedSeries.add(s);
             }
