@@ -11,8 +11,6 @@ public class AccountDataBase{
 
     }
 
-
-
     public void userAuthentication(){
         String inputUserName, inputPassWord;
         String inputChoice = textUI.getUserInput("Press 1 for log-in | Press 2 to create new user | Press Q to quit.");
@@ -48,7 +46,6 @@ public class AccountDataBase{
         file.writeUserData();
         userAuthentication();
     }
-
 
     public String toString()
     {
