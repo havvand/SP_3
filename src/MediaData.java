@@ -24,7 +24,6 @@ public class MediaData extends MainMenu {
     }
 
     public void playButtonForMovie() {
-        initiateMovieList();
         String i = u.getUserInputForSearch(YELB+"Which of the following movies would you like to watch"+RESET);
         for (Movies m : movies) {
             if (m.getTitle().equalsIgnoreCase(i)) {
@@ -131,7 +130,7 @@ public class MediaData extends MainMenu {
             }
         }
         if (searchedSeries.size() > 0 ){
-            t.displaySeriesArrays(searchedSeries);
+           // t.displaySeriesArrays(searchedSeries);
             return searchedSeries;
         }
         else {
@@ -166,13 +165,11 @@ public class MediaData extends MainMenu {
         }
     }
     public void displayMovies() {
-        initiateMovieList();
         u.displayMovieArrays(movies);
         //System.out.println(YELB + movies + REDB);
     }
 
     public void displaySeries() {
-        initateSeriesList();
         u.displaySeriesArrays(series);
         //System.out.println(series);
     }
