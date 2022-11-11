@@ -3,20 +3,23 @@ import java.util.Scanner;
 
 public class TextUI {
     static Scanner scan = new Scanner(System.in);
-//RECEIVES A MESSAGE AND DISPLAYS IT TO THE USER. PROMPTS THE USER FOR ONE INPUT VALUE AND RETURNS THE INPUT
+
+    //RECEIVES A MESSAGE AND DISPLAYS IT TO THE USER. PROMPTS THE USER FOR ONE INPUT VALUE AND RETURNS THE INPUT
     public String getUserInput(String msg) {
         this.displayMessage(msg);
         String input = scan.nextLine();
         return input;
     }
+
     public String getUserInputForSearch(String msg) {
         this.displayMessage(msg);
         String input = scan.nextLine();
         String capLetter = String.valueOf(input.toUpperCase().charAt(0)); //T
         input = input.substring(1, input.length());
-        return capLetter+input;
+        return capLetter + input;
     }
-//RECEIVES A MESSAGE AND DISPLAYS IT TO THE USER. PROMPTS THE USER FOR MULTIPLE INPUT VALUES. RETURNS ARRAY OF INPUTS.
+
+    //RECEIVES A MESSAGE AND DISPLAYS IT TO THE USER. PROMPTS THE USER FOR MULTIPLE INPUT VALUES. RETURNS ARRAY OF INPUTS.
     public ArrayList<String> getUserInput(String msg, int iterations) {
         ArrayList<String> values = new ArrayList<>();
         int i = 0;
@@ -33,7 +36,7 @@ public class TextUI {
         return values;
     }
 
-//RECEIVES A MESSAGE AND DISPLAYS IT TO THE USER. DISPLAYS AN ARRAY OF OPTIONS.
+    //RECEIVES A MESSAGE AND DISPLAYS IT TO THE USER. DISPLAYS AN ARRAY OF OPTIONS.
 //PROMPTS THE USER FOR ONE INPUT VALUE. RETURNS THE INPUT.
     public int getUserInput(String msg, ArrayList<String> options) {
         System.out.println(msg);
@@ -49,20 +52,19 @@ public class TextUI {
         System.out.println(msg);
         System.out.println("*****************");
     }
-    public void displayErrorMessage(){
-        MediaData md = new MediaData();
-        displayMessage("The movie/series/category you are looking for, is NOT in our library..." + "\n What the hell do we do from here?");
-        int input = Integer.parseInt(getUserInput("You now have a choice. \n For the mainmenu, press 1." + "\n For a movie list, press 2." + "\n For a series list, press 3"));
-        if (input == 1) {
-            MainMenu mm = new MainMenu();
-            mm.startMenu();
-        }
-        else if (input == 2) {
-            md.displayMovies();
 
+    public void errorMessage() {
+        MainMenu mm = new MainMenu();
+        System.out.println("NOOOO! Gosh darnit.. " + "\n Our library does not have what you're looking for.");
+        int input = Integer.parseInt(getUserInput("\n Now you have to choose..." + "\n Press 1 for movies." + "\n Press 2 for series." + "\n Press 3 saved or previously watched media."));
+        if (input == 1){
+            mm.movieOptions();
         }
-        else if (input == 3){
-            md.displaySeries();
+        if (input == 2){
+            mm.seriesOptions();
+        }
+        if (input == 3){
+            mm.watchStoredMedia();
         }
     }
 }
