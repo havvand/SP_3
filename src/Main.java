@@ -5,8 +5,10 @@ public class Main {
 
 
         AccountDataBase aOne = new AccountDataBase();
+        MediaData media = new MediaData();
 
         System.out.println("LOL");
+        media.displayWatchedMovies();
 
         aOne.userAuthentication();
 

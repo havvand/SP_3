@@ -1,18 +1,17 @@
 import java.util.ArrayList;
-import java.util.Objects;
 
-import com.sun.deploy.util.StringUtils;
+//import com.sun.deploy.util.StringUtils;
 
 public class MediaData extends MainMenu {
     FileIO f = new FileIO();
-
     TextUI t = new TextUI();
+
     private static ArrayList<Movies> movies = new ArrayList<>();
     private static ArrayList<Series> series = new ArrayList<>();
-    private ArrayList<Series> watchedSeries = new ArrayList<>();
-    private ArrayList<Movies> watchedMovies = new ArrayList<>();
-    private ArrayList<Movies> favoritedMovies = new ArrayList<>();
 
+    private ArrayList<Series> watchedSeries = new ArrayList<>();
+    private static ArrayList<Movies> watchedMovies = new ArrayList<>();
+    private ArrayList<Movies> favoritedMovies = new ArrayList<>();
     private ArrayList<Series> favoritedSeries = new ArrayList<>();
 
 
@@ -26,18 +25,18 @@ public class MediaData extends MainMenu {
 
     public void playButtonForMovie() {
         initiateMovieList();
-        String i = u.getUserInputForSearch("Which of the following movies would you like to watch");
+        String i = u.getUserInputForSearch(YELB+"Which of the following movies would you like to watch"+RESET);
         for (Movies m : movies) {
             if (m.getTitle().equalsIgnoreCase(i)) {
-                int input = Integer.parseInt(u.getUserInput("Press 1 to watch movie. " + "Press 2 to favorited movie"));
+                int input = Integer.parseInt(u.getUserInput(GREEN_BOLD+"Press 1 to watch movie. " + "Press 2 to favorited movie" + RESET));
                 if (input == 1) {
                     watchedMovies.add(m);
-                    u.displayMessage("You are now watching: " + m);
+                    u.displayMessage(GREEN_BOLD+"You are now watching: " + m+RESET);
                     chooseMediaType();
                 }
-                if (input == 2) {
+                else if (input == 2) {
                     favoritedMovies.add(m);
-                    u.displayMessage("You have favorited: " + m);
+                    u.displayMessage(GREEN_BOLD+"You have favorited: " + m+RESET);
                     chooseMediaType();
                 }
             }
@@ -46,18 +45,18 @@ public class MediaData extends MainMenu {
 
     public void playButtonForSeries() {
         initateSeriesList();
-        String i = u.getUserInputForSearch("Which of the following series would like to watch?");
+        String i = u.getUserInputForSearch(YELB+"Which of the following series would like to watch?"+RESET);
         for (Series s : series) {
             if (s.getTitle().equalsIgnoreCase(i)) {
-                int input = Integer.parseInt(u.getUserInput("Press 1 to watch series. " + "Press 2 to favorite series"));
+                int input = Integer.parseInt(u.getUserInput(YELB+"Press 1 to watch series. " + "Press 2 to favorite series"+RESET));
                 if (input == 1) {
                     watchedSeries.add(s);
-                    u.displayMessage("You are now watching: " + s);
+                    u.displayMessage(GREEN_BOLD+"You are now watching: " + s + RESET);
                     chooseMediaType();
                 }
                 if (input == 2){
                     favoritedSeries.add(s);
-                    u.displayMessage("You have favorited: " + s);
+                    u.displayMessage(GREEN_BOLD+"You have favorited: " + s + RESET);
                     chooseMediaType();
                 }
             }
@@ -68,7 +67,7 @@ public class MediaData extends MainMenu {
     public ArrayList<Movies> searchInMovieCategory() {
         initiateMovieList();
         ArrayList<Movies> movieCategories = new ArrayList<>();
-        String i = u.getUserInputForSearch("Search for a category");
+        String i = u.getUserInputForSearch(YELB+"Search for a category"+RESET);
         for (Movies m : movies) {
             if (m.getGenre().contains(i)) {
                 movieCategories.add(m);
@@ -81,7 +80,7 @@ public class MediaData extends MainMenu {
     public ArrayList<Series> searchInSeriesCategory() {
         ArrayList<Series> seriesCategories = new ArrayList<>();
         initateSeriesList();
-        String i = u.getUserInputForSearch("Search for a category");
+        String i = u.getUserInputForSearch(YELB+"Search for a category"+RESET);
         for (Series s : series) {
             if (s.getGenre().contains(i)) {
                 seriesCategories.add(s);
@@ -94,29 +93,31 @@ public class MediaData extends MainMenu {
     public ArrayList<Movies> searchForMovieTitle() {
         initiateMovieList();
         ArrayList<Movies> searchedMovies = new ArrayList<>();
-        String i = u.getUserInputForSearch("Search for a movie");
+        String i = u.getUserInputForSearch(YELB+"Search for a movie"+RESET);
         for (Movies m : movies) {
             if (m.getTitle().contains(i)) {
                 searchedMovies.add(m);
+                System.out.println(B_U+m+RESET);
             }
         }
-        System.out.println(searchedMovies);
+        //System.out.println(searchedMovies + "UGLY");
         return searchedMovies;
     }
 
     public ArrayList<Series> searchForSeriesTitle() {
         initateSeriesList();
         ArrayList<Series> searchedSeries = new ArrayList<>();
-        String i = u.getUserInputForSearch("Search for a series");
+        String i = u.getUserInputForSearch(YELB+"Search for a series"+RESET);
         for (Series s : series) {
             // if (StringUtils.co containsIgnoreCase(s.getTitle(), i){
 
             //}
             if (s.getTitle().contains(i)) {
                 searchedSeries.add(s);
+                System.out.println(B_U+s+RESET);
             }
         }
-        System.out.println(searchedSeries);
+        //System.out.println(searchedSeries);
         return searchedSeries;
     }
 
@@ -155,23 +156,29 @@ public class MediaData extends MainMenu {
 
     public void displayMovies() {
         initiateMovieList();
-        System.out.println(movies);
+        u.displayMovieArrays(movies);
+        //System.out.println(YELB + movies + REDB);
     }
 
     public void displaySeries() {
         initateSeriesList();
-        System.out.println(series);
+        u.displaySeriesArrays(series);
+        //System.out.println(series);
     }
     public void displayWatchedSeries() {
-        System.out.println(watchedSeries);
+        u.displayWatchedSeriesArrays(watchedSeries);
+        //System.out.println(watchedSeries);
     }
     public void displayWatchedMovies() {
-        System.out.println(watchedMovies);
+        u.displayWatchedMoviesArrays(watchedMovies);
+        //System.out.println(watchedMovies);
     }
     public void displayFavoritedMovies() {
-        System.out.println(favoritedMovies);
+        u.displayFavMovArray(favoritedMovies);
+        //System.out.println(favoritedMovies);
     }
     public void displayFavoritedSeries() {
-        System.out.println(favoritedSeries);
+        u.displayFavSerArrays(favoritedSeries);
+        //System.out.println(favoritedSeries);
     }
 }
