@@ -4,8 +4,6 @@ public class Account
 {
     private String username;
     private String password;
-    protected ArrayList<String> watchedMedia = new ArrayList<>();
-
 
     public Account(String username, String password)
     {

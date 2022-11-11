@@ -45,14 +45,9 @@ public class AccountDataBase{
     // Handles new user call.
     public void newUser()
     {
-        //System.out.println("NEW USER");
         textUI.displayMessage("Insert username and password");
         file.writeUserData();
         userAuthentication();
     }
 
-    public String toString()
-    {
-        return "";
-    }
 }
