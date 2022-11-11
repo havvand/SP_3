@@ -29,6 +29,7 @@ public class MediaData extends MainMenu {
         for (Movies m : movies) {
             if (m.getTitle().equalsIgnoreCase(i)) {
                 int input = Integer.parseInt(u.getUserInput(GREEN_BOLD+"Press 1 to watch movie. " + "Press 2 to favorited movie" + RESET));
+
                 if (input == 1) {
                     watchedMovies.add(m);
                     u.displayMessage(GREEN_BOLD+"You are now watching: " + m+RESET);
@@ -64,7 +65,7 @@ public class MediaData extends MainMenu {
     }
 
 
-    public ArrayList<Movies> searchInMovieCategory() {
+    public void searchInMovieCategory() {
         initiateMovieList();
         ArrayList<Movies> movieCategories = new ArrayList<>();
         String i = u.getUserInputForSearch(YELB+"Search for a category"+RESET);
@@ -75,7 +76,7 @@ public class MediaData extends MainMenu {
             }
         }
         //System.out.println(movieCategories);
-        return movieCategories;
+        //return movieCategories;
     }
 
     public ArrayList<Series> searchInSeriesCategory() {
