@@ -1,0 +1,8 @@
+s, s
+J, J
+K, K
+Jacob, Jacob1
+Anna, Anna1
+AnnaBanana, Julemand3
+a, a
+w, w
