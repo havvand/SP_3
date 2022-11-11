@@ -29,7 +29,7 @@ public class AccountDataBase{
                 menu.startMenu();
             } else if (!file.readUserCredentials(inputUserName, inputPassWord))
             {
-                textUI.displayMessage(REDB + "LOGIN FAILED! \nTRY AGAIN OR MAKE NEW USER." + RESET);
+                textUI.displayMessage(RB + "LOGIN FAILED! \nTRY AGAIN OR MAKE NEW USER." + R);
                 userAuthentication();
             }
 
@@ -38,14 +38,14 @@ public class AccountDataBase{
             newUser();
         } else if (inputChoice.equalsIgnoreCase("Q"))
         {
-            System.out.println("C ya laterz mofoh!");
+            System.out.println( RB +"C ya laterz mofoh!" + R);
         }
     }
 
     // Handles new user call.
     public void newUser()
     {
-        textUI.displayMessage("Insert username and password");
+        textUI.displayMessage(YB + "Insert username and password" + R);
         file.writeUserData();
         userAuthentication();
     }

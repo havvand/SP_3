@@ -1,7 +1,6 @@
 import java.util.ArrayList;
-import java.util.Objects;
 
-import com.sun.deploy.util.StringUtils;
+//import com.sun.deploy.util.StringUtils;
 
 public class MediaData extends MainMenu {
     FileIO f = new FileIO();
@@ -36,7 +35,7 @@ public class MediaData extends MainMenu {
                     u.displayMessage(GREEN_BOLD+"You are now watching: " + m+RESET);
                     chooseMediaType();
                 }
-                else if (input == 2) {
+                if (input == 2) {
                     favoritedMovies.add(m);
                     u.displayMessage(GREEN_BOLD+"You have favorited: " + m+RESET);
                     chooseMediaType();
@@ -75,7 +74,7 @@ public class MediaData extends MainMenu {
             }
         }
         if (movieCategories.size() > 0) {
-            System.out.println(movieCategories);
+            t.displayMovieArrays(movieCategories);
             return movieCategories;
         } else {
             t.errorMessage();
@@ -93,7 +92,7 @@ public class MediaData extends MainMenu {
             }
         }
         if (seriesCategories.size() > 0 ){
-            System.out.println(seriesCategories);
+            t.displaySeriesArrays(seriesCategories);
             return seriesCategories;
         }
         else {
@@ -108,11 +107,11 @@ public class MediaData extends MainMenu {
         for (Movies m : movies) {
             if (m.getTitle().contains(i)) {
                 searchedMovies.add(m);
-                System.out.println(B_U+m+RESET);
             }
         }
         if (searchedMovies.size() > 0){
-            System.out.println(searchedMovies);
+            t.displayWatchedMoviesArrays(searchedMovies);
+            //System.out.println("PRINT HVIS STØRRE END 0 " + searchedMovies);
             return searchedMovies;
         }
         else {
@@ -132,7 +131,7 @@ public class MediaData extends MainMenu {
             }
         }
         if (searchedSeries.size() > 0 ){
-            System.out.println(searchedSeries);
+            t.displaySeriesArrays(searchedSeries);
             return searchedSeries;
         }
         else {

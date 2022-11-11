@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class FileIO{
 
+    String R = "\033[0m"; String GB = "\033[1;32m"; String RB = "\033[1;31m"; String YB = "\033[1;33m";
+
     public ArrayList<String> readMovieData() {
         File movieFile = new File("data/moviedata.txt");
         ArrayList<String> movieData = new ArrayList<>();
@@ -62,7 +64,7 @@ public class FileIO{
             //Scanner reader = new Scanner("data/userdata.txt");
             FileWriter writer = new FileWriter("data/userdata.txt", true);
             writer.append("");
-            writer.write(textUI.getUserInput("Username") + ", " + textUI.getUserInput("Password") + "\n");
+            writer.write(textUI.getUserInput(YB+"Username") + ", " + textUI.getUserInput(YB+"Password"+R) + "\n");
             writer.close();
         } catch (IOException e) {
             System.out.println(e);

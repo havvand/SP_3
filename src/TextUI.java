@@ -63,8 +63,8 @@ public class TextUI {
 
     public void errorMessage() {
         MainMenu mm = new MainMenu();
-        System.out.println("NOOOO! Gosh darnit.. " + "\n Our library does not have what you're looking for.");
-        int input = Integer.parseInt(getUserInput("\n Now you have to choose..." + "\n Press 1 for movies." + "\n Press 2 for series." + "\n Press 3 saved or previously watched media."));
+        System.out.println( YELB + "NOOOO! Gosh darnit.. " + "\nOur library does not have what you're looking for." + RESET);
+        int input = Integer.parseInt(getUserInput(YELB + "\n Now you have to choose..." + GREEN_BOLD + "\n Press 1 for movies." + "\n Press 2 for series." + "\n Press 3 saved or previously watched media." + RESET));
         if (input == 1){
             mm.movieOptions();
         }

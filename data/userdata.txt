@@ -6,3 +6,10 @@ Anna, Anna1
 AnnaBanana, Julemand3
 a, a
 w, w
+S, S
+benny, boho
+hanne, manne[0m
+hanne, sanne
+hanne, janne
+james, bond
+Gold, Finger

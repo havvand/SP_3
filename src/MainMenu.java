@@ -12,7 +12,6 @@ public class MainMenu {
     public void chooseMediaType() {
         MediaData md = new MediaData();
         int input = Integer.parseInt(u.getUserInput(YELB + "Feeling adventurous? \n\nTo watch something new; \n"+GREEN_BOLD+"Press 1. \n" +YELB+ "To watch something saved or favorited; \n"+GREEN_BOLD+"Press 2." + RESET));
-        int input = Integer.parseInt(u.getUserInput("\n" + "Feeling adventurous? To watch something new, press 1 \n" + "To watch something saved or favorited press 2"));
         if (input == 1) {
             u.displayMessage(YELB+"You have chosen to watch something new. Choose how you want to proceed: " + RESET);
             watchNewMedia();
