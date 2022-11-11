@@ -91,7 +91,6 @@ public class MediaData extends MainMenu {
             }
         }
         if (seriesCategories.size() > 0 ){
-            t.displaySeriesArrays(seriesCategories);
             return seriesCategories;
         }
         else {
@@ -109,7 +108,6 @@ public class MediaData extends MainMenu {
             }
         }
         if (searchedMovies.size() > 0){
-            t.displayWatchedMoviesArrays(searchedMovies);
             //System.out.println("PRINT HVIS STØRRE END 0 " + searchedMovies);
             return searchedMovies;
         }
@@ -130,7 +128,6 @@ public class MediaData extends MainMenu {
             }
         }
         if (searchedSeries.size() > 0 ){
-           // t.displaySeriesArrays(searchedSeries);
             return searchedSeries;
         }
         else {
