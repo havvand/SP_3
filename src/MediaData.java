@@ -9,10 +9,10 @@ public class MediaData extends MainMenu {
     private static ArrayList<Movies> movies = new ArrayList<>();
     private static ArrayList<Series> series = new ArrayList<>();
 
-    private ArrayList<Series> watchedSeries = new ArrayList<>();
+    private static ArrayList<Series> watchedSeries = new ArrayList<>();
     private static ArrayList<Movies> watchedMovies = new ArrayList<>();
-    private ArrayList<Movies> favoritedMovies = new ArrayList<>();
-    private ArrayList<Series> favoritedSeries = new ArrayList<>();
+    private static ArrayList<Movies> favoritedMovies = new ArrayList<>();
+    private static ArrayList<Series> favoritedSeries = new ArrayList<>();
 
 
     public void initiateMovieList() {
@@ -71,9 +71,10 @@ public class MediaData extends MainMenu {
         for (Movies m : movies) {
             if (m.getGenre().contains(i)) {
                 movieCategories.add(m);
+                System.out.println(B_U + m + RESET);
             }
         }
-        System.out.println(movieCategories);
+        //System.out.println(movieCategories);
         return movieCategories;
     }
 
@@ -84,9 +85,10 @@ public class MediaData extends MainMenu {
         for (Series s : series) {
             if (s.getGenre().contains(i)) {
                 seriesCategories.add(s);
+                System.out.println(B_U + s + RESET);
             }
         }
-        System.out.println(seriesCategories);
+        //System.out.println(seriesCategories);
         return seriesCategories;
     }
 
