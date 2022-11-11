@@ -5,7 +5,6 @@ public class Main {
 
         AccountDataBase aOne = new AccountDataBase();
         aOne.userAuthentication();
-        //System.out.println("End Main");
 
     }
 }
