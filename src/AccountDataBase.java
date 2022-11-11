@@ -6,7 +6,7 @@ public class AccountDataBase{
     MainMenu menu = new MainMenu();
     MediaData md = new MediaData();
 
-    String RESET = "\033[0m"; String GREEN_BOLD = "\033[1;32m"; String REDB = "\033[1;31m"; String YELB = "\033[1;33m";
+    String R = "\033[0m"; String GB = "\033[1;32m"; String RB = "\033[1;31m"; String YB = "\033[1;33m";
 
     public AccountDataBase()
     {
@@ -15,12 +15,12 @@ public class AccountDataBase{
 
     public void userAuthentication(){
         String inputUserName, inputPassWord;
-        String inputChoice = textUI.getUserInput("Press 1 for log-in | Press 2 to create new user | Press Q to quit.");
+        String inputChoice = textUI.getUserInput(GB+"Press 1 for log-in "+R+"|"+YB+" Press 2 to create new user "+R+"|"+RB+" Press Q to quit."+R);
 
         if(Objects.equals(inputChoice, "1"))
         {
-            inputUserName = textUI.getUserInput(YELB + "Enter Username" + RESET);
-            inputPassWord = textUI.getUserInput(YELB + "Enter Password" + RESET);
+            inputUserName = textUI.getUserInput(YB + "Enter Username" + R);
+            inputPassWord = textUI.getUserInput(YB + "Enter Password" + R);
 
             if (file.readUserCredentials(inputUserName,inputPassWord))
             {
@@ -29,7 +29,7 @@ public class AccountDataBase{
                 menu.startMenu();
             } else if (!file.readUserCredentials(inputUserName, inputPassWord))
             {
-                textUI.displayMessage(REDB + "LOGIN FAILED! \nTRY AGAIN OR MAKE NEW USER." + RESET);
+                textUI.displayMessage(RB + "LOGIN FAILED! \nTRY AGAIN OR MAKE NEW USER." + R);
                 userAuthentication();
             }
 
@@ -38,14 +38,14 @@ public class AccountDataBase{
             newUser();
         } else if (inputChoice.equalsIgnoreCase("Q"))
         {
-            System.out.println("C ya laterz mofoh!");
+            System.out.println( RB +"C ya laterz mofoh!" + R);
         }
     }
 
     // Handles new user call.
     public void newUser()
     {
-        textUI.displayMessage("Insert username and password");
+        textUI.displayMessage(YB + "Insert username and password" + R);
         file.writeUserData();
         userAuthentication();
     }

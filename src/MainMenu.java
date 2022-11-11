@@ -3,25 +3,28 @@ import java.util.Scanner;
 public class MainMenu {
     Scanner scanner = new Scanner(System.in);
     TextUI u = new TextUI();
+    String RESET = "\033[0m"; String GREEN_BOLD = "\033[1;32m"; String REDB = "\033[1;31m"; String YELB = "\033[1;33m"; String B_U = "\033[4;34m";
 
     public void startMenu() {
         chooseMediaType();
     }
 
     public void chooseMediaType() {
-        int input = Integer.parseInt(u.getUserInput("\n" + "Feeling adventurous? To watch something new, press 1 \n" + "To watch something saved or favorited press 2"));
+        MediaData md = new MediaData();
+        int input = Integer.parseInt(u.getUserInput(YELB + "Feeling adventurous? \n\nTo watch something new; \n"+GREEN_BOLD+"Press 1. \n" +YELB+ "To watch something saved or favorited; \n"+GREEN_BOLD+"Press 2." + RESET));
         if (input == 1) {
-            u.displayMessage("You have chosen to watch something new. Choose how you want to proceed: ");
+            u.displayMessage(YELB+"You have chosen to watch something new. Choose how you want to proceed: " + RESET);
             watchNewMedia();
         }
         if (input == 2) {
-            u.displayMessage("You have chosen to watch something stored. Choose how you want to proceed");
+            u.displayMessage(YELB+"You have chosen to watch something stored. Choose how you want to proceed"+RESET);
             watchStoredMedia();
         }
     }
 
     public void watchNewMedia() {
-        int input = Integer.parseInt(u.getUserInput("Press 1 for movies. " + "Press 2 for series"));
+        MediaData md = new MediaData();
+        int input = Integer.parseInt(u.getUserInput(GREEN_BOLD+"Press 1 "+YELB+"for movies. " +GREEN_BOLD+"Press 2 "+YELB+"for series"));
         if (input == 1) {
             movieOptions();
         }
@@ -33,7 +36,7 @@ public class MainMenu {
 
     public void watchStoredMedia() {
         MediaData md = new MediaData();
-        int input = Integer.parseInt(u.getUserInput("Press 1 for watched media. " + "Press 2 for favorited media"));
+        int input = Integer.parseInt(u.getUserInput(GREEN_BOLD+"Press 1 "+YELB+"for watched media. "+GREEN_BOLD+"Press 2 "+YELB+"for favorited media"));
         if (input == 1) {
             md.displayWatchedMovies();
             md.displayWatchedSeries();
@@ -48,8 +51,8 @@ public class MainMenu {
 
     public void seriesOptions() {
         MediaData md = new MediaData();
-        u.displayMessage("You have chosen to watch series. How do you want to proceed? ");
-        int input = Integer.parseInt(u.getUserInput("Press 1 to see a list of series" + "\n" + "Press 2 to search for a series" + "\n" + "Press 3 to search for a category."));
+        u.displayMessage(YELB+"You have chosen to watch series. How do you want to proceed? "+ RESET);
+        int input = Integer.parseInt(u.getUserInput(GREEN_BOLD+"Press 1 to see a list of series" + "\n" + "Press 2 to search for a series" + "\n" + "Press 3 to search for a category."+RESET));
         if (input == 1) {
             md.displaySeries();
             md.playButtonForSeries();
@@ -66,8 +69,8 @@ public class MainMenu {
 
     public void movieOptions() {
         MediaData md = new MediaData();
-        u.displayMessage("You have chosen to watch movies. How do you want to proceed? ");
-        int input = Integer.parseInt(u.getUserInput("Press 1 to see a list of movies" + "\n" + "Press 2 to search for a movie" + "\n" + "Press 3 to search for a category."));
+        u.displayMessage(YELB+"You have chosen to watch movies. How do you want to proceed? "+RESET);
+        int input = Integer.parseInt(u.getUserInput(GREEN_BOLD+"Press 1 to see a list of movies" + "\n" + "Press 2 to search for a movie" + "\n" + "Press 3 to search for a category."+RESET));
         if (input == 1) {
             md.displayMovies();
             md.playButtonForMovie();
