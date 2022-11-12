@@ -84,39 +84,13 @@ public class TextUI {
         return sb.toString();
     }
 
-    public void displayMovieArrays(ArrayList<Movies> objects) {
+    public void displayMovieArrays(ArrayList<Media> objects) {
         StringBuilder sb = new StringBuilder();
-        for (Movies a : objects)
+        for (Media a : objects)
             System.out.println(B_U + a + RESET);
-        //return a;
     }
 
     public void displaySeriesArrays(ArrayList<Series> objects) {
-        StringBuilder sb = new StringBuilder();
-        for (Series a : objects)
-            System.out.println(B_U + a + RESET);
-        //return a;
-    }
-
-    public void displayWatchedSeriesArrays(ArrayList<Series> objects) {
-        StringBuilder sb = new StringBuilder();
-        for (Series a : objects)
-            System.out.println(B_U + a + RESET);
-    }
-
-    public void displayWatchedMoviesArrays(ArrayList<Movies> objects) {
-        StringBuilder sb = new StringBuilder();
-        for (Movies a : objects)
-            System.out.println(B_U + a + RESET);
-    }
-
-    public void displayFavMovArray(ArrayList<Movies> objects) {
-        StringBuilder sb = new StringBuilder();
-        for (Movies a : objects)
-            System.out.println(B_U + a + RESET);
-    }
-
-    public void displayFavSerArrays(ArrayList<Series> objects) {
         StringBuilder sb = new StringBuilder();
         for (Series a : objects)
             System.out.println(B_U + a + RESET);

@@ -1,9 +1,8 @@
-import java.util.Scanner;
-
-public class MainMenu {
-    Scanner scanner = new Scanner(System.in);
+public class MainMenu
+{
     TextUI u = new TextUI();
-    String RESET = "\033[0m"; String GREEN_BOLD = "\033[1;32m"; String REDB = "\033[1;31m"; String YELB = "\033[1;33m"; String B_U = "\033[4;34m";
+    // Colors for console-text!
+    String RESET = "\033[0m", GREEN_BOLD = "\033[1;32m", REDB = "\033[1;31m", YELB = "\033[1;33m", B_U = "\033[4;34m";
 
     public void startMenu() {
         chooseMediaType();
