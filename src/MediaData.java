@@ -45,7 +45,7 @@ public class MediaData extends MainMenu {
                     u.displayMessage(GREEN_BOLD+"You have favorited: " + m+RESET);
                     chooseMediaType();
                 }
-            } else t.errorMessage();
+            }
         }
     }
 
@@ -69,7 +69,9 @@ public class MediaData extends MainMenu {
                     u.displayMessage(GREEN_BOLD+"You have favorited: " + s + RESET);
                     chooseMediaType();
                 }
-            } else t.errorMessage();
+            }
+
+
         }
     }
 
