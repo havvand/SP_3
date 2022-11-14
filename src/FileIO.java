@@ -11,7 +11,6 @@ public class FileIO{
         ArrayList<String> movieData = new ArrayList<>();
         try {
             Scanner input = new Scanner(movieFile);
-
             while (input.hasNextLine()) {
                 movieData.add(input.nextLine());
             }

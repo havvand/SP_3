@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public abstract class Media implements MediaType {
     private String title;
 
@@ -34,7 +32,7 @@ public abstract class Media implements MediaType {
 
     @Override
     public String toString() {
-        return "\n" + title + ", releaseYear =" + releaseYear + ", genre(s) =" + genre + ", rating =" + rating +
+        return "\n" + "Title: " + title + "\nRelease Year: " + releaseYear + "\nGenre: " + genre + "\nRating: " + rating +
                 "";
     }
 }
