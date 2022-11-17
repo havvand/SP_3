@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class MediaData extends MainMenu {
     FileIO f = new FileIO();
-    TextUI t = new TextUI();
 
     private static ArrayList<Media> movies = new ArrayList<>();
     private static ArrayList<Media> series = new ArrayList<>();
@@ -28,7 +27,8 @@ public class MediaData extends MainMenu {
     public void playButtonForMovie()
     {
         String i = u.getUserInputForSearch(YELB+"Which of the following movies would you like to watch - type in full title."+RESET);
-        for (Media m : movies) {
+        for (Media m : movies)
+        {
             if (m.getTitle().equalsIgnoreCase(i))
             {
                 int input = Integer.parseInt(u.getUserInput(GREEN_BOLD+"Press 1 to watch movie. " + "Press 2 to favorited movie" + RESET));
@@ -46,7 +46,7 @@ public class MediaData extends MainMenu {
                     chooseMediaType();
                 }
             }
-        }
+        } u.errorMessage();
     }
 
     public void playButtonForSeries()
@@ -71,8 +71,7 @@ public class MediaData extends MainMenu {
                 }
             }
 
-
-        }
+        } u.errorMessage();
     }
 
 
@@ -91,9 +90,9 @@ public class MediaData extends MainMenu {
 
         if (movieCategories.size() > 0)
         {
-            t.printArray(movieCategories);
+            u.printArray(movieCategories);
         } else {
-            t.errorMessage();
+            u.errorMessage();
         }
     }
 
@@ -110,11 +109,11 @@ public class MediaData extends MainMenu {
         }
         if (seriesCategories.size() > 0 )
         {
-            t.printArray(seriesCategories);
+            u.printArray(seriesCategories);
         }
         else
         {
-            t.errorMessage();
+            u.errorMessage();
         }
     }
 
@@ -131,11 +130,11 @@ public class MediaData extends MainMenu {
         }
         if (searchedMovies.size() > 0)
         {
-           t.printArray(searchedMovies);
+           u.printArray(searchedMovies);
         }
         else
         {
-            t.errorMessage();
+            u.errorMessage();
         }
     }
 
@@ -153,11 +152,11 @@ public class MediaData extends MainMenu {
         }
         if (searchedSeries.size() > 0 )
         {
-            t.printArray(searchedSeries);
+            u.printArray(searchedSeries);
         }
         else
         {
-            t.errorMessage();
+            u.errorMessage();
 
         }
     }
@@ -172,7 +171,7 @@ public class MediaData extends MainMenu {
             String genre = values[2];
             String rating = values[3];
             String amountOfEpisodesInSeason = values[4];
-            Media media = new Series(title, releaseYear, genre, rating, amountOfEpisodesInSeason);
+            MediaType media = new Series(title, releaseYear, genre, rating, amountOfEpisodesInSeason);
             Series s1 = (Series)media;
             series.add(s1);
         }
@@ -187,7 +186,7 @@ public class MediaData extends MainMenu {
             String releaseYear = values[1];
             String genre = values[2];
             String rating = values[3];
-            Media media = new Movies(title, releaseYear, genre, rating);
+            MediaType media = new Movies(title, releaseYear, genre, rating);
             Movies m = (Movies)media;
             movies.add(m);
         }

@@ -6,9 +6,10 @@ public class Main {
 
         AccountDataBase aOne = new AccountDataBase();
         MediaData media = new MediaData();
+        MediaDB mediaDB = new MediaDB();
 
         System.out.println("LOL");
-        media.displayWatchedMovies();
+        mediaDB.run();
 
         aOne.userAuthentication();
 

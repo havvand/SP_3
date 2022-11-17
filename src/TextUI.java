@@ -82,7 +82,7 @@ public class TextUI {
     }
 
     public void printArray(ArrayList<Media> objects) {
-        StringBuilder sb = new StringBuilder();
+        //StringBuilder sb = new StringBuilder();
         int i = 1;
         for (Media a : objects)
         {
