@@ -68,9 +68,9 @@ public class MediaDB
     public void establishConnection()
     {
         // Declaring and initializing the variables to use in DriverManager.getConnection()
-        String url = "jdbc:mysql://localhost/movies?" + "autoReconnect=true&useSSL=false"; ;
+        String url = "jdbc:mysql://localhost/sp3_database?" + "autoReconnect=true&useSSL=false"; ;
         String username = "root";
-        String password = "meyer";
+        String password = "Salar0108";
         try
         {
             // Initializing the variable connection with DriverManager (from java.sql)
