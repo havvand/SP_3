@@ -191,6 +191,8 @@ public class MediaData extends MainMenu {
             movies.add(m);
         }
     }
+
+
     public void displayMovies()
     {
         u.printArray(movies);
