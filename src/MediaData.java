@@ -26,10 +26,10 @@ public class MediaData extends MainMenu {
 
     public void playButtonForMovie()
     {
-        String i = u.getUserInputForSearch(YELB+"Which of the following movies would you like to watch - type in full title."+RESET);
+        String i = u.getUserInputForSearch(YELB+"Which of the following movies would you like to watch - type in ID number."+RESET);
         for (Media m : movies)
         {
-            if (m.getTitle().equalsIgnoreCase(i))
+            if (m.getID().equalsIgnoreCase(i))
             {
                 int input = Integer.parseInt(u.getUserInput(GREEN_BOLD+"Press 1 to watch movie. " + "Press 2 to favorited movie" + RESET));
 
@@ -51,10 +51,10 @@ public class MediaData extends MainMenu {
 
     public void playButtonForSeries()
     {
-        String i = u.getUserInputForSearch(YELB + "Which of the following series would like to watch?" + RESET);
+        String i = u.getUserInputForSearch(YELB + "Which of the following series would like to watch? Type in ID number to watch" + RESET);
         for (Media s : series)
         {
-            if (s.getTitle().equalsIgnoreCase(i))
+            if (s.getID().equalsIgnoreCase(i))
             {
                 int input = Integer.parseInt(u.getUserInput(YELB+"Press 1 to watch series. " + "Press 2 to favorite series"+RESET));
                 if (input == 1)
