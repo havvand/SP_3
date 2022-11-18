@@ -12,10 +12,11 @@ public class MediaDB
     ArrayList<Media> series = new ArrayList<>();
 
     // Method to
-    public void run()
+    public void
+    run()
     {
         establishConnection();
-        //readMovieData();
+        readMovieData();
         readSeriesData();
 
     }
@@ -120,7 +121,7 @@ public class MediaDB
     public void establishConnection()
     {
         // Declaring and initializing the variables to use in DriverManager.getConnection()
-        String url = "jdbc:mysql://localhost/SP3_database?" + "autoReconnect=true&useSSL=false"; ;
+        String url = "jdbc:mysql://localhost/sp3_database" + "autoReconnect=true&useSSL=false"; ;
         String username = "root";
         String password = "Ostefar";
         try
