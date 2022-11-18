@@ -86,7 +86,7 @@ public class TextUI {
         int i = 1;
         for (Media a : objects)
         {
-            System.out.println(B_B + "Item nr: "+ i + a + "\n" + RESET);
+            System.out.println(B_B + a + "\n" + RESET);
             i++;
         }
     }
