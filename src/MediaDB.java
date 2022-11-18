@@ -42,12 +42,13 @@ public class MediaDB
             // Declaring and initializing a new Media object for movies, with the returned results as parameters and adding them to an ArrayList.
             while(results.next())
             {
+                String ID = (results.getString("ID"));
                 String title = (results.getString("title"));
                 String genre = (results.getString("genre"));
                 String releaseYear = (results.getString("releaseYear"));
                 String rating = (results.getString("rating"));
 
-                MediaType media = new Movies(title, releaseYear, genre, rating );
+                MediaType media = new Movies(ID, title, releaseYear, genre, rating );
                 Movies movie = (Movies)media;
                 this.movies.add(movie);
             }
@@ -81,13 +82,14 @@ public class MediaDB
             // Declaring and initializing a new Media object for movies, with the returned results as parameters and adding them to an ArrayList.
             while(results.next())
             {
+                String ID = (results.getString("ID"));
                 String title = (results.getString("title"));
                 String genre = (results.getString("genre"));
                 String releaseYear = (results.getString("releaseYear"));
                 String rating = (results.getString("rating"));
                 String amountOfEpisodesInSeason = (results.getString("amountOfEpisodesInSeason"));
 
-                MediaType media = new Series(title, releaseYear, genre, rating, amountOfEpisodesInSeason);
+                MediaType media = new Series(ID, title, releaseYear, genre, rating, amountOfEpisodesInSeason);
                 Series series = (Series)media;
                 this.series.add(series);
             }
