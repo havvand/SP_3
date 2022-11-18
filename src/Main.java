@@ -9,7 +9,7 @@ public class Main {
         MediaDB mediaDB = new MediaDB();
 
         System.out.println("LOL");
-        mediaDB.newUser();
+        mediaDB.readUserCredentials();
 
         aOne.userAuthentication();
 

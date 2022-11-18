@@ -105,7 +105,24 @@ public class MediaDB
 
 
     }
-    public void readUserCredentials(){
+    public void readUserCredentials() {
+        establishConnection();
+        String username = u.getUserInput("USERNAME: ");
+        String password = u.getUserInput("PASSWORD: ");
+        String login_query = "SELECT * FROM userdata WHERE username ='" + username + "'" + "AND password ='" + password + "'";
+        try {
+            PreparedStatement query = connection.prepareStatement(login_query);
+            // execute query
+            ResultSet result = query.executeQuery();
+            if (result.next()) {
+                System.out.println("GOOD");
+            } else {
+                System.out.println("BAD");
+            }
+            query.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
 
+        }
     }
 }
