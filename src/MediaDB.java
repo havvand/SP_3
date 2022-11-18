@@ -82,4 +82,30 @@ public class MediaDB
         }
 
     }
+
+    public void newUser() {
+        establishConnection();
+        String usernameInput = u.getUserInput("Select username");
+        String passwordInput = u.getUserInput("Select password");
+        String login_query = "INSERT INTO userdata (username, password) VALUES (?,?)";
+        // prepared statement query
+
+        try {
+            PreparedStatement query = connection.prepareStatement(login_query);
+            query.setString(1, usernameInput);
+            query.setString(2, passwordInput);
+            // execute query
+            query.execute();
+            query.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+    }
+    public void readUserCredentials(){
+
+    }
 }
