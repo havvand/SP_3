@@ -13,11 +13,10 @@ public class MediaDB
     public void run()
     {
         establishConnection();
-        runMovies();
-
+        readMovieData();
     }
 
-    public void runMovies()
+    public void readMovieData()
     {
         String userInput = u.getUserInputForSearch("Which of the following movies would you like to watch - type in full title.");
         String query = MessageFormat.format( "select * from movies where title like \"{0}%\"", userInput);
@@ -68,9 +67,9 @@ public class MediaDB
     public void establishConnection()
     {
         // Declaring and initializing the variables to use in DriverManager.getConnection()
-        String url = "jdbc:mysql://localhost/movies?" + "autoReconnect=true&useSSL=false"; ;
+        String url = "jdbc:mysql://localhost/sp3_database?" + "autoReconnect=true&useSSL=false"; ;
         String username = "root";
-        String password = "meyer";
+        String password = "Ostefar";
         try
         {
             // Initializing the variable connection with DriverManager (from java.sql)
