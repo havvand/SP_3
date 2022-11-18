@@ -1,8 +1,8 @@
 public class Series extends Media {
     private String amountOfEpisodesInSeason;
 
-    public Series(String title, String releaseYear, String genre, String rating, String amountOfEpisodesInSeason) {
-        super(title, releaseYear, genre, rating);
+    public Series(String ID, String title, String releaseYear, String genre, String rating, String amountOfEpisodesInSeason) {
+        super(ID, title, releaseYear, genre, rating);
         this.amountOfEpisodesInSeason = amountOfEpisodesInSeason;
 
     }

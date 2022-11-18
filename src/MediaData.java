@@ -166,12 +166,13 @@ public class MediaData extends MainMenu {
         for (String s : seriesData)
         {
             String[] values = s.split(";");
-            String title = values[0];
-            String releaseYear = values[1];
-            String genre = values[2];
-            String rating = values[3];
-            String amountOfEpisodesInSeason = values[4];
-            MediaType media = new Series(title, releaseYear, genre, rating, amountOfEpisodesInSeason);
+            String ID = values[0];
+            String title = values[1];
+            String releaseYear = values[2];
+            String genre = values[3];
+            String rating = values[4];
+            String amountOfEpisodesInSeason = values[5];
+            MediaType media = new Series(ID, title, releaseYear, genre, rating, amountOfEpisodesInSeason);
             Series s1 = (Series)media;
             series.add(s1);
         }
@@ -182,11 +183,12 @@ public class MediaData extends MainMenu {
         for (String s : movieData)
         {
             String[] values = s.split(";");
-            String title = values[0];
-            String releaseYear = values[1];
-            String genre = values[2];
-            String rating = values[3];
-            MediaType media = new Movies(title, releaseYear, genre, rating);
+            String ID = values[0];
+            String title = values[1];
+            String releaseYear = values[2];
+            String genre = values[3];
+            String rating = values[4];
+            MediaType media = new Movies(ID, title, releaseYear, genre, rating);
             Movies m = (Movies)media;
             movies.add(m);
         }
