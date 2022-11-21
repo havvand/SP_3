@@ -17,7 +17,7 @@ public class MediaDB {
 
     }
 
-    public void runMovies() {
+    public String runMovies() {
         String userInput = u.getUserInputForSearch("Which of the following movies would you like to watch - type in full title.");
         String query = MessageFormat.format("select * from movies where title like \"{0}%\"", userInput);
         //String query = "select * from movies where title like \"g%\";";
@@ -36,20 +36,22 @@ public class MediaDB {
             // Iterating through the database rows useing results.next() (a java.sql method). Adding each row to a variable.
             // Declaring and initializing a new Media object for movies, with the returned results as parameters and adding them to an ArrayList.
             while (results.next()) {
+                String ID = (results.getString("movieId"));
                 String title = (results.getString("title"));
                 String genre = (results.getString("genre"));
                 String releaseYear = (results.getString("releaseYear"));
                 String rating = (results.getString("rating"));
 
-                MediaType media = new Movies(title, releaseYear, genre, rating);
+                MediaType media = new Movies(ID, title, releaseYear, genre, rating);
                 Movies movie = (Movies) media;
                 this.movies.add(movie);
+                movieId = movie.getID();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         printMovies();
-        System.out.println("END");
+        return movieId;
     }
 
     private void printMovies() {
@@ -116,13 +118,13 @@ public class MediaDB {
     }
 
 
-    public void addMovieToFavMedia(String userId) {
+    public void addMovieToFavMedia(String userId, String movieId) {
         String favId = u.getUserInput("Do you want to add this movie to your favorite list? Y/N?");
         String addToFav_query = "INSERT INTO favoritmedia (movieId, userId) VALUES (?,?)";
         if (favId.equalsIgnoreCase("Y")) {
             try {
                 PreparedStatement query = connection.prepareStatement(addToFav_query);
-                query.setString(1, "1");
+                query.setString(1, movieId);
                 query.setString(2, userId);
                 // execute query
                 query.execute();
