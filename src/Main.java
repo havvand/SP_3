@@ -9,9 +9,11 @@ public class Main {
         MediaDB mediaDB = new MediaDB();
 
         System.out.println("LOL");
-        mediaDB.readUserCredentials();
 
-        aOne.userAuthentication();
+        mediaDB.readUserCredentials();
+        mediaDB.addMovieToFavMedia(mediaDB.userId);
+
+        //aOne.userAuthentication();
 
 
 

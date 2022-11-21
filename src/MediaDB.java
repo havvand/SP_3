@@ -2,31 +2,29 @@ import java.sql.*;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 
-public class MediaDB
-{
+public class MediaDB {
     TextUI u = new TextUI();
+    public String userId;
+    public String movieId;
     // Declaring a variable of type Connection (from java.sql).
     private Connection connection;
     ArrayList<Media> movies = new ArrayList<>();
 
     // Method to
-    public void run()
-    {
+    public void run() {
         establishConnection();
         runMovies();
 
     }
 
-    public void runMovies()
-    {
+    public void runMovies() {
         String userInput = u.getUserInputForSearch("Which of the following movies would you like to watch - type in full title.");
-        String query = MessageFormat.format( "select * from movies where title like \"{0}%\"", userInput);
+        String query = MessageFormat.format("select * from movies where title like \"{0}%\"", userInput);
         //String query = "select * from movies where title like \"g%\";";
         System.out.println(query);
         System.out.println(movies);
         //System.out.println(query);
-        try
-        {
+        try {
             // Makes an object (Statement statement) that sends SQL statements to the SQL-database (initialized as connection.createStatement() (a java.sql.Connection method)).
             Statement statement = this.connection.createStatement();
             // Using the variable statement to execute the String query which contains the SQL-statement(code for SQL-instructions).
@@ -37,47 +35,41 @@ public class MediaDB
 
             // Iterating through the database rows useing results.next() (a java.sql method). Adding each row to a variable.
             // Declaring and initializing a new Media object for movies, with the returned results as parameters and adding them to an ArrayList.
-            while(results.next())
-            {
+            while (results.next()) {
                 String title = (results.getString("title"));
                 String genre = (results.getString("genre"));
                 String releaseYear = (results.getString("releaseYear"));
                 String rating = (results.getString("rating"));
 
-                MediaType media = new Movies(title, releaseYear, genre, rating );
-                Movies movie = (Movies)media;
+                MediaType media = new Movies(title, releaseYear, genre, rating);
+                Movies movie = (Movies) media;
                 this.movies.add(movie);
             }
-        } catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         printMovies();
         System.out.println("END");
     }
 
-    private void printMovies()
-    {
-        for (Media m : this.movies)
-        {
-            System.out.println("Title: "+ m.getTitle() + "\nGenre: " + m.getGenre() + "\nRating: " + m.getRating());
+    private void printMovies() {
+        for (Media m : this.movies) {
+            System.out.println("Title: " + m.getTitle() + "\nGenre: " + m.getGenre() + "\nRating: " + m.getRating());
         }
     }
 
     // Method to make connection to mysql database.
-    public void establishConnection()
-    {
+    public void establishConnection() {
         // Declaring and initializing the variables to use in DriverManager.getConnection()
-        String url = "jdbc:mysql://localhost/sp3_database?" + "autoReconnect=true&useSSL=false"; ;
+        String url = "jdbc:mysql://localhost/sp3_database?" + "autoReconnect=true&useSSL=false";
+        ;
         String username = "root";
         String password = "Salar0108";
-        try
-        {
+        try {
             // Initializing the variable connection with DriverManager (from java.sql)
             connection = DriverManager.getConnection(url, username, password);
             System.out.println("Connection to database established!");
-        } catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -89,7 +81,6 @@ public class MediaDB
         String passwordInput = u.getUserInput("Select password");
         String login_query = "INSERT INTO userdata (username, password) VALUES (?,?)";
         // prepared statement query
-
         try {
             PreparedStatement query = connection.prepareStatement(login_query);
             query.setString(1, usernameInput);
@@ -100,12 +91,9 @@ public class MediaDB
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-
-
     }
-    public void readUserCredentials() {
+
+    public String readUserCredentials() {
         establishConnection();
         String username = u.getUserInput("USERNAME: ");
         String password = u.getUserInput("PASSWORD: ");
@@ -115,7 +103,7 @@ public class MediaDB
             // execute query
             ResultSet result = query.executeQuery();
             if (result.next()) {
-                System.out.println("GOOD");
+               userId = result.getString("userId");
             } else {
                 System.out.println("BAD");
             }
@@ -123,6 +111,46 @@ public class MediaDB
         } catch (SQLException e) {
             e.printStackTrace();
 
+        }
+        return userId;
+    }
+
+
+    public void addMovieToFavMedia(String userId) {
+        String favId = u.getUserInput("Do you want to add this movie to your favorite list? Y/N?");
+        String addToFav_query = "INSERT INTO favoritmedia (movieId, userId) VALUES (?,?)";
+        if (favId.equalsIgnoreCase("Y")) {
+            try {
+                PreparedStatement query = connection.prepareStatement(addToFav_query);
+                query.setString(1, "1");
+                query.setString(2, userId);
+                // execute query
+                query.execute();
+                query.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+                System.out.println("SOMETHING DIFFERENT HAPPENS");
+            }
+    }
+    public void addSeriesToFavMedia(String userId) {
+        establishConnection();
+        String favId = u.getUserInput("Do you want to add this series to your favorite list? Y/N?");
+        String addToFav_query = "INSERT INTO favoritmedia (userId, seriesId) VALUES (?,?)";
+        if (favId.equalsIgnoreCase("Y")) {
+            try {
+                PreparedStatement query = connection.prepareStatement(addToFav_query);
+                query.setString(1, "");
+                query.setString(2, userId);
+                // execute query
+                query.execute();
+                query.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("SOMETHING DIFFERENT HAPPENS");
         }
     }
 }
