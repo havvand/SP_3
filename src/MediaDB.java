@@ -26,18 +26,16 @@ public class MediaDB
         String userInput = u.getUserInputForSearch("Which of the following movies would you like to watch - type in full title.");
         String query = MessageFormat.format( "select * from movies where title like \"{0}%\"", userInput);
         //String query = "select * from movies where title like \"g%\";";
-        System.out.println(query);
-        System.out.println(movies);
         //System.out.println(query);
         try
         {
             // Makes an object (Statement statement) that sends SQL statements to the SQL-database (initialized as connection.createStatement() (a java.sql.Connection method)).
-            Statement statement = this.connection.createStatement();
+            PreparedStatement statement = connection.prepareStatement(query);
             // Using the variable statement to execute the String query which contains the SQL-statement(code for SQL-instructions).
             statement.execute(query);
 
             // Makes an object results (ResultSet result), which contains the current result from the query.
-            ResultSet results = statement.getResultSet();
+            ResultSet results = statement.executeQuery();
 
             // Iterating through the database rows using results.next() (a java.sql method). Adding each row to a variable.
             // Declaring and initializing a new Media object for movies, with the returned results as parameters and adding them to an ArrayList.
@@ -53,6 +51,7 @@ public class MediaDB
                 Movies movie = (Movies)media;
                 this.movies.add(movie);
             }
+            statement.close();
         } catch (SQLException e)
         {
             e.printStackTrace();
@@ -66,8 +65,6 @@ public class MediaDB
         String userInput = u.getUserInputForSearch("Which of the following series would you like to watch - type in full title.");
         String query = MessageFormat.format( "select * from series where title like \"{0}%\"", userInput);
         //String query = "select * from movies where title like \"g%\";";
-        System.out.println(query);
-        System.out.println(series);
         //System.out.println(query);
         try
         {
@@ -121,7 +118,7 @@ public class MediaDB
     public void establishConnection()
     {
         // Declaring and initializing the variables to use in DriverManager.getConnection()
-        String url = "jdbc:mysql://localhost/sp3_database" + "autoReconnect=true&useSSL=false"; ;
+        String url = "jdbc:mysql://localhost/sp3_database?" + "autoReconnect=true&useSSL=false"; ;
         String username = "root";
         String password = "Ostefar";
         try
