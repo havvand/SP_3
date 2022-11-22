@@ -9,7 +9,7 @@ public class MediaDB
     // Declaring a variable of type Connection (from java.sql).
     private Connection connection;
     ArrayList<Media> movies = new ArrayList<>();
-    ArrayList<Media> series = new ArrayList<>();
+    public static ArrayList<Media> foundSeriesList = new ArrayList<>();
 
     // Method to
     public void run()
@@ -47,9 +47,8 @@ public class MediaDB
                 String releaseYear = (results.getString("releaseYear"));
                 String rating = (results.getString("rating"));
 
-                MediaType media = new Movies(title, releaseYear, genre, rating );
-                Movies movie = (Movies)media;
-                this.movies.add(movie);
+                Media media = new Movies(title, releaseYear, genre, rating );
+                this.movies.add(media);
             }
         } catch (SQLException e)
         {
@@ -65,7 +64,6 @@ public class MediaDB
         String query = MessageFormat.format( "select * from series where title like \"{0}%\"", userInput);
         //String query = "select * from movies where title like \"g%\";";
         System.out.println(query);
-        System.out.println(series);
         //System.out.println(query);
         try
         {
@@ -87,16 +85,17 @@ public class MediaDB
                 String rating = (results.getString("rating"));
                 String amountOfEpisodesInSeason = (results.getString("amountOfEpisodesInSeason"));
 
-                MediaType media = new Series(title, releaseYear, genre, rating, amountOfEpisodesInSeason);
-                Series series = (Series)media;
-                this.series.add(series);
+                Media media = new Series(title, releaseYear, genre, rating, amountOfEpisodesInSeason);
+                //Series s1 = (Series)media;
+                this.foundSeriesList.add(media);
             }
         } catch (SQLException e)
         {
             e.printStackTrace();
         }
         printSeries();
-        System.out.println("END");
+
+        //System.out.println("END");
     }
 
     private void printMovies()
@@ -108,9 +107,9 @@ public class MediaDB
     }
     private void printSeries()
     {
-        for (Media m : this.series)
+        for (Media m: this.foundSeriesList)
         {
-            System.out.println("Title: "+ m.getTitle() + "\nGenre: " + m.getGenre() + "\nRating: " + m.getRating() + "\nEpisodes ");
+            System.out.println("Series found: " + "\nTitle: "+ m.getTitle() + "\nGenre: " + m.getGenre() + "\nRating: " + m.getRating() + "\nEpisodes " + m.getAmountOfEpisodesInSeason());
         }
     }
 

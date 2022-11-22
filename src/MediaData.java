@@ -7,6 +7,7 @@ public class MediaData extends MainMenu {
 
     private static ArrayList<Media> movies = new ArrayList<>();
     private static ArrayList<Media> series = new ArrayList<>();
+    public ArrayList<Media> testSeries = MediaDB.foundSeriesList;
 
     private static ArrayList<Media> watchedSeries = new ArrayList<>();
     private static ArrayList<Media> watchedMovies = new ArrayList<>();
@@ -52,7 +53,7 @@ public class MediaData extends MainMenu {
     public void playButtonForSeries()
     {
         String i = u.getUserInputForSearch(YELB + "Which of the following series would like to watch?" + RESET);
-        for (Media s : series)
+        for (Media s : testSeries)
         {
             if (s.getTitle().equalsIgnoreCase(i))
             {
@@ -71,7 +72,9 @@ public class MediaData extends MainMenu {
                 }
             }
 
-        } u.errorMessage();
+        }
+        System.out.println(testSeries);
+        //u.errorMessage();
     }
 
 
@@ -171,9 +174,8 @@ public class MediaData extends MainMenu {
             String genre = values[2];
             String rating = values[3];
             String amountOfEpisodesInSeason = values[4];
-            MediaType media = new Series(title, releaseYear, genre, rating, amountOfEpisodesInSeason);
-            Series s1 = (Series)media;
-            series.add(s1);
+            Media media = new Series(title, releaseYear, genre, rating, amountOfEpisodesInSeason);
+            series.add(media);
         }
     }
 
@@ -186,9 +188,9 @@ public class MediaData extends MainMenu {
             String releaseYear = values[1];
             String genre = values[2];
             String rating = values[3];
-            MediaType media = new Movies(title, releaseYear, genre, rating);
-            Movies m = (Movies)media;
-            movies.add(m);
+            Media media = new Movies(title, releaseYear, genre, rating);
+            //Movies m = (Movies)media;
+            movies.add(media);
         }
     }
 

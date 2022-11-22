@@ -1,4 +1,4 @@
-public abstract class Media implements MediaType {
+public abstract class Media {
     private String title;
 
     private String releaseYear;
@@ -26,9 +26,9 @@ public abstract class Media implements MediaType {
         return genre;
     }
 
-    public String getRating() {
-        return rating;
-    }
+    public String getRating() { return rating; }
+
+    public String getAmountOfEpisodesInSeason() { return ""; }
 
     @Override
     public String toString() {
