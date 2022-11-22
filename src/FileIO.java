@@ -7,7 +7,7 @@ public class FileIO{
     String R = "\033[0m"; String GB = "\033[1;32m"; String RB = "\033[1;31m"; String YB = "\033[1;33m";
 
     public ArrayList<String> readMovieData() {
-        File movieFile = new File("data/moviedata.txt");
+        File movieFile = new File("data/moviedata.csv");
         ArrayList<String> movieData = new ArrayList<>();
         try {
             Scanner input = new Scanner(movieFile);
@@ -24,7 +24,7 @@ public class FileIO{
     }
 
     public ArrayList<String> readSeriesData() {
-        File seriesFile = new File("Data/seriesdata.txt");
+        File seriesFile = new File("Data/seriesdata.csv");
         ArrayList<String> seriesData = new ArrayList<>();
         try {
             Scanner input = new Scanner(seriesFile);
