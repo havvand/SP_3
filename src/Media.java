@@ -1,4 +1,4 @@
-public abstract class Media implements MediaType {
+public abstract class Media {
     private String title;
 
     private String releaseYear;

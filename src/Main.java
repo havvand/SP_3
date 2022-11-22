@@ -12,7 +12,7 @@ public class Main {
 
         mediaDB.readUserCredentials();
         mediaDB.run();
-        media.playButtonForSeries();
+        media.playButtonForMovie();
         //mediaDB.addMovieToFavMedia(mediaDB.userId, mediaDB.movieId);
 
         //aOne.userAuthentication();

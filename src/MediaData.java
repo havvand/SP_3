@@ -6,6 +6,7 @@ public class MediaData extends MainMenu {
     FileIO f = new FileIO();
     MediaDB mediaDB = new MediaDB();
 
+
     public static ArrayList<Media> testS = MediaDB.movies;
     public static ArrayList<Media> test2 = MediaDB.series;
 
@@ -41,6 +42,7 @@ public class MediaData extends MainMenu {
                 {
                     watchedMovies.add(m);
                     u.displayMessage(GREEN_BOLD+"You are now watching: " + m+RESET);
+                    mediaDB.addMoviesToWatchedMedia(mediaDB.userId, m.getID());
                     chooseMediaType();
                 }
                 if (input == 2)
@@ -67,6 +69,7 @@ public class MediaData extends MainMenu {
                 {
                     watchedSeries.add(s);
                     u.displayMessage(GREEN_BOLD+"You are now watching: " + s + RESET);
+                    mediaDB.addSeriesToWatchedMedia(mediaDB.userId, s.getID());
                     chooseMediaType();
                 }
                 if (input == 2)
@@ -180,7 +183,7 @@ public class MediaData extends MainMenu {
             String genre = values[3];
             String rating = values[4];
             String amountOfEpisodesInSeason = values[5];
-            MediaType media = new Series(ID, title, releaseYear, genre, rating, amountOfEpisodesInSeason);
+            Media media = new Series(ID, title, releaseYear, genre, rating, amountOfEpisodesInSeason);
             Series s1 = (Series)media;
             series.add(s1);
         }
@@ -196,7 +199,7 @@ public class MediaData extends MainMenu {
             String releaseYear = values[2];
             String genre = values[3];
             String rating = values[4];
-            MediaType media = new Movies(ID, title, releaseYear, genre, rating);
+            Media media = new Movies(ID, title, releaseYear, genre, rating);
             Movies m = (Movies)media;
             movies.add(m);
         }

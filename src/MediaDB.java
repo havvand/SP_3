@@ -15,7 +15,7 @@ public class MediaDB {
     // Method to
     public void run() {
         establishConnection();
-        runSeries();
+        runMovies();
 
     }
 
@@ -44,7 +44,7 @@ public class MediaDB {
                 String releaseYear = (results.getString("releaseYear"));
                 String rating = (results.getString("rating"));
 
-                MediaType media = new Movies(ID, title, releaseYear, genre, rating);
+                Media media = new Movies(ID, title, releaseYear, genre, rating);
                 Movies movie = (Movies) media;
                 this.movies.add(movie);
                 //movieId = movie.getID();
@@ -80,7 +80,7 @@ public class MediaDB {
                 String rating = (results.getString("rating"));
                 String amountOfEpisodesInSeason = (results.getString("amountOfEpisodesInSeason"));
 
-                MediaType media = new Series(ID, title, releaseYear, genre, rating, amountOfEpisodesInSeason);
+                Media media = new Series(ID, title, releaseYear, genre, rating, amountOfEpisodesInSeason);
                 Series serie = (Series) media;
                 this.series.add(serie);
 
@@ -181,7 +181,7 @@ public class MediaDB {
     public void addSeriesToFavMedia(String userId, String seriesId) {
         establishConnection();
         String favId = u.getUserInput("Do you want to add this series to your favorite list? Y/N?");
-        String addToFav_query = "INSERT INTO favoritmedia (userId, seriesId) VALUES (?,?)";
+        String addToFav_query = "INSERT INTO favoritmedia (seriesId, userId) VALUES (?,?)";
         if (favId.equalsIgnoreCase("Y")) {
             try {
                 PreparedStatement query = connection.prepareStatement(addToFav_query);
@@ -195,6 +195,34 @@ public class MediaDB {
             }
         } else {
             System.out.println("SOMETHING DIFFERENT HAPPENS");
+        }
+    }
+    public void addSeriesToWatchedMedia(String userId, String seriesId) {
+        establishConnection();
+        String addToFav_query = "INSERT INTO watchedmedia (seriesId, userId) VALUES (?,?)";
+            try {
+                PreparedStatement query = connection.prepareStatement(addToFav_query);
+                query.setString(1, seriesId);
+                query.setString(2, userId);
+                // execute query
+                query.execute();
+                query.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+    }
+    public void addMoviesToWatchedMedia(String userId, String movieId) {
+        establishConnection();
+        String addToFav_query = "INSERT INTO watchedmedia (movieId, userId) VALUES (?,?)";
+        try {
+            PreparedStatement query = connection.prepareStatement(addToFav_query);
+            query.setString(1, movieId);
+            query.setString(2, userId);
+            // execute query
+            query.execute();
+            query.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
