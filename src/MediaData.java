@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class MediaData extends MainMenu {
     FileIO f = new FileIO();
+    MediaDB mediaDB = new MediaDB();
+
+    public static ArrayList<Media> testS = MediaDB.movies;
+    public static ArrayList<Media> test2 = MediaDB.series;
 
     private static ArrayList<Media> movies = new ArrayList<>();
     private static ArrayList<Media> series = new ArrayList<>();
@@ -27,7 +31,7 @@ public class MediaData extends MainMenu {
     public void playButtonForMovie()
     {
         String i = u.getUserInputForSearch(YELB+"Which of the following movies would you like to watch - type in ID number."+RESET);
-        for (Media m : movies)
+        for (Media m : testS)
         {
             if (m.getID().equalsIgnoreCase(i))
             {
@@ -41,7 +45,9 @@ public class MediaData extends MainMenu {
                 }
                 if (input == 2)
                 {
-                    favoritedMovies.add(m);
+                    System.out.println(mediaDB.userId + m.getID());
+                    mediaDB.addMovieToFavMedia(mediaDB.userId, m.getID());
+                    //favoritedMovies.add(m);
                     u.displayMessage(GREEN_BOLD+"You have favorited: " + m+RESET);
                     chooseMediaType();
                 }
@@ -52,7 +58,7 @@ public class MediaData extends MainMenu {
     public void playButtonForSeries()
     {
         String i = u.getUserInputForSearch(YELB + "Which of the following series would like to watch? Type in ID number to watch" + RESET);
-        for (Media s : series)
+        for (Media s : test2)
         {
             if (s.getID().equalsIgnoreCase(i))
             {
@@ -65,7 +71,9 @@ public class MediaData extends MainMenu {
                 }
                 if (input == 2)
                 {
-                    favoritedSeries.add(s);
+                    System.out.println(mediaDB.userId + s.getID());
+                    mediaDB.addSeriesToFavMedia(mediaDB.userId, s.getID());
+                    //favoritedSeries.add(s);
                     u.displayMessage(GREEN_BOLD+"You have favorited: " + s + RESET);
                     chooseMediaType();
                 }

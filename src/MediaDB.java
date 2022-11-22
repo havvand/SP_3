@@ -4,20 +4,22 @@ import java.util.ArrayList;
 
 public class MediaDB {
     TextUI u = new TextUI();
-    public String userId;
-    public String movieId;
+    public static String userId;
+    public static String movieId;
+    public static String seriesId;
     // Declaring a variable of type Connection (from java.sql).
-    private Connection connection;
-    ArrayList<Media> movies = new ArrayList<>();
+    protected static Connection connection;
+    public static ArrayList<Media> movies = new ArrayList<>();
+    public static ArrayList<Media> series = new ArrayList<>();
 
     // Method to
     public void run() {
         establishConnection();
-        runMovies();
+        runSeries();
 
     }
 
-    public String runMovies() {
+    public void runMovies() {
         String userInput = u.getUserInputForSearch("Which of the following movies would you like to watch - type in full title.");
         String query = MessageFormat.format("select * from movies where title like \"{0}%\"", userInput);
         //String query = "select * from movies where title like \"g%\";";
@@ -45,18 +47,58 @@ public class MediaDB {
                 MediaType media = new Movies(ID, title, releaseYear, genre, rating);
                 Movies movie = (Movies) media;
                 this.movies.add(movie);
-                movieId = movie.getID();
+                //movieId = movie.getID();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         printMovies();
-        return movieId;
+    }
+    public void runSeries() {
+        String userInput = u.getUserInputForSearch("Which of the following series would you like to watch - type in full title.");
+        String query = MessageFormat.format("select * from series where title like \"{0}%\"", userInput);
+        //String query = "select * from movies where title like \"g%\";";
+        System.out.println(query);
+        System.out.println(series);
+        //System.out.println(query);
+        try {
+            // Makes an object (Statement statement) that sends SQL statements to the SQL-database (initialized as connection.createStatement() (a java.sql.Connection method)).
+            Statement statement = this.connection.createStatement();
+            // Using the variable statement to execute the String query which contains the SQL-statement(code for SQL-instructions).
+            statement.execute(query);
+
+            // Makes an object results (ResultSet result), which contains the current result from the query.
+            ResultSet results = statement.getResultSet();
+
+            // Iterating through the database rows useing results.next() (a java.sql method). Adding each row to a variable.
+            // Declaring and initializing a new Media object for movies, with the returned results as parameters and adding them to an ArrayList.
+            while (results.next()) {
+                String ID = (results.getString("seriesId"));
+                String title = (results.getString("title"));
+                String genre = (results.getString("genre"));
+                String releaseYear = (results.getString("releaseYear"));
+                String rating = (results.getString("rating"));
+                String amountOfEpisodesInSeason = (results.getString("amountOfEpisodesInSeason"));
+
+                MediaType media = new Series(ID, title, releaseYear, genre, rating, amountOfEpisodesInSeason);
+                Series serie = (Series) media;
+                this.series.add(serie);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        printSeries();
     }
 
     private void printMovies() {
         for (Media m : this.movies) {
-            System.out.println("Title: " + m.getTitle() + "\nGenre: " + m.getGenre() + "\nRating: " + m.getRating());
+            System.out.println("ID: "+m.getID()+ "\nTitle: " + m.getTitle() + "\nGenre: " + m.getGenre() + "\nRating: " + m.getRating());
+        }
+    }
+    private void printSeries() {
+        for (Media m : this.series) {
+            System.out.println("ID: "+m.getID()+ "\nTitle: " + m.getTitle() + "\nGenre: " + m.getGenre() + "\nRating: " + m.getRating());
         }
     }
 
@@ -136,14 +178,14 @@ public class MediaDB {
                 System.out.println("SOMETHING DIFFERENT HAPPENS");
             }
     }
-    public void addSeriesToFavMedia(String userId) {
+    public void addSeriesToFavMedia(String userId, String seriesId) {
         establishConnection();
         String favId = u.getUserInput("Do you want to add this series to your favorite list? Y/N?");
         String addToFav_query = "INSERT INTO favoritmedia (userId, seriesId) VALUES (?,?)";
         if (favId.equalsIgnoreCase("Y")) {
             try {
                 PreparedStatement query = connection.prepareStatement(addToFav_query);
-                query.setString(1, "");
+                query.setString(1, seriesId);
                 query.setString(2, userId);
                 // execute query
                 query.execute();

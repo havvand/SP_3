@@ -11,7 +11,9 @@ public class Main {
         System.out.println("LOL");
 
         mediaDB.readUserCredentials();
-        mediaDB.addMovieToFavMedia(mediaDB.userId, mediaDB.movieId);
+        mediaDB.run();
+        media.playButtonForSeries();
+        //mediaDB.addMovieToFavMedia(mediaDB.userId, mediaDB.movieId);
 
         //aOne.userAuthentication();
 
