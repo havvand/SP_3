@@ -1,4 +1,6 @@
 public abstract class Media {
+    private String ID;
+
     private String title;
 
     private String releaseYear;
@@ -7,13 +9,17 @@ public abstract class Media {
 
     private String rating;
 
-    public Media(String title, String releaseYear, String genre, String rating) {
+    public Media(String ID, String title, String releaseYear, String genre, String rating) {
+        this.ID = ID;
         this.title = title;
         this.releaseYear = releaseYear;
         this.genre = genre;
         this.rating = rating;
     }
 
+    public String getID() {
+        return ID;
+    }
     public String getTitle() {
         return title;
     }

@@ -1,8 +1,29 @@
 public class MainMenu
 {
     TextUI u = new TextUI();
+
     // Colors for console-text!
     String RESET = "\033[0m", GREEN_BOLD = "\033[1;32m", REDB = "\033[1;31m", YELB = "\033[1;33m", B_U = "\033[4;34m";
+
+    public void loginChoice()
+    {
+        int input = Integer.parseInt(u.getUserInput("Press 1 for online: | Press 2 for offline:"));
+
+        if (input == 1)
+        {
+            MediaDB mediaDB = new MediaDB();
+            mediaDB.establishConnection();
+            mediaDB.readUserCredentials();
+            mediaDB.run();
+
+        }
+        if (input == 2)
+        {
+            AccountDataBase aOne = new AccountDataBase();
+            aOne.userAuthentication();
+        }
+    }
+
 
     public void startMenu() {
         chooseMediaType();

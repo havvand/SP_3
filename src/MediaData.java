@@ -4,16 +4,18 @@ import java.util.ArrayList;
 
 public class MediaData extends MainMenu {
     FileIO f = new FileIO();
+    private MediaDB mediaDB = new MediaDB();
+
+    private static ArrayList<Media> moviesFromDB = MediaDB.movies;
+    private static ArrayList<Media> seriesFromDB = MediaDB.series;
 
     private static ArrayList<Media> movies = new ArrayList<>();
     private static ArrayList<Media> series = new ArrayList<>();
-    public ArrayList<Media> testSeries = MediaDB.foundSeriesList;
 
     private static ArrayList<Media> watchedSeries = new ArrayList<>();
     private static ArrayList<Media> watchedMovies = new ArrayList<>();
     private static ArrayList<Media> favoritedMovies = new ArrayList<>();
     private static ArrayList<Media> favoritedSeries = new ArrayList<>();
-
 
     public void initiateMovieList()
     {
@@ -27,10 +29,11 @@ public class MediaData extends MainMenu {
 
     public void playButtonForMovie()
     {
+        //System.out.println(moviesFromDB);
         String i = u.getUserInputForSearch(YELB+"Which of the following movies would you like to watch - type in full title."+RESET);
-        for (Media m : movies)
+        for (Media m : moviesFromDB)
         {
-            if (m.getTitle().equalsIgnoreCase(i))
+            if (m.getID().equalsIgnoreCase(i))
             {
                 int input = Integer.parseInt(u.getUserInput(GREEN_BOLD+"Press 1 to watch movie. " + "Press 2 to favorited movie" + RESET));
 
@@ -43,6 +46,7 @@ public class MediaData extends MainMenu {
                 if (input == 2)
                 {
                     favoritedMovies.add(m);
+                    mediaDB.addMovieToFavMedia(mediaDB.userId, m.getID());
                     u.displayMessage(GREEN_BOLD+"You have favorited: " + m+RESET);
                     chooseMediaType();
                 }
@@ -53,9 +57,9 @@ public class MediaData extends MainMenu {
     public void playButtonForSeries()
     {
         String i = u.getUserInputForSearch(YELB + "Which of the following series would like to watch?" + RESET);
-        for (Media s : testSeries)
+        for (Media s : seriesFromDB)
         {
-            if (s.getTitle().equalsIgnoreCase(i))
+            if (s.getID().equalsIgnoreCase(i))
             {
                 int input = Integer.parseInt(u.getUserInput(YELB+"Press 1 to watch series. " + "Press 2 to favorite series"+RESET));
                 if (input == 1)
@@ -67,13 +71,14 @@ public class MediaData extends MainMenu {
                 if (input == 2)
                 {
                     favoritedSeries.add(s);
+                    mediaDB.addSeriesToFavMedia(mediaDB.userId, s.getID());
                     u.displayMessage(GREEN_BOLD+"You have favorited: " + s + RESET);
                     chooseMediaType();
                 }
             }
 
         }
-        System.out.println(testSeries);
+        System.out.println(series);
         //u.errorMessage();
     }
 
@@ -169,12 +174,13 @@ public class MediaData extends MainMenu {
         for (String s : seriesData)
         {
             String[] values = s.split(";");
-            String title = values[0];
-            String releaseYear = values[1];
-            String genre = values[2];
-            String rating = values[3];
-            String amountOfEpisodesInSeason = values[4];
-            Media media = new Series(title, releaseYear, genre, rating, amountOfEpisodesInSeason);
+            String ID = values[0];
+            String title = values[1];
+            String releaseYear = values[2];
+            String genre = values[3];
+            String rating = values[4];
+            String amountOfEpisodesInSeason = values[5];
+            Media media = new Series(ID, title, releaseYear, genre, rating, amountOfEpisodesInSeason);
             series.add(media);
         }
     }
@@ -184,11 +190,12 @@ public class MediaData extends MainMenu {
         for (String s : movieData)
         {
             String[] values = s.split(";");
-            String title = values[0];
-            String releaseYear = values[1];
-            String genre = values[2];
-            String rating = values[3];
-            Media media = new Movies(title, releaseYear, genre, rating);
+            String ID = values[0];
+            String title = values[1];
+            String releaseYear = values[2];
+            String genre = values[3];
+            String rating = values[4];
+            Media media = new Movies(ID, title, releaseYear, genre, rating);
             //Movies m = (Movies)media;
             movies.add(media);
         }
