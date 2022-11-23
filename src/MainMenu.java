@@ -1,6 +1,7 @@
 public class MainMenu
 {
     TextUI u = new TextUI();
+    public static int loginChoice = 0;
 
     // Colors for console-text!
     String RESET = "\033[0m", GREEN_BOLD = "\033[1;32m", REDB = "\033[1;31m", YELB = "\033[1;33m", B_U = "\033[4;34m";
@@ -12,6 +13,7 @@ public class MainMenu
         if (input == 1)
         {
             MediaDB mediaDB = new MediaDB();
+            System.out.println(loginChoice);
             mediaDB.establishConnection();
             mediaDB.readUserCredentials();
             mediaDB.run();
@@ -20,7 +22,11 @@ public class MainMenu
         if (input == 2)
         {
             AccountDataBase aOne = new AccountDataBase();
+            loginChoice = 1;
+            System.out.println(loginChoice);
             aOne.userAuthentication();
+
+
         }
     }
 
@@ -91,15 +97,15 @@ public class MainMenu
         int input = Integer.parseInt(u.getUserInput(GREEN_BOLD+"Press 1 to see a list of movies" + "\n" + "Press 2 to search for a movie" + "\n" + "Press 3 to search for a category."+RESET));
         if (input == 1) {
             md.displayMovies();
-            md.playButtonForMovie();
+            md.playButtonForMovie(loginChoice);
         }
         if (input == 2) {
             md.searchForMovieTitle();
-            md.playButtonForMovie();
+            md.playButtonForMovie(loginChoice);
         }
         if (input == 3) {
             md.searchInMovieCategory();
-            md.playButtonForMovie();
+            md.playButtonForMovie(loginChoice);
         }
     }
 }

@@ -38,7 +38,7 @@ public abstract class Media {
 
     @Override
     public String toString() {
-        return "\n" + "Title: " + title + "\nRelease Year: " + releaseYear + "\nGenre: " + genre + "\nRating: " + rating +
+        return "\n" + "ID: " + ID + " Title: " + title + "\nRelease Year: " + releaseYear + "\nGenre: " + genre + "\nRating: " + rating +
                 "";
     }
 }

@@ -48,14 +48,14 @@ public class MediaDB
             //query = MessageFormat.format("select * from movies where title like \"%{0}%\"", userInput);
             makeMovieQuery(search_query);
             System.out.println("FIRST");
-            m.playButtonForMovie();
+            m.playButtonForMovie(0);
         }
         if (input == 2)
         {
             String userInput = u.getUserInputForSearch("Search for category");
             String search_query = "SELECT * FROM movies WHERE genre like \"%" + userInput + "%\"";
             makeMovieQuery(search_query);
-            m.playButtonForMovie();
+            m.playButtonForMovie(0);
         }
         if (input == 3)
         {

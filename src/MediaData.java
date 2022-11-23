@@ -27,11 +27,12 @@ public class MediaData extends MainMenu {
         createSeries(f.readSeriesData());
     }
 
-    public void playButtonForMovie()
+    public void playButtonForMovie(int loginChoice)
     {
+        if(loginChoice == 0){movies = moviesFromDB;}
         //System.out.println(moviesFromDB);
         String i = u.getUserInputForSearch(YELB+"Which of the following movies would you like to watch - type in full title."+RESET);
-        for (Media m : moviesFromDB)
+        for (Media m : movies)
         {
             if (m.getID().equalsIgnoreCase(i))
             {
