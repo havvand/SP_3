@@ -293,7 +293,7 @@ public class MediaDB
         String url = "jdbc:mysql://localhost/sp3_database?" + "autoReconnect=true&useSSL=false";
         ;
         String username = "root";
-        String password = "meyer";
+        String password = "Salar0108";
         try {
             // Initializing the variable connection with DriverManager (from java.sql)
             connection = DriverManager.getConnection(url, username, password);
