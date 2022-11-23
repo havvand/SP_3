@@ -4,15 +4,16 @@ public class Main {
     public static void main(String[] args) {
 
 
-        AccountDataBase aOne = new AccountDataBase();
+        MainMenu mainMenu = new MainMenu();
+        TextUI textUI = new TextUI();
         MediaData media = new MediaData();
         MediaDB mediaDB = new MediaDB();
-
         System.out.println("LOL");
 
+        //mediaDB.queryInsert();
+        mainMenu.loginChoice();
 
-        media.playButtonForMovie();
-        //mediaDB.addMovieToFavMedia(mediaDB.userId, mediaDB.movieId);
+
 
 
 

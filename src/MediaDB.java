@@ -1,9 +1,11 @@
 import java.sql.*;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 
-public class MediaDB {
+public class MediaDB
+{
+    String RESET = "\033[0m", GREEN_BOLD = "\033[1;32m", REDB = "\033[1;31m", YELB = "\033[1;33m", B_B= "\033[1;34m";
     TextUI u = new TextUI();
+
     public static String userId;
     public static String movieId;
     public static String seriesId;
@@ -11,67 +13,184 @@ public class MediaDB {
     protected static Connection connection;
     public static ArrayList<Media> movies = new ArrayList<>();
     public static ArrayList<Media> series = new ArrayList<>();
+    ArrayList<String> watchedMovies = new ArrayList<>();
+    ArrayList<String> watchedSeries = new ArrayList<>();
+    ArrayList<String> favoriteMovies = new ArrayList<>();
+    ArrayList<String> favoriteSeries = new ArrayList<>();
+
 
     // Method to
-    public void     run() {
-        establishConnection();
-        runMovies();
+    public void run()
+    {
+        int input = Integer.parseInt(u.getUserInput("Press 1 for movies: | Press 2 for series:"));
+
+        if (input == 1)
+        {
+            movieOptions();
+        }
+        if (input == 2)
+        {
+            seriesOptions();
+        }
 
     }
 
-    public void runMovies() {
-        String userInput = u.getUserInputForSearch("Which of the following movies would you like to watch - type in full title.");
-        String query = MessageFormat.format("select * from movies where title like \"{0}%\"", userInput);
-        //String query = "select * from movies where title like \"g%\";";
-        System.out.println(query);
-        System.out.println(movies);
+    public void movieOptions()
+    {
+        MediaData m = new MediaData();
+        int input = Integer.parseInt(u.getUserInputForSearch("What do you wanna watch? Press 1 to search TITLE | 2 for CATEGORY | 3 to see your LISTS. "));
+
+        if (input == 1)
+        {
+            String userInput = u.getUserInputForSearch("Search for title");
+            String search_query = "SELECT * FROM movies WHERE title like \"%" + userInput + "%\"";
+            //String search_query = "SELECT * FROM movies WHERE title like \"%" + userInput + "%\"";
+            //query = MessageFormat.format("select * from movies where title like \"%{0}%\"", userInput);
+            makeMovieQuery(search_query);
+            System.out.println("FIRST");
+            m.playButtonForMovie();
+        }
+        if (input == 2)
+        {
+            String userInput = u.getUserInputForSearch("Search for category");
+            String search_query = "SELECT * FROM movies WHERE genre like \"%" + userInput + "%\"";
+            makeMovieQuery(search_query);
+            m.playButtonForMovie();
+        }
+        if (input == 3)
+        {
+            int input2 = Integer.parseInt(u.getUserInputForSearch("1 for watched media | 2 for favorite list"));
+
+            if(input2 == 1)
+            {
+                System.out.println("WATCHED IN MOVIES");
+                String userInput = userId;
+                String search_query = "SELECT * FROM watchedmedia WHERE userId like \"%" + userInput + "%\"";
+                makeWatchedQuery(search_query);
+                System.out.println(watchedMovies);
+            }
+            if (input2 == 2)
+            {
+                //String userInput = userId;
+                //String search_query = "SELECT * FROM favoritmedia WHERE userId like \"%" + userInput + "%\"";
+                String search_query = "select favoritmedia.favMediaId, favoritmedia.userId, favoritmedia.seriesId,favoritmedia.movieId, movies.title, userdata.username\n" +
+                        "from favoritmedia\n" +
+                        "inner join userdata on favoritmedia.userId = userdata.userId\n" +
+                        "join movies on movies.movieId = favoritmedia.movieId;";
+                makeFavoriteQuery(search_query);
+                for (String favMov: favoriteMovies)
+                {
+                    //System.out.println("SOUT IN OPTION 3-2 MOVIES-OPTION " );
+                    if (favMov.contains(userId))
+                    {
+                        //System.out.println("INDEX 1 " + favoriteMovies.get(0));
+                        String one = favMov.replace(userId, " ");
+                        System.out.println(one);
+                    }
+                }
+
+            }
+        }
+        //System.out.println("PRINTED LIST" + movies);
+        //System.out.println(query);
+        //return query;
+    }
+
+    public void seriesOptions()
+    {
+        MediaData m = new MediaData();
+        int input = Integer.parseInt(u.getUserInputForSearch("What do you wanna watch? Press 1 to search TITLE | 2 for CATEGORY | 3 to see your LISTS. "));
+
+        if (input == 1)
+        {
+            String userInput = u.getUserInputForSearch("Search for title");
+            String search_query = "SELECT * FROM series WHERE title like \"%" + userInput + "%\"";
+            //String search_query = "SELECT * FROM movies WHERE title like \"%" + userInput + "%\"";
+            //query = MessageFormat.format("select * from movies where title like \"%{0}%\"", userInput);
+            makeSeriesQuery(search_query);
+            System.out.println("FIRST - in series");
+            m.playButtonForSeries();
+        }
+        if (input == 2)
+        {
+            String userInput = u.getUserInputForSearch("Search for category");
+            String search_query = "SELECT * FROM series WHERE genre like \"%" + userInput + "%\"";
+            makeSeriesQuery(search_query);
+            m.playButtonForSeries();
+        }
+        if (input == 3)
+        {
+            int input2 = Integer.parseInt(u.getUserInputForSearch("1 for watched media | 2 for favorite list"));
+
+            if(input2 == 1)
+            {
+                System.out.println("WATCHED IN SERIES");
+                String userInput = userId;
+                String search_query = "SELECT * FROM watchedmedia WHERE userId like \"%" + userInput + "%\"";
+                makeWatchedQuery(search_query);
+                System.out.println(watchedSeries);
+            }
+            if (input2 == 2)
+            {
+                System.out.println("FAVORIT IN SERIES");
+                //String userInput = userId;
+                String search_query = "select favoritmedia.favMediaId, favoritmedia.userId, favoritmedia.seriesId, series.title, userdata.username\n" +
+                        "from favoritmedia\n" +
+                        "inner join userdata on favoritmedia.userId = userdata.userId\n" +
+                        "join series on series.seriesId = favoritmedia.seriesId;";
+                makeFavoriteQuery(search_query);
+                for (String watchedM: favoriteSeries)
+                {
+                    System.out.println("SOUT IN OPTION 3-2 SERIES-OPTIONS");
+                    if (watchedM != null)
+                    {
+                        System.out.println(watchedM);
+                    }
+                }
+            }
+        }
+        //System.out.println("PRINTED LIST" + movies);
         //System.out.println(query);
         try {
-            // Makes an object (Statement statement) that sends SQL statements to the SQL-database (initialized as connection.createStatement() (a java.sql.Connection method)).
-            Statement statement = this.connection.createStatement();
-            // Using the variable statement to execute the String query which contains the SQL-statement(code for SQL-instructions).
-            statement.execute(query);
+            System.out.println("Search query in runMovies " + search_query);
 
-            // Makes an object results (ResultSet result), which contains the current result from the query.
-            ResultSet results = statement.getResultSet();
-
-            // Iterating through the database rows useing results.next() (a java.sql method). Adding each row to a variable.
-            // Declaring and initializing a new Media object for movies, with the returned results as parameters and adding them to an ArrayList.
-            while (results.next()) {
-                String ID = (results.getString("movieId"));
-                String title = (results.getString("title"));
-                String genre = (results.getString("genre"));
-                String releaseYear = (results.getString("releaseYear"));
-                String rating = (results.getString("rating"));
+                PreparedStatement query = connection.prepareStatement(search_query);
+                // execute query
+                query.executeQuery();
+                ResultSet result = query.getResultSet();
+                System.out.println(result);
+            while (result.next()) // Scans for as long as there is another row with data (another film on the list).
+            {
+                String ID = (result.getString("movieId"));
+                String title = (result.getString("title"));
+                String genre = (result.getString("genre"));
+                String releaseYear = (result.getString("releaseYear"));
+                String rating = (result.getString("rating"));
 
                 Media media = new Movies(ID, title, releaseYear, genre, rating);
-                Movies movie = (Movies) media;
-                this.movies.add(movie);
-                //movieId = movie.getID();
+                this.movies.add(media);
             }
-        } catch (SQLException e) {
+            query.close();
+        } catch (SQLException e)
+        {
             e.printStackTrace();
         }
         printMovies();
+        System.out.println("END");
+
+
     }
-    public void runSeries() {
-        String userInput = u.getUserInputForSearch("Which of the following series would you like to watch - type in full title.");
-        String query = MessageFormat.format("select * from series where title like \"{0}%\"", userInput);
-        //String query = "select * from movies where title like \"g%\";";
-        System.out.println(query);
-        System.out.println(series);
-        //System.out.println(query);
+
+    public void makeSeriesQuery(String search_query)
+    {
         try {
-            // Makes an object (Statement statement) that sends SQL statements to the SQL-database (initialized as connection.createStatement() (a java.sql.Connection method)).
-            Statement statement = this.connection.createStatement();
-            // Using the variable statement to execute the String query which contains the SQL-statement(code for SQL-instructions).
-            statement.execute(query);
+            System.out.println("Search query in runSeries " + search_query);
 
-            // Makes an object results (ResultSet result), which contains the current result from the query.
-            ResultSet results = statement.getResultSet();
-
-            // Iterating through the database rows useing results.next() (a java.sql method). Adding each row to a variable.
-            // Declaring and initializing a new Media object for movies, with the returned results as parameters and adding them to an ArrayList.
+            PreparedStatement query = connection.prepareStatement(search_query);
+            // execute query
+            query.executeQuery();
+            ResultSet results = query.getResultSet();
+            System.out.println(results);
             while (results.next()) {
                 String ID = (results.getString("seriesId"));
                 String title = (results.getString("title"));
@@ -81,23 +200,83 @@ public class MediaDB {
                 String amountOfEpisodesInSeason = (results.getString("amountOfEpisodesInSeason"));
 
                 Media media = new Series(ID, title, releaseYear, genre, rating, amountOfEpisodesInSeason);
-                Series serie = (Series) media;
-                this.series.add(serie);
+                this.series.add(media);
 
             }
+            query.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         printSeries();
     }
 
-    private void printMovies() {
-        for (Media m : this.movies) {
+    public void makeWatchedQuery(String search_query)
+    {
+        //ArrayList<String> watchedMovies = new ArrayList<>();
+        //ArrayList<String> watchedSeries = new ArrayList<>();
+        try {
+            System.out.println("Search query in watched " + search_query);
+
+            PreparedStatement query = connection.prepareStatement(search_query);
+            // execute query
+            query.executeQuery();
+            ResultSet result = query.getResultSet();
+            System.out.println(result);
+            while (result.next()) // Scans for as long as there is another row with data (another film on the list).
+            {
+                String ID = (result.getString("watchedMediaId"));
+                String movieId = (result.getString("movieId"));
+                String seriesId = (result.getString("seriesId"));
+                String userId = (result.getString("userId"));
+                watchedMovies.add(movieId);
+                watchedSeries.add(seriesId);
+            }
+            query.close();
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        System.out.println("END");
+    }
+
+    public void makeFavoriteQuery(String search_query) {
+        //ArrayList<String> favoriteMovies = new ArrayList<>();
+        try {
+            System.out.println("Search query in watched " + search_query);
+
+            PreparedStatement query = connection.prepareStatement(search_query);
+            // execute query
+            query.executeQuery();
+            ResultSet result = query.getResultSet();
+            System.out.println("RESULT "+result);
+            while (result.next()) // Scans for as long as there is another row with data (another film on the list).
+            {
+                String favMediaId = (result.getString("favMediaId"));
+                String userId = (result.getString("userId"));
+                String seriesId = (result.getString("seriesId"));
+                String title = (result.getString("title"));
+                String userName = (result.getString("username"));
+                favoriteMovies.add(title+" "+userId);
+                favoriteSeries.add(title+" "+userId);
+            }
+            query.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("END");
+    }
+
+    private void printMovies()
+    {
+        for (Media m : this.movies)
+        {
             System.out.println("ID: "+m.getID()+ "\nTitle: " + m.getTitle() + "\nGenre: " + m.getGenre() + "\nRating: " + m.getRating());
         }
     }
-    private void printSeries() {
-        for (Media m : this.series) {
+    private void printSeries()
+    {
+        for (Media m : this.series)
+        {
             System.out.println("ID: "+m.getID()+ "\nTitle: " + m.getTitle() + "\nGenre: " + m.getGenre() + "\nRating: " + m.getRating());
         }
     }
@@ -119,8 +298,9 @@ public class MediaDB {
 
     }
 
-    public void newUser() {
-        establishConnection();
+    public void newUser()
+    {
+        //establishConnection();
         String usernameInput = u.getUserInput("Select username");
         String passwordInput = u.getUserInput("Select password");
         String login_query = "INSERT INTO userdata (username, password) VALUES (?,?)";
@@ -138,7 +318,7 @@ public class MediaDB {
     }
 
     public String readUserCredentials() {
-        establishConnection();
+        //establishConnection();
         String username = u.getUserInput("USERNAME: ");
         String password = u.getUserInput("PASSWORD: ");
         String login_query = "SELECT * FROM userdata WHERE username ='" + username + "'" + "AND password ='" + password + "'";
@@ -148,8 +328,10 @@ public class MediaDB {
             ResultSet result = query.executeQuery();
             if (result.next()) {
                userId = result.getString("userId");
+               u.displayMessage("Login Success");
             } else {
-                System.out.println("BAD");
+                u.displayMessage("Login Failed! - Try Again!");
+                readUserCredentials();
             }
             query.close();
         } catch (SQLException e) {
@@ -175,13 +357,14 @@ public class MediaDB {
                 e.printStackTrace();
             }
         } else {
+                movieOptions();
                 System.out.println("SOMETHING DIFFERENT HAPPENS");
             }
     }
     public void addSeriesToFavMedia(String userId, String seriesId) {
-        establishConnection();
+        //establishConnection();
         String favId = u.getUserInput("Do you want to add this series to your favorite list? Y/N?");
-        String addToFav_query = "INSERT INTO favoritmedia (seriesId, userId) VALUES (?,?)";
+        String addToFav_query = "INSERT INTO favoritmedia (userId, seriesId) VALUES (?,?)";
         if (favId.equalsIgnoreCase("Y")) {
             try {
                 PreparedStatement query = connection.prepareStatement(addToFav_query);
@@ -194,6 +377,7 @@ public class MediaDB {
                 e.printStackTrace();
             }
         } else {
+            seriesOptions();
             System.out.println("SOMETHING DIFFERENT HAPPENS");
         }
     }

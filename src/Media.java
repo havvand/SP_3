@@ -1,4 +1,6 @@
 public abstract class Media {
+    private String ID;
+
     private String title;
 
     private String releaseYear;
@@ -6,7 +8,6 @@ public abstract class Media {
     private String genre;
 
     private String rating;
-    private String ID;
 
     public Media(String ID, String title, String releaseYear, String genre, String rating) {
         this.ID = ID;
@@ -16,6 +17,9 @@ public abstract class Media {
         this.rating = rating;
     }
 
+    public String getID() {
+        return ID;
+    }
     public String getTitle() {
         return title;
     }
@@ -28,16 +32,13 @@ public abstract class Media {
         return genre;
     }
 
-    public String getRating() {
-        return rating;
-    }
-    public String getID(){
-        return ID;
-    }
+    public String getRating() { return rating; }
+
+    public String getAmountOfEpisodesInSeason() { return ""; }
 
     @Override
     public String toString() {
-        return "\n" + "ID: " + ID + "\nTitle: " + title + "\nRelease Year: " + releaseYear + "\nGenre: " + genre + "\nRating: " + rating +
+        return "\n" + "Title: " + title + "\nRelease Year: " + releaseYear + "\nGenre: " + genre + "\nRating: " + rating +
                 "";
     }
 }
