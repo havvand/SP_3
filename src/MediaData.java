@@ -30,7 +30,7 @@ public class MediaData extends MainMenu {
     public void playButtonForMovie()
     {
         //System.out.println(moviesFromDB);
-        String i = u.getUserInputForSearch(YELB+"Which of the following movies would you like to watch - type in full title."+RESET);
+        String i = u.getUserInputForSearch(YELB+"Which of the following movies would you like to watch - type ID number."+RESET);
         for (Media m : moviesFromDB)
         {
             if (m.getID().equalsIgnoreCase(i))

@@ -96,13 +96,11 @@ public class MediaDB
         //return query;
     }
 
-    public void seriesOptions()
-    {
+    public void seriesOptions() {
         MediaData m = new MediaData();
         int input = Integer.parseInt(u.getUserInputForSearch("What do you wanna watch? Press 1 to search TITLE | 2 for CATEGORY | 3 to see your LISTS. "));
 
-        if (input == 1)
-        {
+        if (input == 1) {
             String userInput = u.getUserInputForSearch("Search for title");
             String search_query = "SELECT * FROM series WHERE title like \"%" + userInput + "%\"";
             //String search_query = "SELECT * FROM movies WHERE title like \"%" + userInput + "%\"";
@@ -111,27 +109,23 @@ public class MediaDB
             System.out.println("FIRST - in series");
             m.playButtonForSeries();
         }
-        if (input == 2)
-        {
+        if (input == 2) {
             String userInput = u.getUserInputForSearch("Search for category");
             String search_query = "SELECT * FROM series WHERE genre like \"%" + userInput + "%\"";
             makeSeriesQuery(search_query);
             m.playButtonForSeries();
         }
-        if (input == 3)
-        {
+        if (input == 3) {
             int input2 = Integer.parseInt(u.getUserInputForSearch("1 for watched media | 2 for favorite list"));
 
-            if(input2 == 1)
-            {
+            if (input2 == 1) {
                 System.out.println("WATCHED IN SERIES");
                 String userInput = userId;
                 String search_query = "SELECT * FROM watchedmedia WHERE userId like \"%" + userInput + "%\"";
                 makeWatchedQuery(search_query);
                 System.out.println(watchedSeries);
             }
-            if (input2 == 2)
-            {
+            if (input2 == 2) {
                 System.out.println("FAVORIT IN SERIES");
                 //String userInput = userId;
                 String search_query = "select favoritmedia.favMediaId, favoritmedia.userId, favoritmedia.seriesId, series.title, userdata.username\n" +
@@ -139,18 +133,18 @@ public class MediaDB
                         "inner join userdata on favoritmedia.userId = userdata.userId\n" +
                         "join series on series.seriesId = favoritmedia.seriesId;";
                 makeFavoriteQuery(search_query);
-                for (String watchedM: favoriteSeries)
-                {
+                for (String watchedM : favoriteSeries) {
                     System.out.println("SOUT IN OPTION 3-2 SERIES-OPTIONS");
-                    if (watchedM != null)
-                    {
+                    if (watchedM != null) {
                         System.out.println(watchedM);
                     }
                 }
             }
         }
+    }
         //System.out.println("PRINTED LIST" + movies);
         //System.out.println(query);
+        public void makeMovieQuery(String search_query){
         try {
             System.out.println("Search query in runMovies " + search_query);
 
@@ -287,7 +281,7 @@ public class MediaDB
         String url = "jdbc:mysql://localhost/sp3_database?" + "autoReconnect=true&useSSL=false";
         ;
         String username = "root";
-        String password = "Salar0108";
+        String password = "Ostefar";
         try {
             // Initializing the variable connection with DriverManager (from java.sql)
             connection = DriverManager.getConnection(url, username, password);
