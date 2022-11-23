@@ -3,11 +3,8 @@ import java.util.Scanner;
 
 public class TextUI {
     static Scanner scan = new Scanner(System.in);
-    String RESET = "\033[0m";
-    String GREEN_BOLD = "\033[1;32m";
-    String REDB = "\033[1;31m";
-    String YELB = "\033[1;33m";
-    String B_U = "\033[4;34m";
+    String RESET = "\033[0m", GREEN_BOLD = "\033[1;32m", REDB = "\033[1;31m", YELB = "\033[1;33m", B_B= "\033[1;34m";
+
 //RECEIVES A MESSAGE AND DISPLAYS IT TO THE USER. PROMPTS THE USER FOR ONE INPUT VALUE AND RETURNS THE INPUT
 
     public String getUserInput(String msg) {
@@ -84,41 +81,13 @@ public class TextUI {
         return sb.toString();
     }
 
-    public void displayMovieArrays(ArrayList<Movies> objects) {
-        StringBuilder sb = new StringBuilder();
-        for (Movies a : objects)
-            System.out.println(B_U + a + RESET);
-        //return a;
-    }
-
-    public void displaySeriesArrays(ArrayList<Series> objects) {
-        StringBuilder sb = new StringBuilder();
-        for (Series a : objects)
-            System.out.println(B_U + a + RESET);
-        //return a;
-    }
-
-    public void displayWatchedSeriesArrays(ArrayList<Series> objects) {
-        StringBuilder sb = new StringBuilder();
-        for (Series a : objects)
-            System.out.println(B_U + a + RESET);
-    }
-
-    public void displayWatchedMoviesArrays(ArrayList<Movies> objects) {
-        StringBuilder sb = new StringBuilder();
-        for (Movies a : objects)
-            System.out.println(B_U + a + RESET);
-    }
-
-    public void displayFavMovArray(ArrayList<Movies> objects) {
-        StringBuilder sb = new StringBuilder();
-        for (Movies a : objects)
-            System.out.println(B_U + a + RESET);
-    }
-
-    public void displayFavSerArrays(ArrayList<Series> objects) {
-        StringBuilder sb = new StringBuilder();
-        for (Series a : objects)
-            System.out.println(B_U + a + RESET);
+    public void printArray(ArrayList<Media> objects) {
+        //StringBuilder sb = new StringBuilder();
+        int i = 1;
+        for (Media a : objects)
+        {
+            System.out.println(B_B + a + "\n" + RESET);
+            i++;
+        }
     }
 }
