@@ -78,12 +78,14 @@ public class MediaDB
                         "inner join userdata on favoritmedia.userId = userdata.userId\n" +
                         "join movies on movies.movieId = favoritmedia.movieId;";
                 makeFavoriteQuery(search_query);
-                for (String watchedM: favoriteMovies)
+                for (String favMov: favoriteMovies)
                 {
                     //System.out.println("SOUT IN OPTION 3-2 MOVIES-OPTION " );
-                    if (watchedM != null && watchedM.contains(userId))
+                    if (favMov.contains(userId))
                     {
-                        System.out.println(watchedM);
+                        //System.out.println("INDEX 1 " + favoriteMovies.get(0));
+                        String one = favMov.replace(userId, " ");
+                        System.out.println(one);
                     }
                 }
 
@@ -245,7 +247,7 @@ public class MediaDB
     public void makeFavoriteQuery(String search_query) {
         //ArrayList<String> favoriteMovies = new ArrayList<>();
         try {
-            //System.out.println("Search query in watched " + search_query);
+            System.out.println("Search query in watched " + search_query);
 
             PreparedStatement query = connection.prepareStatement(search_query);
             // execute query
