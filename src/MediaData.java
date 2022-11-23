@@ -4,11 +4,10 @@ import java.util.ArrayList;
 
 public class MediaData extends MainMenu {
     FileIO f = new FileIO();
-    MediaDB mediaDB = new MediaDB();
+    private MediaDB mediaDB = new MediaDB();
 
-
-    public static ArrayList<Media> testS = MediaDB.movies;
-    public static ArrayList<Media> test2 = MediaDB.series;
+    private static ArrayList<Media> moviesFromDB = MediaDB.movies;
+    private static ArrayList<Media> seriesFromDB = MediaDB.series;
 
     private static ArrayList<Media> movies = new ArrayList<>();
     private static ArrayList<Media> series = new ArrayList<>();
@@ -31,8 +30,9 @@ public class MediaData extends MainMenu {
 
     public void playButtonForMovie()
     {
-        String i = u.getUserInputForSearch(YELB+"Which of the following movies would you like to watch - type in ID number."+RESET);
-        for (Media m : testS)
+        //System.out.println(moviesFromDB);
+        String i = u.getUserInputForSearch(YELB+"Which of the following movies would you like to watch - type in full title."+RESET);
+        for (Media m : moviesFromDB)
         {
             if (m.getID().equalsIgnoreCase(i))
             {
@@ -42,12 +42,11 @@ public class MediaData extends MainMenu {
                 {
                     watchedMovies.add(m);
                     u.displayMessage(GREEN_BOLD+"You are now watching: " + m+RESET);
-                    mediaDB.addMoviesToWatchedMedia(mediaDB.userId, m.getID());
                     chooseMediaType();
                 }
                 if (input == 2)
                 {
-                    System.out.println(mediaDB.userId + m.getID());
+                    favoritedMovies.add(m);
                     mediaDB.addMovieToFavMedia(mediaDB.userId, m.getID());
                     //favoritedMovies.add(m);
                     u.displayMessage(GREEN_BOLD+"You have favorited: " + m+RESET);
@@ -59,8 +58,8 @@ public class MediaData extends MainMenu {
 
     public void playButtonForSeries()
     {
-        String i = u.getUserInputForSearch(YELB + "Which of the following series would like to watch? Type in ID number to watch" + RESET);
-        for (Media s : test2)
+        String i = u.getUserInputForSearch(YELB + "Which of the following series would like to watch?" + RESET);
+        for (Media s : seriesFromDB)
         {
             if (s.getID().equalsIgnoreCase(i))
             {
@@ -69,12 +68,11 @@ public class MediaData extends MainMenu {
                 {
                     watchedSeries.add(s);
                     u.displayMessage(GREEN_BOLD+"You are now watching: " + s + RESET);
-                    mediaDB.addSeriesToWatchedMedia(mediaDB.userId, s.getID());
                     chooseMediaType();
                 }
                 if (input == 2)
                 {
-                    System.out.println(mediaDB.userId + s.getID());
+                    favoritedSeries.add(s);
                     mediaDB.addSeriesToFavMedia(mediaDB.userId, s.getID());
                     //favoritedSeries.add(s);
                     u.displayMessage(GREEN_BOLD+"You have favorited: " + s + RESET);
@@ -82,7 +80,9 @@ public class MediaData extends MainMenu {
                 }
             }
 
-        } u.errorMessage();
+        }
+        System.out.println(series);
+        //u.errorMessage();
     }
 
 
@@ -184,8 +184,7 @@ public class MediaData extends MainMenu {
             String rating = values[4];
             String amountOfEpisodesInSeason = values[5];
             Media media = new Series(ID, title, releaseYear, genre, rating, amountOfEpisodesInSeason);
-            Series s1 = (Series)media;
-            series.add(s1);
+            series.add(media);
         }
     }
 
@@ -200,8 +199,8 @@ public class MediaData extends MainMenu {
             String genre = values[3];
             String rating = values[4];
             Media media = new Movies(ID, title, releaseYear, genre, rating);
-            Movies m = (Movies)media;
-            movies.add(m);
+            //Movies m = (Movies)media;
+            movies.add(media);
         }
     }
 
