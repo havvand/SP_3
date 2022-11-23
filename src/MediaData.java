@@ -17,7 +17,6 @@ public class MediaData extends MainMenu {
     private static ArrayList<Media> favoritedMovies = new ArrayList<>();
     private static ArrayList<Media> favoritedSeries = new ArrayList<>();
 
-
     public void initiateMovieList()
     {
         createMovies(f.readMovieData());
@@ -28,11 +27,12 @@ public class MediaData extends MainMenu {
         createSeries(f.readSeriesData());
     }
 
-    public void playButtonForMovie()
+    public void playButtonForMovie(int loginChoice)
     {
+        if(loginChoice == 0){movies = moviesFromDB;}
         //System.out.println(moviesFromDB);
-        String i = u.getUserInputForSearch(YELB+"Which of the following movies would you like to watch? - Type in ID"+RESET);
-        for (Media m : moviesFromDB)
+        String i = u.getUserInputForSearch(YELB+"Which of the following movies would you like to watch - type in full title."+RESET);
+        for (Media m : movies)
         {
             if (m.getID().equalsIgnoreCase(i))
             {
@@ -48,7 +48,6 @@ public class MediaData extends MainMenu {
                 {
                     favoritedMovies.add(m);
                     mediaDB.addMovieToFavMedia(mediaDB.userId, m.getID());
-                    //favoritedMovies.add(m);
                     u.displayMessage(GREEN_BOLD+"You have favorited: " + m+RESET);
                     chooseMediaType();
                 }
@@ -58,7 +57,7 @@ public class MediaData extends MainMenu {
 
     public void playButtonForSeries()
     {
-        String i = u.getUserInputForSearch(YELB + "Which of the following series would like to watch? - Type in ID" + RESET);
+        String i = u.getUserInputForSearch(YELB + "Which of the following series would like to watch?" + RESET);
         for (Media s : seriesFromDB)
         {
             if (s.getID().equalsIgnoreCase(i))
@@ -74,7 +73,6 @@ public class MediaData extends MainMenu {
                 {
                     favoritedSeries.add(s);
                     mediaDB.addSeriesToFavMedia(mediaDB.userId, s.getID());
-                    //favoritedSeries.add(s);
                     u.displayMessage(GREEN_BOLD+"You have favorited: " + s + RESET);
                     chooseMediaType();
                 }
