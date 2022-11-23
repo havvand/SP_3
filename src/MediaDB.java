@@ -13,7 +13,7 @@ public class MediaDB {
     public static ArrayList<Media> series = new ArrayList<>();
 
     // Method to
-    public void run() {
+    public void     run() {
         establishConnection();
         runMovies();
 
