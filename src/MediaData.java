@@ -31,7 +31,7 @@ public class MediaData extends MainMenu {
     {
         if(loginChoice == 0){movies = moviesFromDB;}
         //System.out.println(moviesFromDB);
-        String i = u.getUserInputForSearch(YELB+"Which of the following movies would you like to watch - type in full title."+RESET);
+        String i = u.getUserInputForSearch(YELB+"Which of the following movies would you like to watch - type in ID."+RESET);
         for (Media m : movies)
         {
             if (m.getID().equalsIgnoreCase(i))
@@ -55,10 +55,11 @@ public class MediaData extends MainMenu {
         } u.errorMessage();
     }
 
-    public void playButtonForSeries()
+    public void playButtonForSeries(int loginChoice)
     {
-        String i = u.getUserInputForSearch(YELB + "Which of the following series would like to watch?" + RESET);
-        for (Media s : seriesFromDB)
+        if(loginChoice == 0){series = seriesFromDB;}
+        String i = u.getUserInputForSearch(YELB + "Which of the following series would like to watch? - type in ID" + RESET);
+        for (Media s : series)
         {
             if (s.getID().equalsIgnoreCase(i))
             {

@@ -15,7 +15,14 @@ public class MainMenu
             MediaDB mediaDB = new MediaDB();
             System.out.println(loginChoice);
             mediaDB.establishConnection();
-            mediaDB.readUserCredentials();
+            input = Integer.parseInt(u.getUserInput("Press 1 to create new user:  | Press 2 to login with existing user: "));
+            if(input == 1) {
+                mediaDB.newUser();
+                mediaDB.readUserCredentials();
+            }
+            if (input == 2) {
+                mediaDB.readUserCredentials();
+            }
             mediaDB.run();
 
         }
@@ -79,15 +86,15 @@ public class MainMenu
         int input = Integer.parseInt(u.getUserInput(GREEN_BOLD+"Press 1 to see a list of series" + "\n" + "Press 2 to search for a series" + "\n" + "Press 3 to search for a category."+RESET));
         if (input == 1) {
             md.displaySeries();
-            md.playButtonForSeries();
+            md.playButtonForSeries(loginChoice);
         }
         if (input == 2) {
             md.searchForSeriesTitle();
-            md.playButtonForSeries();
+            md.playButtonForSeries(loginChoice);
         }
         if (input == 3) {
             md.searchInSeriesCategory();
-            md.playButtonForSeries();
+            md.playButtonForSeries(loginChoice);
         }
     }
 
