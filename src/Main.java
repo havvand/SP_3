@@ -10,9 +10,9 @@ public class Main {
 
         System.out.println("LOL");
 
-        mediaDB.readUserCredentials();
+        //mediaDB.readUserCredentials();
         mediaDB.run();
-        media.playButtonForMovie();
+        //media.playButtonForMovie();
         //mediaDB.addMovieToFavMedia(mediaDB.userId, mediaDB.movieId);
 
         //aOne.userAuthentication();
